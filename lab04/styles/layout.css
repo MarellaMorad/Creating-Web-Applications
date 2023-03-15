@@ -1,0 +1,87 @@
+/*
+filename: layout.css
+author: Marella Morad
+created: 15/03/2023
+last modified: 15/03/2023
+description: styling to the lab4task1.html file for lab04
+*/
+
+aside:hover {
+    display: block;
+}
+
+.menu {
+    display: inline-block; /* display menu items on a single line */
+}
+
+aside {
+    border: 4px inset purple; /* shorthand: width style color */
+    border-radius: 14px;
+    margin: 1em;
+    padding: 1em;
+    background:url(images/fade.jpg) repeat-x top left;
+    width: 30%; /* 30% of its parent's width */
+    float: right; /* make the aside element sit to the right of the page */
+    box-shadow: 10px 10px 5px #aaaaaa; /* to make the aside element lift off the page */
+}
+
+header {
+    border: 1px solid darkgray; /* shorthand: width style color */
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: lightgray;
+    text-align: center;
+}
+
+footer {
+    border-top: 4px double greenyellow;
+    clear: both;
+}
+
+#lists {
+    float: left; /* float lists section to the left */
+}
+
+table {
+    margin: auto;
+}
+
+#tables {
+    float: right; /* float tables section to the right */
+    margin: auto;
+}
+
+#hyperlinks {
+    clear: left;
+    float: left;
+}
+
+#images {
+    float: right;
+}
+
+figure {
+    border: 2px solid #ccc;
+}
+
+#lists, #images, #tables, #hyperlinks {
+    width: 50%;
+    text-align: center;
+}
+
+ol, ul, dl {
+    text-align: left;
+}
+
+article {
+    min-width: 30em;
+}
+
+footer p {
+    display: inline-block;
+    width: 33%;
+}
+
+footer p:first-child {float: left;}
+footer p:nth-child(2) {text-align: center;}
+footer p:last-child {float: right; text-align: right;}
