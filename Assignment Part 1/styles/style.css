@@ -1,0 +1,145 @@
+/* Styles used across all .html files - for large screens */
+body, html {
+    height: 100%;
+}
+
+/* Set the background image, and font-family for the site */
+body {
+    background-image: linear-gradient(to bottom, white, #a887d8);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Style the header that includes the logo, nav-menu and a contact us button */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid #6c6c6c;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+#full-logo {
+    width: 100%;
+    max-width: 200px;
+}
+
+.menu, .small-menu {
+    display: contents;
+    text-align: center;
+}
+
+/* Remove the bullet points on the list, and display the nav items in a row */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+/* Style the nav items to match the style of the site */
+nav li {
+    font-weight: bold;
+}
+
+/* Remove the underline from a elements, and change the text color */
+.menu a, .small-menu a {
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.menu a:hover, .small-menu a:hover {
+    background-color: #7045af;
+    border-radius: 10px;
+    color: white;
+}
+
+.menu a.current, .small-menu a.current {
+    background-color: #7045af;
+    border-radius: 10px;
+    color: white;
+}
+
+.small-menu {
+    display: none;
+}
+
+/* Style the footer to have a line at the top */
+footer {
+    border-top: 1px solid #6c6c6c;
+    text-align: center;
+    padding: 5px;
+    margin-top: auto;
+}
+
+/*apply.html specific*/
+h2 {
+    text-align: center;
+}
+.form-container input[type="text"], 
+.form-container input[type="email"],
+.form-container input[type="date"],
+.form-container select, 
+.form-container textarea {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #636363;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+    width: 100%;
+}
+
+label {
+    white-space: nowrap;
+    padding-right: 7px;
+    margin-left: 7px;
+}
+
+.form-container p {
+    display: flex;
+    align-items: center;
+}
+
+.form-container fieldset {
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #636363;
+    padding: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+.buttons input {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid #636363;
+    padding: 14px 16px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.buttons input:hover {
+    cursor: pointer;
+    background-color: #7045af;
+    color: white;
+}

@@ -9,22 +9,41 @@
         <title>TechWave</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!--Add a favicon to the website-->
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/style-small.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
     </head>
     <body>
+        <div id="logo">
+            <a href="index.html"><img id="full-logo" src="images/logoH.png" alt="TechWave Logo"></a>
+        </div>
         <header>
-            <!-- <a href="index.html"><img id="logo" src="images/logoH.png" alt="TechWave Logo"></a> -->
-            <nav class="menu">
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="jobs.html">Careers</a></li>
-                    <li><a href="apply.html">Join Us</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="enhancements.html">Enhancements</a></li>
-                </ul>
-            </nav>
-            <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
+            <section class="menu">
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a class="current" href="jobs.html">Careers</a></li>
+                        <li><a href="apply.html">Join Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="enhancements.html">Enhancements</a></li>
+                    </ul>
+                </nav>
+                <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
+            </section>
+            <section class="small-menu">
+                <nav>
+                    <ul class="small-nav-menu">
+                        <li><a href="index.html"><span class="fas fa-home"></span></a></li>
+                        <li><a class="current" href="jobs.html"><span class="fas fa-briefcase"></span></a></li>
+                        <li><a href="apply.html"><span class="fas fa-user-plus"></span></a></li>
+                        <li><a href="about.html"><span class="fas fa-info-circle"></span></a></li>
+                        <li><a href="enhancements.html"><span class="fas fa-cog"></span></a></li>
+                    </ul>
+                </nav>
+                <a class="button" href="mailto:103076428@student.swin.edu.au"><span class="fa fa-envelope"></span></a>
+            </section>
         </header>
-        <h2>Avaliable Positions:</h2>
+        <h2>Avaliable Positions</h2>
         <section class="bda">
             <h3>Big Data Analyst</h3>
             <p><strong>Position Description Reference Number:</strong> TW123<br></p>

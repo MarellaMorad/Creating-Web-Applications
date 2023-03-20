@@ -9,172 +9,195 @@
         <title>TechWave</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!--Add a favicon to the website-->
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/style-small.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
     </head>
     <body>
+        <div id="logo">
+            <a href="index.html"><img id="full-logo" src="images/logoH.png" alt="TechWave Logo"></a>
+        </div>
         <header>
-            <!-- <a href="index.html"><img id="logo" src="images/logoH.png" alt="TechWave Logo"></a> -->
-            <nav class="menu">
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="jobs.html">Careers</a></li>
-                    <li><a href="apply.html">Join Us</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="enhancements.html">Enhancements</a></li>
-                </ul>
-            </nav>
-            <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
+            <section class="menu">
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="jobs.html">Careers</a></li>
+                        <li><a class="current" href="apply.html">Join Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="enhancements.html">Enhancements</a></li>
+                    </ul>
+                </nav>
+                <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
+            </section>
+            <section class="small-menu">
+                <nav>
+                    <ul class="small-nav-menu">
+                        <li><a href="index.html"><span class="fas fa-home"></span></a></li>
+                        <li><a href="jobs.html"><span class="fas fa-briefcase"></span></a></li>
+                        <li><a class="current" href="apply.html"><span class="fas fa-user-plus"></span></a></li>
+                        <li><a href="about.html"><span class="fas fa-info-circle"></span></a></li>
+                        <li><a href="enhancements.html"><span class="fas fa-cog"></span></a></li>
+                    </ul>
+                </nav>
+                <a class="button" href="mailto:103076428@student.swin.edu.au"><span class="fa fa-envelope"></span></a>
+            </section>
         </header>
         <h2>Application of Interest</h2>
-        <form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
-            <p>
-                <label for="reference-number">Job Reference Number</label> 
-                <input type="text" name= "reference-number" id="reference-number" pattern="^[a-zA-Z0-9]{5}$" required="required" title="Exactly 5 alphanumeric characters">
-            </p>
-            <fieldset>
-                <legend>Personal Details</legend>
+            <form class="form-container" method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
                 <p>
-                    <label for="first_name">First Name</label> 
-                    <input type="text" name= "first_name" id="first_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required" title="Only alphabetical characters allowed, max 20 characters">
-                    <label for="last_name">Last Name</label> 
-                    <input type="text" name= "last_name" id="last_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required" title="Only alphabetical characters allowed, max 20 characters">
-                </p>
-                <p>
-                    <label for="dob">Date of Birth</label> 
-                    <input type="date" name= "dob" id="dob" required="required" placeholder="dd-mm-yyyy" maxlength="10" size="10"/>
+                    <label for="reference-number">Job Reference Number:</label> 
+                    <input type="text" name= "reference-number" id="reference-number" pattern="^[a-zA-Z0-9]{5}$" required="required" title="Exactly 5 alphanumeric characters">
                 </p>
                 <fieldset>
-                    <legend>Gender</legend>
-                    <label for="male">Male</label> 
-                    <input type="radio" id="male" name="sex" value="male"/>
-
-                    <label for="female">Female</label> 
-                    <input type="radio" id="female" name="sex" value="female" required="required"/>
-                </fieldset>
-            </fieldset>
-            <fieldset>
-                <legend>Contact Information</legend>
-                <fieldset>
-                    <legend>Address</legend>
+                    <legend>Personal Details</legend>
                     <p>
-                        <label for="street">Street Address</label> 
-                        <input type="text" name= "street" id="street" maxlength="40" required="required" title="Max 40 characters">
+                        <label for="first_name">First Name:</label> 
+                        <input type="text" name= "first_name" id="first_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required" title="Only alphabetical characters allowed, max 20 characters">
                     </p>
                     <p>
-                        <label for="town">Suburb/town</label> 
-                        <input type="text" name= "town" id="town" maxlength="40" required="required" title="Max 40 characters">
+                        <label for="last_name">Last Name:</label> 
+                        <input type="text" name= "last_name" id="last_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required" title="Only alphabetical characters allowed, max 20 characters">
                     </p>
                     <p>
-                        <label for="state">State</label> 
-                        <select name="state" id="state" required="required">
-                            <option value="">Please Select</option>			
-                            <option value="vic">VIC</option>			
-                            <option value="nsw">NSW</option>
-                            <option value="qld">QLD</option>
-                            <option value="nt">NT</option>
-                            <option value="wa">WA</option>
-                            <option value="sa">SA</option>
-                            <option value="tas">TAS</option>
-                            <option value="act">ACT</option>
-                        </select>
+                        <label for="dob">Date of Birth:</label> 
+                        <input type="date" name= "dob" id="dob" required="required" placeholder="dd-mm-yyyy" maxlength="10" size="10"/>
+                    </p>
+                    <fieldset>
+                        <legend>Gender</legend>
+                        <label for="male">Male</label> 
+                        <input type="radio" id="male" name="sex" value="male"/>
+    
+                        <label for="female">Female</label> 
+                        <input type="radio" id="female" name="sex" value="female" required="required"/>
+                    </fieldset>
+                </fieldset>
+                <fieldset>
+                    <legend>Contact Information</legend>
+                    <fieldset>
+                        <legend>Address</legend>
+                        <p>
+                            <label for="street">Street Address:</label> 
+                            <input type="text" name="street" id="street" maxlength="40" required="required" title="Max 40 characters">
+                        </p>
+                        <p>
+                            <label for="town">Suburb/town:</label> 
+                            <input type="text" name="town" id="town" maxlength="40" required="required" title="Max 40 characters">
+                        </p>
+                        <p>
+                            <label for="state">State:</label> 
+                            <select name="state" id="state" required="required">
+                                <option value="">Please Select</option>			
+                                <option value="vic">VIC</option>			
+                                <option value="nsw">NSW</option>
+                                <option value="qld">QLD</option>
+                                <option value="nt">NT</option>
+                                <option value="wa">WA</option>
+                                <option value="sa">SA</option>
+                                <option value="tas">TAS</option>
+                                <option value="act">ACT</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="postcode">Postcode:</label> 
+                            <input type="text" name= "postcode" id="postcode" pattern="^\d{4}$" required="required" title="Exactly 4 digits">
+                        </p>
+                    </fieldset>
+                    <p>
+                        <label for="email">Email Address:</label> 
+                        <input type="email" name= "email" id="email" required="required" title="Enter a valid email address">
                     </p>
                     <p>
-                        <label for="postcode">Postcode</label> 
-                        <input type="text" name= "postcode" id="postcode" pattern="^\d{4}$" required="required" title="Exactly 4 digits">
+                        <label for="mobile">Phone Number:</label> 
+                        <input type="text" name= "mobile" id="mobile" required="required" pattern="^[0-9 ]{8,12}$" title="8 to 12 digits or spaces">
                     </p>
                 </fieldset>
-                <p>
-                    <label for="email">Email Address</label> 
-                    <input type="email" name= "email" id="email" required="required" title="Enter a valid email address">
-                </p>
-                <p>
-                    <label for="mobile">Phone Number</label> 
-                    <input type="text" name= "mobile" id="mobile" required="required" pattern="^[0-9 ]{8,12}$" title="8 to 12 digits or spaces">
-                </p>
-            </fieldset>
-            <fieldset>
-                <legend>Skills</legend>
-                <legend>Skill List (select all that apply)</legend>
-                <br>
                 <fieldset>
-                    <legend>Big Data Analyst Specific Skills</legend>
-                    <label for="hadoop">Hadoop</label> 
-                    <input type="checkbox" id="hadoop" name="skills[]" value="hadoop" checked="checked">
-
-                    <label for="spark">Spark</label> 
-                    <input type="checkbox" id="spark" name="skills[]" value="spark">
-
-                    <label for="hive">Hive</label> 
-                    <input type="checkbox" id="hive" name="skills[]" value="hive">
-
-                    <label for="python">Python</label> 
-                    <input type="checkbox" id="python" name="skills[]" value="python">
-
-                    <label for="java">Java</label> 
-                    <input type="checkbox" id="java" name="skills[]" value="java">
-
-                    <label for="r">R</label> 
-                    <input type="checkbox" id="r" name="skills[]" value="r">
-
-                    <label for="tableau">Tableau</label> 
-                    <input type="checkbox" id="tableau" name="skills[]" value="tableau">
-
-                    <label for="qlik-view">QlikView</label> 
-                    <input type="checkbox" id="qlik-view" name="skills[]" value="qlik-view">
-
-                    <label for="power-bi">Power BI</label> 
-                    <input type="checkbox" id="power-bi" name="skills[]" value="power-bi">
-                </fieldset>
-                <br>
-                <fieldset>
-                    <legend>Software Engineer Specific Skills</legend>
-                    <label for="c-sharp">C#</label> 
-                    <input type="checkbox" id="c-sharp" name="skills[]" value="c-sharp" checked="checked">
-
-                    <label for="c-plus-plus">C++</label> 
-                    <input type="checkbox" id="c-plus-plus" name="skills[]" value="c-plus-plus">
-                
-                    <label for="agile">Agile</label> 
-                    <input type="checkbox" id="agile" name="skills[]" value="agile">
-
-                    <label for="scrum">Scrum</label> 
-                    <input type="checkbox" id="scrum" name="skills[]" value="scrum">
-
-                    <label for="waterfall">Waterfall</label> 
-                    <input type="checkbox" id="waterfall" name="skills[]" value="waterfall">
-
-                    <label for="git">Git</label> 
-                    <input type="checkbox" id="git" name="skills[]" value="git">
-
-                    <label for="jira">JIRA</label> 
-                    <input type="checkbox" id="jira" name="skills[]" value="jira">
-
-                    <label for="jenkins">Jenkins</label> 
-                    <input type="checkbox" id="jenkins" name="skills[]" value="jenkins">
-                </fieldset>
-                <br>
-                <fieldset>
-                    <legend>Soft Skills</legend>
-                    <label for="problem-solving">Problem Solving Skills</label> 
-                    <input type="checkbox" id="problem-solving" name="skills[]" value="problem-solving" checked="checked">
-
-                    <label for="communication">Communication and Interpersonal skills</label> 
-                    <input type="checkbox" id="communication" name="skills[]" value="communication">
-
-                    <label for="teamwork">Teamwork Skills</label> 
-                    <input type="checkbox" id="teamwork" name="skills[]" value="teamwork">
+                    <legend>Skills</legend>
+                    <legend>Skill List (select all that apply)</legend>
+                    <br>
+                    <fieldset>
+                        <legend>Big Data Analyst Specific Skills</legend>
+                        <label for="hadoop">Hadoop</label> 
+                        <input type="checkbox" id="hadoop" name="skills[]" value="hadoop" checked="checked">
+    
+                        <label for="spark">Spark</label> 
+                        <input type="checkbox" id="spark" name="skills[]" value="spark">
+    
+                        <label for="hive">Hive</label> 
+                        <input type="checkbox" id="hive" name="skills[]" value="hive">
+    
+                        <label for="python">Python</label> 
+                        <input type="checkbox" id="python" name="skills[]" value="python">
+    
+                        <label for="java">Java</label> 
+                        <input type="checkbox" id="java" name="skills[]" value="java">
+    
+                        <label for="r">R</label> 
+                        <input type="checkbox" id="r" name="skills[]" value="r">
+    
+                        <label for="tableau">Tableau</label> 
+                        <input type="checkbox" id="tableau" name="skills[]" value="tableau">
+    
+                        <label for="qlik-view">QlikView</label> 
+                        <input type="checkbox" id="qlik-view" name="skills[]" value="qlik-view">
+    
+                        <label for="power-bi">Power BI</label> 
+                        <input type="checkbox" id="power-bi" name="skills[]" value="power-bi">
+                    </fieldset>
+                    <br>
+                    <fieldset>
+                        <legend>Software Engineer Specific Skills</legend>
+                        <label for="c-sharp">C#</label> 
+                        <input type="checkbox" id="c-sharp" name="skills[]" value="c-sharp" checked="checked">
+    
+                        <label for="c-plus-plus">C++</label> 
+                        <input type="checkbox" id="c-plus-plus" name="skills[]" value="c-plus-plus">
                     
-                    <label for="other-skills">Other skills...</label>
-                    <input type="checkbox" id="other-skills" name="skills[]" value="other-skills">
-
+                        <label for="agile">Agile</label> 
+                        <input type="checkbox" id="agile" name="skills[]" value="agile">
+    
+                        <label for="scrum">Scrum</label> 
+                        <input type="checkbox" id="scrum" name="skills[]" value="scrum">
+    
+                        <label for="waterfall">Waterfall</label> 
+                        <input type="checkbox" id="waterfall" name="skills[]" value="waterfall">
+    
+                        <label for="git">Git</label> 
+                        <input type="checkbox" id="git" name="skills[]" value="git">
+    
+                        <label for="jira">JIRA</label> 
+                        <input type="checkbox" id="jira" name="skills[]" value="jira">
+    
+                        <label for="jenkins">Jenkins</label> 
+                        <input type="checkbox" id="jenkins" name="skills[]" value="jenkins">
+                    </fieldset>
+                    <br>
+                    <fieldset>
+                        <legend>Soft Skills</legend>
+                        <label for="problem-solving">Problem Solving Skills</label> 
+                        <input type="checkbox" id="problem-solving" name="skills[]" value="problem-solving" checked="checked">
+    
+                        <label for="communication">Communication and Interpersonal skills</label> 
+                        <input type="checkbox" id="communication" name="skills[]" value="communication">
+    
+                        <label for="teamwork">Teamwork Skills</label> 
+                        <input type="checkbox" id="teamwork" name="skills[]" value="teamwork">
+                        
+                        <label for="other-skills">Other skills...</label>
+                        <input type="checkbox" id="other-skills" name="skills[]" value="other-skills">
+    
+                    </fieldset>
+                    <p>
+                        <label for="other-skills">Other Skills:</label>
+                        <textarea id="other-skills" name="other-skills" rows="4" cols="40" placeholder="Please list your other skills here..."></textarea>
+                    </p>
                 </fieldset>
-                <p>
-                    <label for="other-skills">Other skills</label>
-                    <textarea id="other-skills" name="other-skills" rows="4" cols="40" placeholder="Please list your other skills here..."></textarea>
-                </p>
-            </fieldset>
-            <input type= "submit" value="Apply">
-            <input type= "reset" value="Reset form">
-        </form>
+                <div class="buttons">
+                    <input type= "submit" value="Apply">
+                    <input type= "reset" value="Reset form">
+                </div>
+            </form>
         <footer>
             © 2023 TechWave All Rights Reserved.
         </footer>
