@@ -6,19 +6,20 @@
         <meta name="description" content="Creating Web Applications">
         <meta name="keywords"    content="HTML, CSS, JavaScript">
         <meta name="author"      content="Marella Morad">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <title>TechWave</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!--Add a favicon to the website-->
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/style-small.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     </head>
     <body>
-        <div id="logo">
-            <a href="index.html"><img id="full-logo" src="images/logoH.png" alt="TechWave Logo"></a>
+        <div id="logo-container">
+            <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
         </div>
         <header>
-            <section class="menu">
+            <div class="menu">
                 <nav>
                     <ul class="nav-menu">
                         <li><a href="index.html">Home</a></li>
@@ -29,8 +30,8 @@
                     </ul>
                 </nav>
                 <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
-            </section>
-            <section class="small-menu">
+            </div>
+            <div class="small-menu">
                 <nav>
                     <ul class="small-nav-menu">
                         <li><a href="index.html"><span class="fas fa-home"></span></a></li>
@@ -41,123 +42,126 @@
                     </ul>
                 </nav>
                 <a class="button" href="mailto:103076428@student.swin.edu.au"><span class="fa fa-envelope"></span></a>
-            </section>
+            </div>
         </header>
         <h2>About Me</h2>
-        <dl>
-            <dt>Name:</dt>
-            <dd>Marella Morad</dd>
-            <dt>Meaning:</dt>
-            <dd>Star of the Sea<sup><a href="http://www.thinkbabynames.com/meaning/0/Marella">3</a></sup></dd>
-            <dt>Student Number:</dt>
-            <dd>103076428</dd>
-            <dt>Student Email:</dt>
-            <dd><a href="mailto:103076428@student.swin.edu.au">103076428@student.swin.edu.au</a></dd>
-            <dt>Tutor's Name:</dt>
-            <dd>Jingwen Zhou</dd>
-            <dt>Course:</dt>
-            <dd>Bachelor of Engineering (Honours) (Professional) Majoring in Software</dd>
-        </dl>
+
         <figure>
-            <img src="images/personal_picture.jpg" alt="Marella's Personal Photo">
+            <img class="personal-img" src="images/personal_picture.jpg" alt="Marella's Personal Photo">
             <figcaption>Fig.1 - Marella's Personal Photo</figcaption>
         </figure>
-        <table>
-            <caption>Swinburne Timetable</caption>
-            <tr>
-                <th></th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-            </tr>
-            <tr>
-                <td>8:30 am - 9:30 am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>COS30008 - @ENG310</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>9:30 am - 10:30 am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>COS30008 - @Hawthorn ENG310<br>SWE30003 - @Hawthorn Online</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>10:30 am - 11:30 am</td>
-                <td>SWE30003 - @Hawthorn ATC430</td>
-                <td></td>
-                <td></td>
-                <td>SWE30003 - @Hawthorn Online</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>11:30 am - 12:30 pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>12:30 pm - 1:30 pm</td>
-                <td>COS30008 - @Hawthorn Online</td>
-                <td></td>
-                <td></td>
-                <td>COS10011 - @Hawthorn ATC627</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>1:30 pm - 2:30 pm</td>
-                <td>COS30008 - @Hawthorn Online</td>
-                <td></td>
-                <td></td>
-                <td>COS10011 - @Hawthorn ATC627</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2:30 pm - 3:30 pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>EEE40002 - @Hawthorn AD208</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3:30 pm - 4:30 pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>4:30 pm - 5:30 pm</td>
-                <td>EEE40002 - @Hawthorn Online</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>5:30 pm - 6:30 pm</td>
-                <td>COS10011 - @Hawthorn Online</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>6:30 pm - 7:30 pm</td>
-                <td>COS10011 - @Hawthorn Online</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
+        <dl>
+            <dt>Name</dt>
+            <dd>Marella Morad</dd>
+            <dt>Meaning</dt>
+            <dd>Star of the Sea<sup><a href="http://www.thinkbabynames.com/meaning/0/Marella">3</a></sup></dd>
+            <dt>Student Number</dt>
+            <dd>103076428</dd>
+            <dt>Student Email</dt>
+            <dd><a href="mailto:103076428@student.swin.edu.au">103076428@student.swin.edu.au</a></dd>
+            <dt>Tutor's Name</dt>
+            <dd>Jingwen Zhou</dd>
+            <dt>Course</dt>
+            <dd>Bachelor of Engineering (Honours) (Professional) Majoring in Software</dd>
+        </dl>
+        <section class="timetable">
+            <table>
+                <caption>Swinburne Timetable</caption>
+                <tr>
+                    <th></th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+                <tr>
+                    <td>8:30 - 9:30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="cos">COS30008 - @ENG310</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9:30 - 10:30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="cos">COS30008 - @Hawthorn ENG310</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10:30 - 11:30</td>
+                    <td class="swe">SWE30003 - @Hawthorn ATC430</td>
+                    <td></td>
+                    <td></td>
+                    <td class="swe">SWE30003 - @Hawthorn Online</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11:30 - 12:30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12:30 - 13:30</td>
+                    <td class="cos one-class">COS30008 - @Hawthorn Online</td>
+                    <td></td>
+                    <td></td>
+                    <td class="web one-class">COS10011 - @Hawthorn ATC627</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>13:30 - 14:30</td>
+                    <td class="cos one-class"></td>
+                    <td></td>
+                    <td></td>
+                    <td class="web one-class keep-border"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>14:30 - 15:30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="eee one-class"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>15:30 - 16:30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="eee one-class">EEE40002 - @Hawthorn AD208</td>
+                    <td></td>
+                </tr><tr>
+                    <td>16:30 - 17:30</td>
+                    <td class="eee">EEE40002 - @Hawthorn Online</td>
+                    <td></td>
+                    <td></td>
+                    <td class="eee one-class"></td>
+                    <td></td>
+                </tr><tr>
+                    <td>17:30 - 18:30</td>
+                    <td class="web one-class">COS10011 - @Hawthorn Online</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr><tr>
+                    <td>18:30 - 19:30</td>
+                    <td class="web one-class keep-border"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
 
         <!-- 
         It could also include personal profile, such as resume, interests, or information that is related to you. This extra information gives you an opportunity to extend the techniques you apply in your assignment, and could include:

@@ -6,10 +6,11 @@ body, html {
 /* Set the background image, and font-family for the site */
 body {
     background-image: linear-gradient(to bottom, white, #a887d8);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /*background properties set to make the background flow with scrolling*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* Style the header that includes the logo, nav-menu and a contact us button */
@@ -21,14 +22,15 @@ header {
     border-bottom: 1px solid #6c6c6c;
 }
 
-#logo {
+/*Display the logo at the top of the screen, above the nav-menu*/
+#logo-container {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 10px;
 }
 
-#full-logo {
+#logo {
     width: 100%;
     max-width: 200px;
 }
@@ -63,6 +65,10 @@ nav li {
     display: block;
 }
 
+.small-menu a span {
+    font-size: 2vh;
+}
+
 .menu a:hover, .small-menu a:hover {
     background-color: #7045af;
     border-radius: 10px;
@@ -85,6 +91,11 @@ footer {
     text-align: center;
     padding: 5px;
     margin-top: auto;
+}
+
+.employees {
+    width: 50vw;
+    border-radius: 10px;
 }
 
 /*apply.html specific*/
@@ -142,4 +153,83 @@ label {
     cursor: pointer;
     background-color: #7045af;
     color: white;
+}
+
+dt {
+    font-weight: bold;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personal-img {
+    width: 20vw;
+    border-radius: 100px;
+    max-width: 200px;
+}
+
+dl {
+    display: grid;
+    justify-items: center;
+}
+
+dl dd {
+    margin-inline-start: 0;
+    padding: 5px
+}
+
+figcaption {
+    font-size: x-small;
+}
+
+.timetable {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4px;
+}
+
+table caption {
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #636363;
+    padding: 5px;
+    text-align: center;
+}
+
+tr td:first-child {
+    font-weight: bold;
+}
+
+.eee {
+    background-color: #ff99cc;
+}
+
+.swe {
+    background-color: #cccc99;
+}
+
+.web {
+    background-color: #00cccc;
+}
+
+.cos {
+    background-color: #ccccff;
+}
+
+.one-class {
+    border: 0px;
+}
+
+.keep-border {
+    border-bottom: 1px solid #636363;
 }

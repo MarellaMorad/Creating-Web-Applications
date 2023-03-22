@@ -6,18 +6,20 @@
         <meta name="description" content="Creating Web Applications">
         <meta name="keywords"    content="HTML, CSS, JavaScript">
         <meta name="author"      content="Marella Morad">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <title>TechWave</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!--Add a favicon to the website-->
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/style-small.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
-        <div id="logo">
-            <a href="index.html"><img id="full-logo" src="images/logoH.png" alt="TechWave Logo"></a>
+        <div id="logo-container">
+            <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
         </div>
         <header>
-            <section class="menu">
+            <!--menu is the original menu for large screens-->
+            <div class="menu">
                 <nav>
                     <ul class="nav-menu">
                         <li><a class="current" href="index.html">Home</a></li>
@@ -28,8 +30,9 @@
                     </ul>
                 </nav>
                 <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
-            </section>
-            <section class="small-menu">
+            </div>
+            <!--small-menu is the smaller menu, using icons instead of text for smaller screens-->
+            <div class="small-menu">
                 <nav>
                     <ul class="small-nav-menu">
                         <li><a id="home" class="current" href="index.html"><span class="fas fa-home"></span></a></li>
@@ -40,18 +43,22 @@
                     </ul>
                 </nav>
                 <a class="button" href="mailto:103076428@student.swin.edu.au"><span class="fa fa-envelope"></span></a>
-            </section>
+            </div>
         </header>
         <article class="content">
             <h2>Welcome to TechWave!</h2>
-            <p>
+            <p class="p1">
                 TechWave is a leading IT company that specializes in providing innovative 
-                technology solutions to businesses of all sizes. 
+                technology solutions to businesses of all sizes.
+                <img src="images/innovative.webp" alt="Innovation">
             </p>
             <p>
                 At TechWave, we believe that technology should work for you, not against you! 
                 That&apos;s why we strive to provide our clients with the best possible solutions 
                 to help them achieve their digital transformation goals.
+            <a href="https://i.insider.com/592347046391471a008b58c1?width=1000&format=jpeg&auto=webp">
+                <img class="employees" src="images/employees.webp" alt="TechWave Employees">
+            </a>
             </p> 
             <p>
                 Our team of experienced professionals brings expertise in software development, 

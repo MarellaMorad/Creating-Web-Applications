@@ -1,8 +1,10 @@
-@media screen and (max-width: 896px) {
+/*Mobile phone screens*/
+@media only screen and (max-width: 869px) {
     .menu {
         display: none;
     }
     .small-menu {
         display: contents;
+        width: 100%;
     }
 }
