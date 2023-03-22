@@ -35,6 +35,17 @@ header {
     max-width: 200px;
 }
 
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#big-logo {
+    width: 45vw;
+    max-width: 750px;
+}
+
 .menu, .small-menu {
     display: contents;
     text-align: center;
