@@ -1,4 +1,4 @@
-/*Mobile phone screens*/
+/*Smaller screens - tablets*/
 @media only screen and (max-width: 869px) {
     .menu {
         display: none;
@@ -6,5 +6,35 @@
     .small-menu {
         display: contents;
         width: 100%;
+    }
+    table {
+        font-size: medium;
+    }
+}
+
+/*Smaller screens - mobile phones*/
+@media only screen and (max-width: 410px) {
+    table {
+        font-size: small;
+    }
+
+    h2 {
+        font-size: large;
+    }
+
+    h3 {
+        font-size: medium;
+    }
+
+    .bda, .bda-dil, .se, .se-dil, .message, form, dl, .enhancements {
+        font-size: small;
+    }
+
+    article p {
+        font-size: small;
+    }
+
+    footer {
+        font-size: x-small;
     }
 }

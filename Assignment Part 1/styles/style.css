@@ -169,6 +169,7 @@ figure {
     width: 20vw;
     border-radius: 100px;
     max-width: 200px;
+    min-width: 150px;
 }
 
 dl {
