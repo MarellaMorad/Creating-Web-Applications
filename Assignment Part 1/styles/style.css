@@ -1,13 +1,28 @@
-/* Styles used across all .html files - for large screens */
-body, html {
-    height: 100%;
+/*
+filename: style.css
+author: Marella Morad
+created: 17/03/2023
+last modified: 24/03/2023
+description: styling to all html files of the Assignment Part 1
+*/
+
+/*Create color pallete*/
+:root {
+    --dark-purple: #7045af;
+    --light-purple: #a887d8;
+    --grey: #6c6c6c;
+    --light-grey: #636363;
+    --light-shadow: #0000001a;
+    --text-color: #333;
 }
 
+/*---------------------------------------------------------------------------------------*/
+/*Used in all html files*/
 /* Set the background image, and font-family for the site */
 body {
-    background-image: linear-gradient(to bottom, white, #a887d8);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /*background properties set to make the background flow with scrolling*/
+    background-image: linear-gradient(to bottom, white, var(--light-purple));
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -16,25 +31,68 @@ body {
 /* Style the header that includes the logo, nav-menu and a contact us button */
 header {
     display: flex;
-    align-items: center;
     justify-content: center;
     padding: 10px;
-    border-bottom: 1px solid #6c6c6c;
+    border-bottom: 1px solid var(--grey); /*width | style | color*/
 }
 
 /*Display the logo at the top of the screen, above the nav-menu*/
 #logo-container {
     display: flex;
-    align-items: center;
     justify-content: center;
     padding-top: 10px;
 }
 
-#logo {
-    width: 100%;
-    max-width: 200px;
+#logo { max-width: 200px; }
+
+.menu, .small-menu { display: contents; }
+
+/* Remove the bullet points on the list, and display the nav items in a row */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
+/* Remove the underline from a elements, and change the text color */
+.menu a, .small-menu a {
+    padding: 14px 16px;
+    text-decoration: none;
+    display: flex;
+    color: var(--text-color);
+}
+
+/* Style the nav items to match the style of the site */
+nav ul li, .menu a, .small-menu a {
+    font-weight: bold;
+}
+
+/*Set the width of the nav icons that show on small screens*/
+.small-menu a span { font-size: 2.5vh;}
+
+/*Add some visual indication of when the user hovers over a menu item*/
+/*.current class sets the page the user is currently viewing and adds some styling to indicate active menu items*/
+.menu a:hover, .small-menu a:hover, .menu a.current, .small-menu a.current {
+    background-color: var(--dark-purple);
+    border-radius: 10px;
+    color: white;
+}
+
+
+/*Initally hide the small-menu, only display on smaller/small screens*/
+.small-menu { display: none; }
+
+/* Style the footer to have a line at the top */
+footer {
+    border-top: 1px solid var(--grey);
+    text-align: center;
+    padding: 5px;
+    font-size: small;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*index.html styling*/
 .home {
     display: flex;
     flex-direction: column;
@@ -46,85 +104,45 @@ header {
     max-width: 750px;
 }
 
-.menu, .small-menu {
-    display: contents;
+/*---------------------------------------------------------------------------------------*/
+/*jobs.html styling*/
+h1 {
+    font: bold 2em Verdana, sans-serif; /*weight | size | family*/
     text-align: center;
 }
 
-/* Remove the bullet points on the list, and display the nav items in a row */
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
+aside {
+    width: 25%;
+    float: right;
+    border: 1px solid var(--grey);
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 5px 5px var(--light-grey); /* offset-x | offset-y | color */
 }
 
-/* Style the nav items to match the style of the site */
-nav li {
-    font-weight: bold;
-}
+.message { border: 1px solid var(--grey); }
 
-/* Remove the underline from a elements, and change the text color */
-.menu a, .small-menu a {
-    padding: 14px 16px;
+.ref {
     text-decoration: none;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-    display: block;
+    color: black;
 }
 
-.small-menu a span {
-    font-size: 2vh;
+.bda h3, .bda #text, .se h3, .se #text { display: inline-block; }
+
+h3 {
+    margin: 6px 0px 6px 0px; /*top | right | bottom | left*/
+    font-size: 16px;
 }
 
-.menu a:hover, .small-menu a:hover {
-    background-color: #7045af;
-    border-radius: 10px;
-    color: white;
+hr {
+    height: 1px;
+    background-color: var(--light-grey);
+    border: none;
 }
 
-.menu a.current, .small-menu a.current {
-    background-color: #7045af;
-    border-radius: 10px;
-    color: white;
-}
-
-.small-menu {
-    display: none;
-}
-
-/* Style the footer to have a line at the top */
-footer {
-    border-top: 1px solid #6c6c6c;
-    text-align: center;
-    padding: 5px;
-    margin-top: auto;
-}
-
-.employees {
-    width: 50vw;
-    border-radius: 10px;
-}
-
-/*apply.html specific*/
-h2 {
-    text-align: center;
-}
-.form-container input[type="text"], 
-.form-container input[type="email"],
-.form-container input[type="date"],
-.form-container select, 
-.form-container textarea {
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid #636363;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    padding: 4px;
-    width: 100%;
-}
+/*---------------------------------------------------------------------------------------*/
+/*apply.html styling*/
+.form-container p { display: flex; } /*to display the input field next to the label*/
 
 label {
     white-space: nowrap;
@@ -132,72 +150,106 @@ label {
     margin-left: 7px;
 }
 
-.form-container p {
-    display: flex;
-    align-items: center;
+.form-container input[type="text"], 
+.form-container input[type="email"],
+.form-container select, 
+.form-container textarea {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid var(--light-grey);
+    box-shadow: 0 0 6px var(--light-shadow);
+    padding: 4px;
+    width: 100%;
 }
 
-.form-container fieldset {
+fieldset {
     border-radius: 4px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #636363;
-    padding: 10px;
+    box-shadow: 0 0 6px var(--light-shadow);
+    border: 1px solid var(--grey);
+    margin-bottom: 20px;
 }
 
 .buttons {
     display: flex;
-    flex-direction: row;
     justify-content: flex-end;
-
 }
 
 .buttons input {
     background-color: transparent;
+    border: 1px solid var(--grey);
     border-radius: 10px;
-    border: 1px solid #636363;
     padding: 14px 16px;
-    font-weight: bold;
     margin: 10px;
+    font: bold 1em Verdana, sans-serif;
 }
 
 .buttons input:hover {
     cursor: pointer;
-    background-color: #7045af;
+    background-color: var(--dark-purple);
     color: white;
 }
 
-dt {
-    font-weight: bold;
+/*---------------------------------------------------------------------------------------*/
+/*about.html styling*/
+.about-us { 
+    overflow: hidden; /*To prevent the timetable section from overlapping with this sections*/
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 figure {
+    float: right;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 0px;
 }
 
-.personal-img {
+figure img {
     width: 20vw;
     border-radius: 100px;
     max-width: 200px;
     min-width: 150px;
+    border: 1px solid var(--grey);
 }
+
+figure figcaption { font-size: x-small; }
 
 dl {
-    display: grid;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 5px;
 }
 
-dl dd {
-    margin-inline-start: 0;
-    padding: 5px
+dt {
+    flex-basis: 20%;
+    font-weight: bold;
 }
 
-figcaption {
-    font-size: x-small;
+dd {
+    flex-basis: 80%;
+    margin-left: 0;
 }
 
-.timetable {
+.about-me {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.about-me aside {
+    float: none;
+    width: fit-content;
+}
+
+.about-me aside a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--dark-purple);
+}
+
+.timetable-wrapper {
     display: flex;
     justify-content: center;
     padding-bottom: 4px;
@@ -208,40 +260,102 @@ table caption {
     padding-bottom: 4px;
 }
 
-table {
-    border-collapse: collapse;
+table { 
+    width: 100%;
+    border-collapse: collapse; 
+    background-color: #d6baff80; 
 }
 
 td, th {
-    border: 1px solid #636363;
+    border: 1px solid var(--grey);
     padding: 5px;
     text-align: center;
+    width: 16.6%;
 }
 
 tr td:first-child {
     font-weight: bold;
 }
 
-.eee {
-    background-color: #ff99cc;
+/*Color-code units*/
+.eee { background-color: #ecf2ff; }
+.swe { background-color: #e3dffd; }
+.web { background-color: #e5d1fa; }
+.cos { background-color: #fff4d2; }
+
+/*to style a class the goes from more than 1 hour*/
+.one-class { border: 0px; } 
+.keep-border { border-bottom: 1px solid var(--grey); }
+
+/*---------------------------------------------------------------------------------------*/
+/*aboutMe.html styling*/
+.demographic, .hobbies, .socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.swe {
-    background-color: #cccc99;
+.socials {
+    margin-bottom: 10px;
 }
 
-.web {
-    background-color: #00cccc;
+.socials a {
+    text-decoration: none;
+    font-size: 5vh;
 }
 
-.cos {
-    background-color: #ccccff;
+.socials a:first-child { color: #003cab; }
+.socials a:nth-child(2) { color: #6b1374; }
+.socials a:last-child { color: #005095; }
+
+.demographic a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--dark-purple);
 }
 
-.one-class {
-    border: 0px;
+/*---------------------------------------------------------------------------------------*/
+/*Smaller screens - tablets*/
+@media only screen and (max-width: 869px) {
+    .menu {
+        display: none;
+    }
+    .small-menu {
+        display: contents;
+        width: 100%;
+    }
+    table {
+        font-size: medium;
+    }
 }
 
-.keep-border {
-    border-bottom: 1px solid #636363;
+/*Smaller screens - mobile phones*/
+@media only screen and (max-width: 410px) {
+    table {
+        font-size: small;
+    }
+
+    h1 {
+        font-size: large;
+    }
+
+    h2 {
+        font-size: medium;
+    }
+
+    .bda, .se, aside, .message, form, dl, .enhancements {
+        font-size: small;
+    }
+
+    article p {
+        font-size: small;
+    }
+
+    footer {
+        font-size: x-small;
+    }
+
+    #big-logo {
+        width: 75vw;
+    }
 }

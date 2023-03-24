@@ -10,7 +10,6 @@
         <title>TechWave</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!--Add a favicon to the website-->
         <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/style-small.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
@@ -43,26 +42,34 @@
                 <a class="button" href="mailto:103076428@student.swin.edu.au"><span class="fa fa-envelope"></span></a>
             </div>
         </header>
-        <h2>About Me</h2>
-
-        <figure>
-            <img class="personal-img" src="images/personal_picture.jpg" alt="Marella's Personal Photo">
-        </figure>
-        <dl>
-            <dt>Name</dt>
-            <dd>Marella Morad</dd>
-            <dt>Meaning</dt>
-            <dd>Star of the Sea<sup><a href="http://www.thinkbabynames.com/meaning/0/Marella">3</a></sup></dd>
-            <dt>Student Number</dt>
-            <dd>103076428</dd>
-            <dt>Student Email</dt>
-            <dd><a href="mailto:103076428@student.swin.edu.au">103076428@student.swin.edu.au</a></dd>
-            <dt>Tutor's Name</dt>
-            <dd>Jingwen Zhou</dd>
-            <dt>Course</dt>
-            <dd>Bachelor of Engineering (Honours) (Professional) Majoring in Software</dd>
-        </dl>
-        <section class="timetable">
+        <h1>About Us</h1>
+        <section class="about-us">
+            <title>About Me</title>
+            <figure>
+                <a href="aboutMe.html"><img title="Learn more about our CEO!" src="images/personal_picture.jpg" alt="Marella's Personal Photo"></a>
+                <figcaption>CEO and Co-founder of TechWave - Marella Morad</figcaption>
+            </figure>
+            <dl>
+                <dt>Name:</dt>
+                <dd>Marella Morad</dd>
+                <dt>Meaning:</dt>
+                <dd>Star of the Sea<sup><a class="ref" href="http://www.thinkbabynames.com/meaning/0/Marella">3</a></sup></dd>
+                <dt>Student Number:</dt>
+                <dd>103076428</dd>
+                <dt>Student Email:</dt>
+                <dd><a href="mailto:103076428@student.swin.edu.au">103076428@student.swin.edu.au</a></dd>
+                <dt>Tutor's Name:</dt>
+                <dd>Jingwen Zhou</dd>
+                <dt>Course:</dt>
+                <dd>Bachelor of Engineering (Honours) (Professional) Majoring in Software</dd>
+            </dl>
+        </section>
+        <div class="about-me">
+            <aside>
+                <a href="aboutMe.html">Wanna learn more about our CEO?</a>
+            </aside>
+        </div>
+        <section class="timetable-wrapper">
             <table>
                 <caption>Swinburne Timetable</caption>
                 <tr>
@@ -160,14 +167,6 @@
                 </tr>
             </table>
         </section>
-
-        <!-- 
-        It could also include personal profile, such as resume, interests, or information that is related to you. This extra information gives you an opportunity to extend the techniques you apply in your assignment, and could include:
-            • Demographic information about you
-            • Description of hometown
-            • A list of your favourite books, music, films etc.
-        -->
-
         <footer>
             © 2023 TechWave All Rights Reserved.
         </footer>
