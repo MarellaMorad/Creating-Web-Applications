@@ -45,25 +45,36 @@
         <h1>Application of Interest</h1>
             <form class="form-container" method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
                 <p>
-                    <label for="reference-number">Job Reference Number:</label> 
-                    <input type="text" name= "reference-number" id="reference-number" pattern="^[a-zA-Z0-9]{5}$" required="required" title="Exactly 5 alphanumeric characters">
+                    <label class="required" for="reference-number">Job Reference Number:</label> 
+                    <span class="with-validation">
+                        <input type="text" name= "reference-number" id="reference-number" pattern="^[a-zA-Z0-9]{5}$" required="required">
+                        <span class="error-message">Exactly 5 alphanumeric characters</span>
+                    </span>
                 </p>
                 <fieldset>
                     <legend>Personal Details</legend>
                     <p>
-                        <label for="first_name">First Name:</label> 
-                        <input type="text" name= "first_name" id="first_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required" title="Only alphabetical characters allowed, max 20 characters">
+                        <label class="required" for="first_name">First Name:</label> 
+                        <span class="with-validation">
+                            <input type="text" name= "first_name" id="first_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required">
+                            <span class="error-message">Only alphabetical characters allowed, max 20 characters</span>
+                        </span>    
                     </p>
                     <p>
-                        <label for="last_name">Last Name:</label> 
-                        <input type="text" name= "last_name" id="last_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required" title="Only alphabetical characters allowed, max 20 characters">
-                    </p>
+                        <label class="required" for="last_name">Last Name:</label> 
+                        <span class="with-validation">
+                            <input type="text" name= "last_name" id="last_name" maxlength="20" pattern="^[a-zA-Z]+$" required="required">
+                            <span class="error-message">Only alphabetical characters allowed, max 20 characters</span>
+                        </span>    
                     <p>
-                        <label for="dob">Date of Birth:</label> 
-                        <input type="text" name= "dob" id="dob" required="required" placeholder="dd-mm-yyyy" maxlength="8" size="8">
+                        <label class="required" for="dob">Date of Birth:</label> 
+                        <span class="with-validation">
+                            <input type="text" name= "dob" id="dob" required="required" pattern="^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-(\d{4})$" placeholder="dd-mm-yyyy" minlength="4" maxlength="10" size="8">
+                            <span class="error-message">Enter a valid date - follow this pattern dd-mm-yyyy</span>
+                        </span>
                     </p>
                     <fieldset>
-                        <legend>Gender</legend>
+                        <legend class="required">Gender</legend>
                         <label for="male">Male</label> 
                         <input type="radio" id="male" name="sex" value="male">
     
@@ -76,15 +87,21 @@
                     <fieldset>
                         <legend>Address</legend>
                         <p>
-                            <label for="street">Street Address:</label> 
-                            <input type="text" name="street" id="street" maxlength="40" required="required" title="Max 40 characters">
+                            <label class="required" for="street">Street Address:</label> 
+                            <span class="with-validation">
+                                <input type="text" name="street" id="street" maxlength="40" required="required">
+                                <span class="error-message">Max 40 characters</span>
+                            </span>
                         </p>
                         <p>
-                            <label for="town">Suburb/town:</label> 
-                            <input type="text" name="town" id="town" maxlength="40" required="required" title="Max 40 characters">
+                            <label class="required" for="town">Suburb/town:</label> 
+                            <span class="with-validation">
+                                <input type="text" name="town" id="town" maxlength="40" required="required">
+                                <span class="error-message">Max 40 characters</span>
+                            </span>
                         </p>
                         <p>
-                            <label for="state">State:</label> 
+                            <label class="required" for="state">State:</label> 
                             <select name="state" id="state" required="required">
                                 <option value="">Please Select</option>			
                                 <option value="vic">VIC</option>			
@@ -98,17 +115,26 @@
                             </select>
                         </p>
                         <p>
-                            <label for="postcode">Postcode:</label> 
-                            <input type="text" name= "postcode" id="postcode" pattern="^\d{4}$" required="required" title="Exactly 4 digits">
+                            <label class="required" for="postcode">Postcode:</label> 
+                            <span class="with-validation">
+                                <input type="text" name= "postcode" id="postcode" pattern="^\d{4}$" required="required">
+                                <span class="error-message">Exactly 4 digits</span>
+                            </span>
                         </p>
                     </fieldset>
                     <p>
-                        <label for="email">Email Address:</label> 
-                        <input type="email" name= "email" id="email" required="required" title="Enter a valid email address">
+                        <label class="required" for="email">Email Address:</label> 
+                        <span class="with-validation">
+                            <input type="email" name= "email" id="email" required="required">
+                            <span class="error-message">Enter a valid email address</span>
+                        </span>
                     </p>
                     <p>
-                        <label for="mobile">Phone Number:</label> 
-                        <input type="text" name= "mobile" id="mobile" required="required" pattern="^[0-9 ]{8,12}$" title="8 to 12 digits or spaces">
+                        <label class="required" for="mobile">Phone Number:</label> 
+                        <span class="with-validation">
+                            <input type="text" name= "mobile" id="mobile" required="required" pattern="^[0-9 ]{8,12}$">
+                            <span class="error-message">8 to 12 digits or spaces</span>
+                        </span>
                     </p>
                 </fieldset>
                 <fieldset>

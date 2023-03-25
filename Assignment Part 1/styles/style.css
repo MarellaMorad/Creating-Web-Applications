@@ -8,8 +8,9 @@ description: styling to all html files of the Assignment Part 1
 
 /*Create color pallete*/
 :root {
-    --dark-purple: #7045af;
     --light-purple: #a887d8;
+    --dark-purple: #7045af;
+    --light-red: #f8717129;
     --grey: #6c6c6c;
     --light-grey: #636363;
     --light-shadow: #0000001a;
@@ -69,7 +70,7 @@ nav ul li, .menu a, .small-menu a {
 }
 
 /*Set the width of the nav icons that show on small screens*/
-.small-menu a span { font-size: 2.5vh;}
+.small-menu a span { font-size: 3vw;}
 
 /*Add some visual indication of when the user hovers over a menu item*/
 /*.current class sets the page the user is currently viewing and adds some styling to indicate active menu items*/
@@ -140,6 +141,11 @@ hr {
     border: none;
 }
 
+details {
+    font-size: large;
+    padding-bottom: 8px;
+}
+
 /*---------------------------------------------------------------------------------------*/
 /*apply.html styling*/
 .form-container p { display: flex; } /*to display the input field next to the label*/
@@ -188,6 +194,31 @@ fieldset {
     background-color: var(--dark-purple);
     color: white;
 }
+
+.error-message {
+    display: none;
+}
+
+.required::after {
+    content: '*';
+    color: red;
+    margin-right: 5px;
+}
+
+.form-container input[type="text"]:invalid, 
+.form-container input[type="email"]:invalid {
+    border-color: red;
+    background-color: var(--light-red);
+}
+
+.form-container input[type="text"]:invalid + .error-message, 
+.form-container input[type="email"]:invalid + .error-message {
+    display: block;
+    font-size: x-small;
+    padding-top: 5px;
+}
+
+.with-validation { width: 100%; };
 
 /*---------------------------------------------------------------------------------------*/
 /*about.html styling*/
@@ -331,6 +362,8 @@ tr td:first-child {
 
 /*Smaller screens - mobile phones*/
 @media only screen and (max-width: 410px) {
+    .small-menu a span { font-size: 4vw;}
+
     table {
         font-size: small;
     }
