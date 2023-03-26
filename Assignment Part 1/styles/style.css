@@ -24,9 +24,7 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /*background properties set to make the background flow with scrolling*/
     background-image: linear-gradient(to bottom, white, var(--light-purple));
-    background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
 }
 
 /* Style the header that includes the logo, nav-menu and a contact us button */
@@ -48,6 +46,11 @@ header {
     max-width: 200px;
 }
 
+a {
+    text-decoration: none;
+    color: var(--dark-purple)
+}
+
 .menu,
 .small-menu {
     display: contents;
@@ -65,7 +68,6 @@ nav ul {
 .menu a,
 .small-menu a {
     padding: 14px 16px;
-    text-decoration: none;
     display: flex;
     color: var(--text-color);
 }
@@ -108,10 +110,8 @@ footer {
 
 /*---------------------------------------------------------------------------------------*/
 /*index.html styling*/
-.home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#home {
+    text-align: center;
 }
 
 #big-logo {
@@ -142,7 +142,7 @@ aside {
 
 h3 {
     margin: 6px 0px 6px 0px; /*top | right | bottom | left*/
-    font-size: 16px;
+    font-size: medium;
 }
 
 .position-desc {
@@ -150,15 +150,8 @@ h3 {
     padding-left: 0;
 }
 
-hr {
-    height: 1px;
-    background-color: var(--light-grey);
-    border: none;
-}
-
 details {
     font-size: large;
-    padding-bottom: 8px;
 }
 
 summary:hover {
@@ -179,10 +172,6 @@ summary:hover {
     box-shadow: 5px 5px var(--light-grey); /* offset-x | offset-y | color */
 }
 
-.collapsible {
-    overflow: hidden; /*To prevent the timetable section from overlapping with this sections*/
-}
-
 /*---------------------------------------------------------------------------------------*/
 /*apply.html styling*/
 .form-container p {
@@ -191,8 +180,7 @@ summary:hover {
 
 label {
     white-space: nowrap;
-    padding-right: 7px;
-    margin-left: 7px;
+    margin-left: 4px;
 }
 
 .form-container input[type='text'],
@@ -225,7 +213,7 @@ fieldset {
     border-radius: 10px;
     padding: 14px 16px;
     margin: 10px;
-    font: bold 1em Verdana, sans-serif;
+    font: bold medium Verdana, sans-serif;
 }
 
 .buttons input:hover {
@@ -265,7 +253,6 @@ fieldset {
 /*---------------------------------------------------------------------------------------*/
 /*about.html styling*/
 .about-us {
-    overflow: hidden; /*To prevent the timetable section from overlapping with this sections*/
     display: flex;
     flex-direction: row-reverse;
 }
@@ -273,9 +260,6 @@ fieldset {
 figure {
     float: right;
     margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-top: 0px;
 }
 
@@ -289,6 +273,7 @@ figure img {
 
 figure figcaption {
     font-size: x-small;
+    text-align: center;
 }
 
 dl {
@@ -319,14 +304,10 @@ dd {
 }
 
 .about-me aside a {
-    text-decoration: none;
     font-weight: bold;
-    color: var(--dark-purple);
 }
 
 .timetable-wrapper {
-    display: flex;
-    justify-content: center;
     padding-bottom: 4px;
 }
 
@@ -381,6 +362,7 @@ tr td:first-child {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .more-about-me h2 {
@@ -388,15 +370,19 @@ tr td:first-child {
     font-style: italic;
 }
 
+#demographic a {
+    font-weight: bold;
+}
+
 #socials {
     margin-bottom: 10px;
 }
 
 #socials a {
-    text-decoration: none;
     font-size: 5vh;
 }
 
+/*Color socials icons*/
 #socials a:first-child {
     color: #003cab;
 }
@@ -407,16 +393,10 @@ tr td:first-child {
     color: #005095;
 }
 
-#demographic a {
-    text-decoration: none;
-    font-weight: bold;
-    color: var(--dark-purple);
-}
-
 /*---------------------------------------------------------------------------------------*/
 /*enhancements.html styling*/
 h2 {
-    font-size: 1.2em;
+    font-size: larger;
 }
 
 .red-star {
@@ -431,7 +411,7 @@ h2 {
 }
 
 details {
-    padding: 10px 0px 0px 10px; /*top | right | bottom | left*/
+    padding-left: 10px;
 }
 
 code {
@@ -469,13 +449,14 @@ details ol {
         float: none;
     }
 
+    /*aboutMe.html*/
     #demographic img, iframe {
         width: 80vw;
         height: auto;
     }
 }
 
-@media only screen and (max-width: 625px) {
+@media only screen and (max-width: 638px) {
     /*about.html*/
     .about-us {
         flex-direction: column;
@@ -483,6 +464,9 @@ details ol {
 
     figure {
         margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
