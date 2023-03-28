@@ -16,8 +16,8 @@ var calculateButton = null;
 */
 function enterNumber(){
 	var number = prompt("Enter your number");
-	var number = Number(number);   //WHAT DOES THIS LINE DO?
-	if (!isFinite(number)) {    // test what is entered is a number   
+	var number = Number(number);   //This line converts the input to a number
+	if (isFinite(number)) {    // test what is entered is a number   
 		numbers.push(number);   //add the number entered to the end of the array 
 	}
 	else{
@@ -33,21 +33,19 @@ function enterNumber(){
 function calculateAverage(){
 	var average = 0;
 	var total = 0;
-	for (var i = 1 ; i <= numbers.length; i++){    
-		total = numbers[i];   //add the each number in the array to the cumulative total 
+	for (var i = 0 ; i < numbers.length; i++){    
+		total += numbers[i];   //add the each number in the array to the cumulative total 
 	}
-	average = total/i;
+	average = total/numbers.length;
 	document.getElementById("result").innerHTML = "The total of your numbers is " + total + " and their average is " + average;
 }
 
 function init(){
 		enterButton = document.getElementById("enter");  
-		calculateButton = document.getElementById("Calculate");
+		calculateButton = document.getElementById("calculate");
 		calculateButton.style.visibility = "hidden";    //hide the Calculate button until some numbers are entered
 		enterButton.onclick = enterNumber;
 		calculateButton.onclick = calculateAverage;
-		
-	
 }
 
 
