@@ -1,0 +1,521 @@
+/*
+filename: style.css
+author: Marella Morad
+created: 17/03/2023
+last modified: 24/03/2023
+description: styling to all html files of the Assignment Part 1
+*/
+
+/*Create color palette*/
+:root {
+    --light-purple: #a887d8;
+    --dark-purple: #7045af;
+    --light-red: #f8717129;
+    --grey: #6c6c6c;
+    --light-grey: #636363;
+    --light-shadow: #0000001a;
+    --text-color: #333;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*Used in all html files*/
+/* Set the background image, and font-family for the site */
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /*background properties set to make the background flow with scrolling*/
+    background-image: linear-gradient(to bottom, white, var(--light-purple));
+    background-attachment: fixed;
+}
+
+/* Style the header that includes the logo, nav-menu and a contact us button */
+header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--grey); /*width | style | color*/
+}
+
+/*Display the logo at the top of the screen, above the nav-menu*/
+#logo-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+#logo {
+    max-width: 200px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-purple)
+}
+
+.menu,
+.small-menu {
+    display: contents;
+}
+
+/* Remove the bullet points on the list, and display the nav items in a row */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Remove the underline from a elements, and change the text color */
+.menu a,
+.small-menu a {
+    padding: 14px 16px;
+    display: flex;
+    color: var(--text-color);
+}
+
+/* Style the nav items to match the style of the site */
+nav ul li,
+.menu a,
+.small-menu a {
+    font-weight: bold;
+}
+
+/*Set the width of the nav icons that show on small screens*/
+.small-menu a span {
+    font-size: 3vw;
+}
+
+/*Add some visual indication of when the user hovers over a menu item*/
+/*.current class sets the page the user is currently viewing and adds some styling to indicate active menu items*/
+.menu a:hover,
+.small-menu a:hover,
+.menu a.current,
+.small-menu a.current {
+    background-color: var(--dark-purple);
+    border-radius: 10px;
+    color: white;
+}
+
+/*Initially hide the small-menu, only display on smaller/small screens*/
+.small-menu {
+    display: none;
+}
+
+/* Style the footer to have a line at the top */
+footer {
+    border-top: 1px solid var(--grey);
+    text-align: center;
+    padding: 5px;
+    font-size: small;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*index.html styling*/
+#home {
+    text-align: center;
+}
+
+#big-logo {
+    width: 45vw;
+    max-width: 750px;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*jobs.html styling*/
+h1 {
+    font: bold 2em Verdana, sans-serif; /*weight | size | family*/
+    text-align: center;
+}
+
+aside {
+    width: 25%;
+    float: right;
+    border: 1px solid var(--grey);
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 5px 5px var(--light-grey); /* offset-x | offset-y | color */
+}
+
+.position h3,
+.position p {
+    display: inline-block;
+}
+
+h3 {
+    margin: 6px 0px 6px 0px; /*top | right | bottom | left*/
+    font-size: medium;
+}
+
+.position-desc {
+    list-style: none;
+    padding-left: 0;
+}
+
+details {
+    font-size: large;
+}
+
+summary:hover {
+    cursor: pointer;
+}
+
+#ad-container {
+    display: flex;
+    justify-content: center;
+}
+
+#ad-container img {
+    min-width: 425px;
+    width: 25vw;
+    border: 1px solid var(--grey);
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 5px 5px var(--light-grey); /* offset-x | offset-y | color */
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*apply.html styling*/
+.form-container p {
+    display: flex; /*to display the input field next to the label*/
+} 
+
+label {
+    white-space: nowrap;
+    margin-left: 4px;
+}
+
+.form-container input[type='text'],
+.form-container input[type='email'],
+.form-container select,
+.form-container textarea {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid var(--light-grey);
+    box-shadow: 0 0 6px var(--light-shadow);
+    padding: 4px;
+    width: 100%;
+}
+
+fieldset {
+    border-radius: 4px;
+    box-shadow: 0 0 6px var(--light-shadow);
+    border: 1px solid var(--grey);
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons input {
+    background-color: transparent;
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 10px;
+    font: bold medium Verdana, sans-serif;
+}
+
+.buttons input:hover {
+    cursor: pointer;
+    background-color: var(--dark-purple);
+    color: white;
+}
+
+.error-message {
+    display: none;
+}
+
+.required::after {
+    content: '*';
+    color: red;
+    margin-right: 5px;
+}
+
+.with-validation {
+    width: 100%;
+    padding-right: 12px;
+}
+
+.form-container input[type='text']:invalid,
+.form-container input[type='email']:invalid {
+    border-color: red;
+    background-color: var(--light-red);
+}
+
+.form-container input[type='text']:invalid + .error-message,
+.form-container input[type='email']:invalid + .error-message {
+    display: block;
+    font-size: x-small;
+    padding-top: 5px;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*about.html styling*/
+.about-us {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+figure {
+    float: right;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+
+figure img {
+    width: 20vw;
+    border-radius: 100px;
+    max-width: 200px;
+    min-width: 150px;
+    border: 1px solid var(--grey);
+}
+
+figure figcaption {
+    font-size: x-small;
+    text-align: center;
+}
+
+dl {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 5px;
+}
+
+dt {
+    flex-basis: 20%;
+    font-weight: bold;
+}
+
+dd {
+    flex-basis: 80%;
+    margin-left: 0;
+}
+
+.about-me {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.about-me aside {
+    float: none;
+    width: fit-content;
+}
+
+.about-me aside a {
+    font-weight: bold;
+}
+
+.timetable-wrapper {
+    padding-bottom: 4px;
+}
+
+table caption {
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #d6baff80;
+}
+
+td,
+th {
+    border: 1px solid var(--grey);
+    padding: 5px;
+    text-align: center;
+    width: 16.6%;
+}
+
+tr td:first-child {
+    font-weight: bold;
+}
+
+/*Color-code units*/
+.eee {
+    background-color: #ecf2ff;
+}
+.swe {
+    background-color: #e3dffd;
+}
+.web {
+    background-color: #e5d1fa;
+}
+.cos {
+    background-color: #fff4d2;
+}
+
+/*to style a class the goes from more than 1 hour*/
+.one-class {
+    border: 0px;
+}
+.keep-border {
+    border-bottom: 1px solid var(--grey);
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*aboutMe.html styling*/
+.more-about-me {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.more-about-me h2 {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+#demographic a {
+    font-weight: bold;
+}
+
+#socials {
+    margin-bottom: 10px;
+}
+
+#socials a {
+    font-size: 5vh;
+}
+
+/*Color socials icons*/
+#socials a:first-child {
+    color: #003cab;
+}
+#socials a:nth-child(2) {
+    color: #6b1374;
+}
+#socials a:last-child {
+    color: #005095;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*enhancements.html styling*/
+h2 {
+    font-size: larger;
+}
+
+.red-star {
+    color: red;
+}
+
+.enhance {
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px; /*top | right | bottom | left*/
+    padding: 10px;
+}
+
+details {
+    padding-left: 10px;
+}
+
+code {
+    font-size: larger;
+}
+
+.overall-intro {
+    font-size: large;
+}
+
+details p,
+details ul,
+details ol {
+    font-size: medium;
+}
+/*---------------------------------------------------------------------------------------*/
+/*Smaller screens - tablets*/
+@media only screen and (max-width: 869px) {
+    .menu {
+        display: none;
+    }
+    .small-menu {
+        display: contents;
+        width: 100%;
+    }
+
+    /*jobs.html*/
+    #ad-container img {
+        width: 50vw;
+        min-width: 300px;
+    }
+
+    aside {
+        width: auto;
+        float: none;
+    }
+
+    /*aboutMe.html*/
+    #demographic img, iframe {
+        width: 80vw;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 638px) {
+    /*about.html*/
+    .about-us {
+        flex-direction: column;
+    }
+
+    figure {
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/*Smaller screens - mobile phones*/
+@media only screen and (max-width: 450px) {
+    .small-menu a span {
+        font-size: 4vw;
+    }
+
+    h1 {
+        font-size: larger;
+    }
+
+    h2 {
+        font-size: large;
+    }
+
+    h3,
+    .more-about-me h2,
+    .enhance summary {
+        font-size: medium;
+    }
+
+    .position ul, 
+    .position h3, 
+    table, 
+    .more-about-me p,
+    aside,
+    form,
+    dl,
+    article p,
+    .enhance p,
+    .enhance ul,
+    .enhance ol {
+        font-size: small;
+    }
+
+    footer {
+        font-size: x-small;
+    }
+
+    #big-logo {
+        width: 75vw;
+    }
+
+    /*aboutMe.html*/
+    #arabic-text {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}

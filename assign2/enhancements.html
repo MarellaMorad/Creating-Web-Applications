@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" >
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+        <meta name="description" content="Creating Web Applications" >
+        <meta name="keywords" content="HTML, CSS, JavaScript" >
+        <meta name="author" content="Marella Morad" >
+        <meta content="width=device-width, initial-scale=1" name="viewport" >
+        <title>TechWave</title>
+        <!--Add a favicon to the website-->
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" >
+        <link rel="stylesheet" href="styles/style.css" >
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        >
+    </head>
+    <body>
+        <div id="logo-container">
+            <a href="index.html"
+                ><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"
+            ></a>
+        </div>
+        <header>
+            <div class="menu">
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="jobs.html">Careers</a></li>
+                        <li><a href="apply.html">Join Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li>
+                            <a class="current" href="enhancements.html"
+                                >Enhancements</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+                <a class="button" href="mailto:103076428@student.swin.edu.au"
+                    >Contact Us</a
+                >
+            </div>
+            <div class="small-menu">
+                <nav>
+                    <ul class="small-nav-menu">
+                        <li>
+                            <a href="index.html" title="Home"
+                                ><span class="fas fa-home"></span
+                            ></a>
+                        </li>
+                        <li>
+                            <a href="jobs.html" title="Careers"
+                                ><span class="fas fa-briefcase"></span
+                            ></a>
+                        </li>
+                        <li>
+                            <a href="apply.html" title="Join Us"
+                                ><span class="fas fa-user-plus"></span
+                            ></a>
+                        </li>
+                        <li>
+                            <a href="about.html" title="About Us"
+                                ><span class="fas fa-info-circle"></span
+                            ></a>
+                        </li>
+                        <li>
+                            <a class="current" href="enhancements.html" title="Enhancements"
+                                ><span class="fas fa-cog"></span
+                            ></a>
+                        </li>
+                    </ul>
+                </nav>
+                <a class="button" href="mailto:103076428@student.swin.edu.au" title="Contact Us"
+                    ><span class="fa fa-envelope"></span
+                ></a>
+            </div>
+        </header>
+        <h1>Enhancements</h1>
+        <section class="enhance">
+            <h2>Usability, Functionality and Maintainability Enhancements</h2>
+            <p class="overall-intro">
+                These enhancements aim to improve the usability, functionality
+                and maintainability of this website. Various features such as
+                validation indicators, new HTML elements, and color palettes
+                have been added to enhance the user experience. These
+                improvements were made to create a more engaging and interactive
+                experience for users.
+            </p>
+            <details>
+                <summary>
+                    Validation Indicators and Style-changing Navbar using
+                    <strong>CSS</strong>
+                </summary>
+                <p>
+                    These changes have been implemented to provide the user with
+                    additional feedback and interactivity, as well as enhancing
+                    the visual design of the website.
+                </p>
+                <p>
+                    Validation indicators have been added to form inputs
+                    including:
+                </p>
+                <ul>
+                    <li>
+                        The red <span class="red-star">*</span> for required
+                        fields implemented using the CSS
+                        <code>::after</code> pseudo-element -
+                        <em>
+                            see
+                            <a href="jobs.html">jobs.html</a>.
+                        </em>
+                    </li>
+                    <li>
+                        Having input fields highlighted in red with a red border
+                        when the input is invalid. This is implemented using the
+                        CSS <code>:invalid</code> pseudo-class -
+                        <em> see <a href="jobs.html">jobs.html</a>. </em>
+                    </li>
+                </ul>
+                <p>
+                    Also, I made some style changes for the navbar to indicate
+                    for example:
+                </p>
+                <ul>
+                    <li>
+                        The current page - background color of the navbar item
+                        changes to purple and text color changes to white which
+                        is implemented using a custom css class
+                        <code>.current</code> that indicates the current page -
+                        <em>
+                            try selecting a different page and see how the
+                            styling changes!
+                        </em>
+                    </li>
+                    <li>
+                        This change is also visible on hover which is
+                        implemented using the CSS
+                        <code>:hover</code> pseudo-class -
+                        <em>
+                            try hovering over different menu item and see how
+                            the styling changes!</em
+                        >.
+                    </li>
+                </ul>
+                <p>
+                    Third-party sources used include the W3C HTML specification
+                    for
+                    <a
+                        href="https://www.w3schools.com/css/css_pseudo_classes.asp"
+                        >CSS Pseudo-classes</a
+                    >
+                    and
+                    <a
+                        href="https://www.w3schools.com/css/css_pseudo_elements.asp"
+                        >Pseudo-elements</a
+                    >
+                    as well as the lecture notes from weeks 3 and 4.
+                </p>
+            </details>
+            <details>
+                <summary>
+                    New <strong>HTML</strong> Elements (iframe, audio and
+                    details)
+                </summary>
+                <p>
+                    These new HTML elements are in place to improve the user
+                    experience by providing additional interactivity, multimedia
+                    content, and organization of information.
+                </p>
+                <ul>
+                    <li>
+                        An iframe element has been added to embed and display a
+                        Facebook video of me singing which is part of the
+                        <a href="aboutMe.html">aboutMe.html page</a>
+                    </li>
+                    <li>
+                        An audio element has been added to play an voice-note of
+                        me showing my
+                        <a href="aboutMe.html">bilingual skills</a>.
+                    </li>
+                    <li>
+                        Multiple <code>details</code> elements have been added
+                        to allow content to be collapsed and expanded by the
+                        user. This enhances interactivity allowing users to
+                        select the content they want to view. I also used the
+                        <em><strong>open</strong></em> Boolean attribute
+                        indicates whether or not the details element contents
+                        are currently visible. You can see this on the
+                        <a href="jobs.html">Position Description</a>
+                        page as well as
+                        <a href="enhancements.html">this</a> page
+                    </li>
+                </ul>
+                <p>
+                    Third-party sources used include the W3C HTML specification
+                    for
+                    <a href="https://www.w3schools.com/tags/tag_iframe.asp"
+                        >iframe</a
+                    >,
+                    <a href="https://www.w3schools.com/TAGS/tag_audio.asp"
+                        >audio</a
+                    >, and
+                    <a href="https://www.w3schools.com/TAGS/tag_details.asp"
+                        >details</a
+                    >
+                    tags.
+                </p>
+            </details>
+            <details>
+                <summary>
+                    Specify a Consistent Color Palette
+                </summary>
+                <p>
+                    This helps establish a visual identity, improve the user
+                    experience, simplify the design process and improve
+                    maintainability and consistency of the website. It is a
+                    small but impactful detail that can make a big difference in
+                    the overall look and feel of a website
+                </p>
+                <p>
+                    It goes beyond the basic requirements of the assignment by
+                    demonstrating a commitment to consistent branding and
+                    design, which can improve the user experience and make the
+                    website more memorable.
+                </p>
+                <p>
+                    To specify a consistent color palette for the website, I
+                    used the CSS <code>:root</code> pseudo-class to define
+                    variables for each color, such as
+                    <code>light-purple, dark-purple</code>.... Then, I used
+                    these variables throughout my CSS code to apply consistent
+                    colors to various HTML elements.
+                </p>
+                <p>
+                    I referred to the CSS-Tricks website to learn more about
+                    using the
+                    <a href="https://css-tricks.com/almanac/selectors/r/root/"
+                        >:root pseudo-class</a
+                    >
+                    and defining variables in CSS
+                </p>
+                <p>
+                    You can see the implementation of this enhancement
+                    throughout my website. The colors used in the header,
+                    footer, buttons, and other elements are consistent across
+                    all web pages, providing a unified look and feel.
+                </p>
+            </details>
+        </section>
+        <section class="enhance">
+            <h2>Responsive Design</h2>
+            <p class="overall-intro">
+                A responsive website provides a better user experience to
+                visitors by making the website easily accessible and readable on
+                any device. It ensures that the content and functionality of the
+                website are easily accessible and optimized for the screen size
+                of the device being used. This enhances user engagement and
+                encourages visitors to stay on the website longer.
+            </p>
+            <details>
+                <summary>
+                    The use of <code>@media</code> queries
+                </summary>
+                <p>
+                    Making the website responsive is an important feature that
+                    goes beyond the basic requirements of the assignment as it
+                    ensures that the website is easily accessible on different
+                    screen sizes, ranging from desktops to mobile devices.
+                </p>
+                <p>To make the website responsive:</p>
+                <ol>
+                    <li>
+                        I first needed to add a <code>meta tag</code> in my HTML
+                        to support and respond correctly to the
+                        <code>@media</code> queries
+                    </li>
+                    <li>
+                        Then I was able to use <code>@media</code> queries in my
+                        CSS code to control the HTML elements on certain screen
+                        sizes. I set a breakpoint for medium screens at
+                        <code>869px</code> and for small screens at
+                        <code>450px</code>.
+                    </li>
+                </ol>
+                <p>
+                    After setting up the <code>@media</code> queries in my CSS
+                    code, I defined some HTML elements that will only show on
+                    smaller/small screens, such as the small-menu section
+                </p>
+                <p>
+                    I referred to the
+                    <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries"
+                        >Mozilla Developer Network</a
+                    >
+                    to implement responsive design in my website and learn how
+                    to use the <code>@media</code> queries.
+                </p>
+                <p>
+                    You can see the implementation of responsive design
+                    throughout my website. For example, if you resize the
+                    browser window or view the website on a mobile device, you
+                    will notice that the layout and styling of the website
+                    adjusts accordingly. One main thing that you may notice is
+                    the navbar items changing from <strong>text</strong> (on
+                    large screens) to
+                    <strong
+                        ><a href="https://fontawesome.com/icons"
+                            >Font Awesome</a
+                        >
+                        icons</strong
+                    >
+                    (on medium and small screens).
+                </p>
+            </details>
+            <details>
+                <summary>
+                    Font Awesome Icons
+                </summary>
+                <p>
+                    Font Awesome has been used as an external stylesheet to
+                    provide icons for the website's menu on smaller screens, as
+                    well as links to the my social media profiles. This enhances
+                    visual interest and functionality
+                </p>
+                <p>Code needed to implement this includes:</p>
+                <ol>
+                    <li>
+                        Linking to the Font Awesome stylesheet in the HTML
+                        document's head section.
+                    </li>
+                    <li>
+                        Adding span elements and setting their classes according
+                        to the
+                        <a href="https://fontawesome.com/icons"
+                            >Font Awesome documentations</a
+                        >.
+                    </li>
+                </ol>
+                <p>
+                    You can see this enhancement in action on the navbar menu
+                    (available on all web pages on medium and small screens) and
+                    the social media links on the
+                    <a href="aboutMe.html">aboutMe</a> page - right above the
+                    footer.
+                </p>
+            </details>
+        </section>
+        <footer>© 2023 TechWave All Rights Reserved.</footer>
+    </body>
+</html>
