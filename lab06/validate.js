@@ -16,8 +16,8 @@ function validate() {
     var result = true; // assumes no errors
 
     //get the values of the form from each of the respective elements
-    var firstName = document.getElementById("firstname").value;
-    var lastName = document.getElementById("lastname").value;
+    var firstname = document.getElementById("firstname").value;
+    var lastname = document.getElementById("lastname").value;
     var age = document.getElementById("age").value;
     var partySize = document.getElementById("partySize").value;
     var food = document.getElementById("food").value;
@@ -26,12 +26,12 @@ function validate() {
     var is4day = document.getElementById("4day").checked;
     var is10day = document.getElementById("10day").checked;
 
-    if (!firstName.match(/^[a-zA-Z]+$/)) { //regex for not empty and contains only alpha characters.
+    if (!firstname.match(/^[a-zA-Z]+$/)) { //regex for not empty and contains only alpha characters.
         errMsg += "Your firstname must not be empty and must only contain alpha characters\n";
         result = false;
     }
 
-    if (!lastName.match(/^[a-zA-Z-]+$/)) { //regex for not empty and contains onlyalpha characters or a hyphen
+    if (!lastname.match(/^[a-zA-Z-]+$/)) { //regex for not empty and contains onlyalpha characters or a hyphen
         errMsg += "Your lastname must not be empty and must only contain alpha characters or a hyphen\n";
         result = false;
     }
@@ -90,6 +90,10 @@ function validate() {
 
     if (errMsg != "") { //only display message box if there is sorEthing to show
         alert(errMsg);
+    }
+
+    if(result) {
+        storeBooking(firstname, lastname, age, getSpecies(), is1day, is4day, is10day);
     }
 
     return result; // if false the information will not be sent to the server
@@ -165,11 +169,76 @@ function checkBeardLength(age) {
     return errMsg;
 }
 
+function storeBooking(firstname, lastname, age, species, is1day, is4day, is10day) {
+    //get values and assign them to a sessionStorage attribute.
+    //we use the same name for the attribute and the element id to avoid confusion
+    var trip = "";
+    if(is1day) trip = "1day";
+    if(is4day) trip += ", 4day";
+    if(is10day) trip += ", 10day";
+
+    var partySize = document.getElementById("partySize").value;
+    var food = document.getElementById("food").value;
+
+    sessionStorage.trip = trip;
+    sessionStorage.firstname = firstname;
+    sessionStorage.lastname = lastname;
+    sessionStorage.age = age;
+    sessionStorage.species = species;
+    sessionStorage.food = food;
+    sessionStorage.partySize = partySize;
+
+    // alert("Trip stored: " + sessionStorage.trip);
+    // alert("Firstname stored: " + sessionStorage.firstname);
+    // alert("Lastname stored: " + sessionStorage.lastname);
+    // alert("Age stored: " + sessionStorage.age);
+    // alert("Species stored: " + sessionStorage.species);
+    // alert("Food stored: " + sessionStorage.food);
+    // alert("Party Size stored: " + sessionStorage.partySize);
+}
+
+// check if session data on user exists and if so prefill the form
+function prefill_form() {
+    if(sessionStorage.firstname != undefined) {
+        document.getElementById("firstname").value = sessionStorage.firstname;
+        document.getElementById("lastname").value = sessionStorage.lastname;
+        document.getElementById("age").value = sessionStorage.age;
+        document.getElementById("food").value = sessionStorage.food;
+        document.getElementById("partySize").value = sessionStorage.partySize;
+
+        switch(sessionStorage.species) {
+            case "Human":
+                document.getElementById("human").checked = true;
+                break;
+            case "Dwarf":
+                document.getElementById("dwarf").checked = true;
+                break;
+            case "Hobbit":
+                document.getElementById("hobbit").checked = true;
+                break;
+            case "Elf":
+                document.getElementById("elf").checked = true;
+                break;
+        }
+
+        if (sessionStorage.trip.includes("1day")) {
+            document.getElementById("1day").checked = true;
+        } 
+        if (sessionStorage.trip.includes("4day")) {
+            document.getElementById("4day").checked = true;
+        } 
+        if (sessionStorage.trip.includes("10day")) {
+            document.getElementById("10day").checked = true;
+        }
+    }
+}
+
 // this function is called when the browser window loads
 // it will register functions that will respond to browser events
 function init() { 
     var regForm = document.getElementById("regform");
     regForm.onsubmit = validate;
+    prefill_form();
 }
 
 window.onload = init;

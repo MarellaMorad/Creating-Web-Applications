@@ -1,5 +1,5 @@
 /**
-* Author: Grima Wormtongue
+* Author: Marella Morad
 * Target: confirm.html
 * Purpose: Load data from session storage and submit to server
 * Credits: J.R. Tolkein
@@ -38,20 +38,28 @@ function getBooking(){
 		document.getElementById("confirm_cost").textContent = cost;
 		//fill hidden fields
 		document.getElementById("firstname").value = sessionStorage.firstname;
-		/*
-		Write lastname, age, species, age, food, and partySize from seesionStorage to the hidden inputs 
-		*/
+		document.getElementById("lastname").value = sessionStorage.lastname;
+		document.getElementById("age").value = sessionStorage.age;
+		document.getElementById("species").value = sessionStorage.species;
+		document.getElementById("trip").value = sessionStorage.trip;
+		document.getElementById("food").value = sessionStorage.food;
+		document.getElementById("partySize").value = sessionStorage.partySize;
 		document.getElementById("cost").value = cost;
 	}
 
 }
 
+function cancelBooking() {
+	window.location = "register.html";
+}
+
 
 function init () {
-	
 	var bookForm = document.getElementById("bookform");// link the variable to the HTML element
 	bookForm.onsubmit = validate;          /* assigns functions to corresponding events */
-	
+	getBooking();
+	var cancelButton = document.getElementById("cancelButton");
+	cancelButton.onclick = cancelBooking;
  }
 
 window.onload = init;
