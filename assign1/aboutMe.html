@@ -1,156 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" >
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-        <meta name="description" content="Creating Web Applications" >
-        <meta name="keywords" content="HTML, CSS, JavaScript" >
-        <meta name="author" content="Marella Morad" >
-        <meta content="width=device-width, initial-scale=1" name="viewport" >
-        <title>TechWave</title>
-        <!--Add a favicon to the website-->
-        <link rel="icon" type="image/x-icon" href="images/favicon.ico" >
-        <link rel="stylesheet" href="styles/style.css" >
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        >
-    </head>
-    <body>
-        <div id="logo-container">
-            <a href="index.html"
-                ><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"
-            ></a>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Creating Web Applications">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Marella Morad">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>TechWave</title>
+    <!--Add a favicon to the website-->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <div id="logo-container">
+        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
+    </div>
+    <header>
+        <!--menu is the original menu for large screens-->
+        <div class="menu">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Careers</a></li>
+                    <li><a href="apply.html">Join Us</a></li>
+                    <li>
+                        <a class="current" href="about.html">About Us</a>
+                    </li>
+                    <li><a href="enhancements.html">Enhancements</a></li>
+                </ul>
+            </nav>
+            <a class="button" href="mailto:103076428@student.swin.edu.au">Contact Us</a>
         </div>
-        <header>
-            <!--menu is the original menu for large screens-->
-            <div class="menu">
-                <nav>
-                    <ul class="nav-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="jobs.html">Careers</a></li>
-                        <li><a href="apply.html">Join Us</a></li>
-                        <li>
-                            <a class="current" href="about.html">About Us</a>
-                        </li>
-                        <li><a href="enhancements.html">Enhancements</a></li>
-                    </ul>
-                </nav>
-                <a class="button" href="mailto:103076428@student.swin.edu.au"
-                    >Contact Us</a
-                >
-            </div>
-            <!--small-menu is the smaller menu, using icons instead of text for smaller screens-->
-            <div class="small-menu">
-                <nav>
-                    <ul class="small-nav-menu">
-                        <li>
-                            <a href="index.html" title="Home"
-                                ><span class="fas fa-home"></span
-                            ></a>
-                        </li>
-                        <li>
-                            <a href="jobs.html" title="Careers"
-                                ><span class="fas fa-briefcase"></span
-                            ></a>
-                        </li>
-                        <li>
-                            <a href="apply.html" title="Join Us"
-                                ><span class="fas fa-user-plus"></span
-                            ></a>
-                        </li>
-                        <li>
-                            <a class="current" href="about.html" title="About Us"
-                                ><span class="fas fa-info-circle"></span
-                            ></a>
-                        </li>
-                        <li>
-                            <a href="enhancements.html" title="Enhancements"
-                                ><span class="fas fa-cog"></span
-                            ></a>
-                        </li>
-                    </ul>
-                </nav>
-                <a class="button" href="mailto:103076428@student.swin.edu.au" title="Contact Us"
-                    ><span class="fa fa-envelope"></span
-                ></a>
-            </div>
-        </header>
-        <h1>About Me</h1>
-        <section id="demographic" class="more-about-me">
-            <h2>Demographics</h2>
-            <p>
-                My name is <strong>Marella Morad</strong> and as you may know, I
-                am the <strong>CEO of TechWave.</strong>
-            </p>
-            <p>
-                I come from a small city in North Eastern
-                <a href="https://en.wikipedia.org/wiki/Syria">Syria</a> called
-                <a href="https://en.wikipedia.org/wiki/Al-Hasakah"
-                    >Al-Hasakah</a
-                >
-            </p>
-            <img
-                src="images/flying-to-aus.gif"
-                alt="World Map with an animation of an airplane flying from Syria to Australia"
-            >
-            <p>
-                I speak two languages: <strong>Arabic</strong>, my mother
-                language and yes you guessed it, <strong>English</strong>, which
-                I got better at after migrating to Australia
-            </p>
-            <p id="arabic-text">
-                For example:
-                <strong
-                    >"مرحبا انا اسمي ماريلا مراد وانا مديرة شركة تيك ويف"</strong
-                >
-                is the same as the introduction you see above
-            </p>
-            <p>
-                Check this voice note below where I say the sentence in both Arabic and English!
-            </p>
-            <audio controls>
-                <source src="intro.mp3" type="audio/mp3" >
-                Your browser does not support the audio element.
-            </audio>
-        </section>
-        <section class="more-about-me">
-            <h2>Hobbies</h2>
-            <p>
-                One thing you might not know about me is that I also
-                <strong>Sing</strong>, alongside managing TechWave.
-            </p>
-            <p>
-                <span class="fas fa-arrow-down"></span> Here's a video of me
-                singing in Arabic <span class="fas fa-arrow-down"></span>
-            </p>
-            <iframe
-                src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fmusic.m.b.m.99%2Fvideos%2F1143819299405238%2F&show_text=false&width=560&t=0"
-                width="560"
-                height="314"
-                style="border: none; overflow: hidden"
-                allowfullscreen
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-        </section>
-        <section id="socials" class="more-about-me">
-            <h2>Socials</h2>
-            <p>
-                Lastly, if you want to get in touch with me, you can follow me
-                on my Socials!
-            </p>
-            <div>
-                <a href="https://www.facebook.com/music.m.b.m.99" title="Link to my Facebook Page"
-                    ><span class="fab fa-facebook"></span
-                ></a>
-                <a href="https://www.instagram.com/music.m.b.m/" title="Link to my Instagram Page"
-                    ><span class="fab fa-instagram"></span
-                ></a>
-                <a href="https://www.linkedin.com/in/marellamorad" title="Link to my LinkedIn Profile"
-                    ><span class="fab fa-linkedin"></span
-                ></a>
-            </div>
-        </section>
-        <footer>© 2023 TechWave All Rights Reserved.</footer>
-    </body>
+        <!--small-menu is the smaller menu, using icons instead of text for smaller screens-->
+        <div class="small-menu">
+            <nav>
+                <ul class="small-nav-menu">
+                    <li>
+                        <a href="index.html" title="Home"><span class="fas fa-home"></span></a>
+                    </li>
+                    <li>
+                        <a href="jobs.html" title="Careers"><span class="fas fa-briefcase"></span></a>
+                    </li>
+                    <li>
+                        <a href="apply.html" title="Join Us"><span class="fas fa-user-plus"></span></a>
+                    </li>
+                    <li>
+                        <a class="current" href="about.html" title="About Us"><span
+                                class="fas fa-info-circle"></span></a>
+                    </li>
+                    <li>
+                        <a href="enhancements.html" title="Enhancements"><span class="fas fa-cog"></span></a>
+                    </li>
+                </ul>
+            </nav>
+            <a class="button" href="mailto:103076428@student.swin.edu.au" title="Contact Us"><span
+                    class="fa fa-envelope"></span></a>
+        </div>
+    </header>
+    <h1>About Me</h1>
+    <section id="demographic" class="more-about-me">
+        <h2>Demographics</h2>
+        <p>
+            My name is <strong>Marella Morad</strong> and as you may know, I
+            am the <strong>CEO of TechWave.</strong>
+        </p>
+        <p>
+            I come from a small city in North Eastern
+            <a href="https://en.wikipedia.org/wiki/Syria">Syria</a> called
+            <a href="https://en.wikipedia.org/wiki/Al-Hasakah">Al-Hasakah</a>
+        </p>
+        <img src="images/flying-to-aus.gif"
+            alt="World Map with an animation of an airplane flying from Syria to Australia">
+        <p>
+            I speak two languages: <strong>Arabic</strong>, my mother
+            language and yes you guessed it, <strong>English</strong>, which
+            I got better at after migrating to Australia
+        </p>
+        <p id="arabic-text">
+            For example:
+            <strong>"مرحبا انا اسمي ماريلا مراد وانا مديرة شركة تيك ويف"</strong>
+            is the same as the introduction you see above
+        </p>
+        <p>
+            Check this voice note below where I say the sentence in both Arabic and English!
+        </p>
+        <audio controls>
+            <source src="intro.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+    <section class="more-about-me">
+        <h2>Hobbies</h2>
+        <p>
+            One thing you might not know about me is that I also
+            <strong>Sing</strong>, alongside managing TechWave.
+        </p>
+        <p>
+            <span class="fas fa-arrow-down"></span> Here's a video of me
+            singing in Arabic <span class="fas fa-arrow-down"></span>
+        </p>
+        <iframe
+            src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fmusic.m.b.m.99%2Fvideos%2F1143819299405238%2F&show_text=false&width=560&t=0"
+            width="560" height="314" style="border: none; overflow: hidden" allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </section>
+    <section id="socials" class="more-about-me">
+        <h2>Socials</h2>
+        <p>
+            Lastly, if you want to get in touch with me, you can follow me
+            on my Socials!
+        </p>
+        <div>
+            <a href="https://www.facebook.com/music.m.b.m.99" title="Link to my Facebook Page"><span
+                    class="fab fa-facebook"></span></a>
+            <a href="https://www.instagram.com/music.m.b.m/" title="Link to my Instagram Page"><span
+                    class="fab fa-instagram"></span></a>
+            <a href="https://www.linkedin.com/in/marellamorad" title="Link to my LinkedIn Profile"><span
+                    class="fab fa-linkedin"></span></a>
+        </div>
+    </section>
+    <footer>© 2023 TechWave All Rights Reserved.</footer>
+</body>
+
 </html>

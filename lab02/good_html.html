@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" >
-  <meta name="description" content="Demonstrates some basic HTML content elements">
-  <meta name="keywords" content="HTML5, tags">
-  <meta name="author" content="A Lecturer">
-  <title>Lecture 3 - HTML 5 Basic Content Elements</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Demonstrates some basic HTML content elements">
+	<meta name="keywords" content="HTML5, tags">
+	<meta name="author" content="A Lecturer">
+	<title>Lecture 3 - HTML 5 Basic Content Elements</title>
 </head>
 <!-- This is a comment. Indenting child elements makes the markup much more readable -->
+
 <body>
 	<h1>HTML 5 Basic Content Elements</h1>
-	<a href="L3_basic_html.html#headings">Heading and Paragraphs</a> 
-   <a href="L3_basic_html.html#sc">Special Characters</a> 
-   <a href="L3_basic_html.html#lists">Lists</a> 
-   <a href="L3_basic_html.html#tables">Tables</a>
-   <a href="L3_basic_html.html#images">Images</a>
-   <a href="L3_basic_html.html#hyperlinks">Hyperlinks</a>
-   <hr>
-   <p>HTML page without CCS styling looks a bit boring
-   <hr>
+	<a href="L3_basic_html.html#headings">Heading and Paragraphs</a>
+	<a href="L3_basic_html.html#sc">Special Characters</a>
+	<a href="L3_basic_html.html#lists">Lists</a>
+	<a href="L3_basic_html.html#tables">Tables</a>
+	<a href="L3_basic_html.html#images">Images</a>
+	<a href="L3_basic_html.html#hyperlinks">Hyperlinks</a>
+	<hr>
+	<p>HTML page without CCS styling looks a bit boring
+		<hr>
 	<h1>Headings and Paragraphs </h1>
 	<p>Headings and paragraphs are BLOCK elements</p>
 	<h1>Headings</h1>
-	<p>There are 6 levels of heading. Headings are logical marked. Do not skip levels. If you want to change the size of a heading, don't change its level - change the CSS.</p>
+	<p>There are 6 levels of heading. Headings are logical marked. Do not skip levels. If you want to change the size of
+		a heading, don't change its level - change the CSS.</p>
 	<h2>Paragraphs</h2>
 	<p>Paragraphs contain the body text of a web page. You cannot put another block element inside a paragraph.</p>
-	
-   <h1 id="sc">Special Characters</h1>
-   <p>While HTML supports many named special characters like &#174; (#174), XML only supports 5 namely: &quot;, &apos;, &amp;, &lt;, and &gt;.  So to keep you HTML compliant you need to use numbers for all the others.</p>
-	
-      
-   
-   <!-- Comments can be useful to indicate various sections of markup-->
+
+	<h1 id="sc">Special Characters</h1>
+	<p>While HTML supports many named special characters like &#174; (#174), XML only supports 5 namely: &quot;, &apos;,
+		&amp;, &lt;, and &gt;. So to keep you HTML compliant you need to use numbers for all the others.</p>
+
+
+
+	<!-- Comments can be useful to indicate various sections of markup-->
 	<!--Lists-->
 	<h1 id="list">Lists</h1>
 	<p>There are two types of lists: unordered and ordered</p>
@@ -44,7 +48,7 @@
 		<li>First item</li>
 		<li>Second item</li>
 		<li>Third item</li>
-	 </ol>
+	</ol>
 	<p>Lists can also be nested inside each other</p>
 	<ol>
 		<li>First item</li>
@@ -56,58 +60,59 @@
 			</ul>
 		</li>
 		<li>Third item</li>
-	</ol>		
+	</ol>
 
 	<h1 id="tables">Tables</h1>
-	<!-- the border attribute indicates if there is a border or not. Should really be in CSS --> 
+	<!-- the border attribute indicates if there is a border or not. Should really be in CSS -->
 	<table border="1">
 		<caption>Table of Monthly Savings</caption>
 		<thead>
 			<tr>
-			<!-- the scope attribute assists non-visual user agents -->
-			<!-- rowspan and colspan allow multiple cells to be merged -->
-			  <th rowspan="2" scope="col">Month</th>
-			  <th colspan="3" scope="col">Savings</th>
+				<!-- the scope attribute assists non-visual user agents -->
+				<!-- rowspan and colspan allow multiple cells to be merged -->
+				<th rowspan="2" scope="col">Month</th>
+				<th colspan="3" scope="col">Savings</th>
 			</tr>
 			<tr>
-			  <th scope="col">Salary</th>
-			  <th scope="col">Interest</th>
-			  <th scope="col">Total</th>
+				<th scope="col">Salary</th>
+				<th scope="col">Interest</th>
+				<th scope="col">Total</th>
 			</tr>
-	  </thead>
-	  <tbody>
-		<tr>
-		  <th scope="row">January</th>
-		  <td>$60</td>
-		  <td>$40</td>
-		  <td>$100</td>
-		</tr>
-		<tr>
-		  <th scope="row">February</th>
-		  <td>$40</td>
-		  <td>$40</td>
-		  <td>$80</td>
-		
-	  </tbody>
-	  <tfoot>
-		<tr>
-		   <th colspan="3" scope="row"> Grand Total</th>
-		   <td>$180</td>
-		</tr>
-	  </tfoot>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">January</th>
+				<td>$60</td>
+				<td>$40</td>
+				<td>$100</td>
+			</tr>
+			<tr>
+				<th scope="row">February</th>
+				<td>$40</td>
+				<td>$40</td>
+				<td>$80</td>
+
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="3" scope="row"> Grand Total</th>
+				<td>$180</td>
+			</tr>
+		</tfoot>
 	</table>
-	
+
 	<h1 id="hyperlinks">Hyperlinks</h1>
-	<p><a href="http://ilearn.swin.edu.au" title="This takes you to Blackboard"> This is a link to an exteranl site Blackboard</a></p>
+	<p><a href="http://ilearn.swin.edu.au" title="This takes you to Blackboard"> This is a link to an exteranl site
+			Blackboard</a></p>
 	<p>This is a link to the <a href="L3_basic_html.html#list">List Section </a> of the Web page</p>
-	
+
 	<h1 id="images">Images</h1>
 	<p>This thumbnail image is used as a hyperlink to a larger version of the image</p>
-	<a href="mycat.jpg">  <img src="mycat_small.jpg" alt="Photo of my cat" title="Filesize 222kb "></a>
+	<a href="mycat.jpg"> <img src="mycat_small.jpg" alt="Photo of my cat" title="Filesize 222kb "></a>
 
-	
+
 	<hr>
-	
+
 
 </body>
 
