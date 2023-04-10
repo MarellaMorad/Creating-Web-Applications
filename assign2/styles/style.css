@@ -51,8 +51,7 @@ a {
     color: var(--dark-purple)
 }
 
-.menu,
-.small-menu {
+.menu {
     display: contents;
 }
 
@@ -65,8 +64,7 @@ nav ul {
 }
 
 /* Remove the underline from a elements, and change the text color */
-.menu a,
-.small-menu a {
+.menu a {
     padding: 14px 16px;
     display: flex;
     color: var(--text-color);
@@ -74,30 +72,17 @@ nav ul {
 
 /* Style the nav items to match the style of the site */
 nav ul li,
-.menu a,
-.small-menu a {
+.menu a {
     font-weight: bold;
 }
 
-/*Set the width of the nav icons that show on small screens*/
-.small-menu a span {
-    font-size: 3vw;
-}
-
 /*Add some visual indication of when the user hovers over a menu item*/
-/*.current class sets the page the user is currently viewing and adds some styling to indicate active menu items*/
+/*.active class sets the page the user is currently viewing and adds some styling to indicate active menu items*/
 .menu a:hover,
-.small-menu a:hover,
-.menu a.current,
-.small-menu a.current {
+.menu a.active {
     background-color: var(--dark-purple);
     border-radius: 10px;
     color: white;
-}
-
-/*Initially hide the small-menu, only display on smaller/small screens*/
-.small-menu {
-    display: none;
 }
 
 /* Style the footer to have a line at the top */
@@ -110,7 +95,7 @@ footer {
 
 /*---------------------------------------------------------------------------------------*/
 /*index.html styling*/
-#home {
+#homepage {
     text-align: center;
 }
 
@@ -237,14 +222,13 @@ fieldset {
     padding-right: 12px;
 }
 
-.form-container input[type='text']:invalid,
-.form-container input[type='email']:invalid {
+.form-container .invalid,
+.form-container input.invalid {
     border-color: red;
     background-color: var(--light-red);
 }
 
-.form-container input[type='text']:invalid + .error-message,
-.form-container input[type='email']:invalid + .error-message {
+.form-container .invalid + .error-message {
     display: block;
     font-size: x-small;
     padding-top: 5px;
@@ -431,13 +415,9 @@ details ol {
 /*Smaller screens - tablets*/
 @media only screen and (max-width: 869px) {
     .menu {
-        display: none;
-    }
-    .small-menu {
-        display: contents;
         width: 100%;
+        font-size: 3vw;
     }
-
     /*jobs.html*/
     #ad-container img {
         width: 50vw;
@@ -472,7 +452,7 @@ details ol {
 
 /*Smaller screens - mobile phones*/
 @media only screen and (max-width: 450px) {
-    .small-menu a span {
+    .menu a span {
         font-size: 4vw;
     }
 
