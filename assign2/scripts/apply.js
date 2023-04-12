@@ -47,7 +47,7 @@ function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, seSkil
 }
 
 function validateName(nameInput, nameErrSpan, nameType) {
-    const errMsg = "Please enter your ${nameType}.";
+    const errMsg = `Please enter your ${nameType}.`;
     const regexErrMsg = "You can only use alphabetical characters";
     const nameRegex = !/^[A-Za-z]+$/;
     if (!validateInput(nameInput, nameErrSpan, errMsg, nameRegex, regexErrMsg)) {
@@ -87,6 +87,26 @@ function validateDOB(dobInput, dobErrSpan) {
             dobErrSpan.textContent = "";
             return true
         }
+    }
+}
+
+function validateGender(genderRadioButtons, genderFieldSet, genderErrSpan) {
+    var selectedGender = null;
+    for (let i = 0; i < genderRadioButtons.length; i++) {
+        if (genderRadioButtons[i].checked) {
+            selectedGender = genderRadioButtons[i].value;
+            break;
+        }
+    }
+
+    if (selectedGender === null) {
+        genderFieldSet.classList.add("invalid");
+        genderErrSpan.textContent = "Please select your Gender.";
+        return false;
+    } else {
+        genderFieldSet.classList.remove("invalid");
+        genderErrSpan.textContent = "";
+        return true;
     }
 }
 
@@ -143,7 +163,7 @@ function validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcod
     const prefix = statePrefix[stateSelect.value];
     if (!prefix.some(p => postcode.startsWith(p))) {
         postcodeInput.classList.add("invalid");
-        postcodeErrSpan.textContent = "Please enter a valid postcode - ${stateSelect.value.toUpperCase()} postcodes start with ${prefix.join(' or ')}.";
+        postcodeErrSpan.textContent = `Please enter a valid postcode - ${stateSelect.value.toUpperCase()} postcodes start with ${prefix.join(' or ')}.`;
         return false;
     }
 
@@ -177,13 +197,15 @@ function validateOtherSkillsDesc(otherSkillsDesc, otherSkillsDescErrSpan, otherS
 
 
 function runAllValidations(refNumSelect, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset, firstnameInput, firstnameErrSpan,
-    lastnameInput, lastnameErrSpan, dobInput, dobErrSpan, streetAddressInput, streetAddressErrSpan, townInput, townErrSpan,
-    stateSelect, stateErrSpan, postcodeInput, postcodeErrSpan, emailInput, emailErrSpan, mobileInput, mobileErrSpan, otherSkillsDesc,
-    otherSkillsDescErrSpan, otherSkills) {
+    lastnameInput, lastnameErrSpan, dobInput, dobErrSpan, genderRadioButtons, genderFieldSet, genderErrSpan, streetAddressInput,
+    streetAddressErrSpan, townInput, townErrSpan, stateSelect, stateErrSpan, postcodeInput, postcodeErrSpan, emailInput,
+    emailErrSpan, mobileInput, mobileErrSpan, otherSkillsDesc, otherSkillsDescErrSpan, otherSkills) {
+
     var isValid = validateJobRefNum(refNumSelect, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset);
     isValid = validateName(firstnameInput, firstnameErrSpan, "First Name") && isValid;
     isValid = validateName(lastnameInput, lastnameErrSpan, "Last Name") && isValid;
     isValid = validateDOB(dobInput, dobErrSpan) && isValid;
+    isValid = validateGender(genderRadioButtons, genderFieldSet, genderErrSpan) && isValid;
     isValid = validateAddress(streetAddressInput, streetAddressErrSpan, "Street Address") && isValid;
     isValid = validateAddress(townInput, townErrSpan, "Suburb/town") && isValid;
     isValid = validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcodeErrSpan) && isValid;
@@ -191,13 +213,19 @@ function runAllValidations(refNumSelect, refNumErrSpan, bdaSkillsFieldset, seSki
     isValid = validateMobileNumber(mobileInput, mobileErrSpan) && isValid;
     isValid = validateOtherSkillsDesc(otherSkillsDesc, otherSkillsDescErrSpan, otherSkills) && isValid;
 
-    if (!isValid) {
-        alert("Some Item Require Your Attention!");
-    }
     return isValid;
 }
 
 function init() {
+    //use functions from menu.js
+    // Add a listener for window resize events
+    window.addEventListener("resize", adjustMenu);
+
+    // Call the adjustMenu function to set the initial state of the navigation items
+    adjustMenu();
+    setActivePage();
+
+    //start validating form fields
     const bdaSkillsFieldset = document.getElementById("bda-skills");
     const seSkillsFieldset = document.getElementById("se-skills");
 
@@ -213,6 +241,17 @@ function init() {
     const dobField = new FormField("dob", "dob-err", function () {
         validateDOB(this.input, this.errSpan);
     });
+
+    const genderRadioButtons = Array.from(document.getElementsByName("gender"));
+    const genderFieldSet = document.getElementById("gender");
+    const genderErrSpan = document.getElementById("gender-err");
+
+    genderRadioButtons.forEach((radioButton) => {
+        radioButton.addEventListener('change', function () {
+            validateGender(genderRadioButtons, genderFieldSet, genderErrSpan);
+        });
+    });
+
     const streetField = new FormField("street", "street-err", function () {
         validateAddress(this.input, this.errSpan, "Street Address");
     });
@@ -241,16 +280,34 @@ function init() {
     })
 
     const applicationForm = document.getElementById("application-form");
-    applicationForm.onsubmit = function () {
-        return runAllValidations(
+    applicationForm.onsubmit = function (event) {
+        event.preventDefault(); // prevent the form from being submitted to the server by default
+
+        const isValid = runAllValidations(
             refNumField.input, refNumField.errSpan, bdaSkillsFieldset, seSkillsFieldset,
             firstNameField.input, firstNameField.errSpan, lastNameField.input, lastNameField.errSpan,
-            dobField.input, dobField.errSpan, streetField.input, streetField.errSpan,
-            townField.input, townField.errSpan, stateField.input, stateField.errSpan,
-            postcodeField.input, postcodeField.errSpan, emailField.input, emailField.errSpan,
+            dobField.input, dobField.errSpan, genderRadioButtons, genderFieldSet, genderErrSpan,
+            streetField.input, streetField.errSpan, townField.input, townField.errSpan, stateField.input,
+            stateField.errSpan, postcodeField.input, postcodeField.errSpan, emailField.input, emailField.errSpan,
             mobileField.input, mobileField.errSpan, otherSkillsDesc.input, otherSkillsDesc.errSpan,
             otherSkills.checked
         );
+
+        const warningBox = document.getElementById("warning");
+        const warningContent = document.getElementById("warning-content");
+
+        if (!isValid) {
+            window.scrollTo(0, 0);
+            warningContent.textContent = "Some Item Require Your Attention!";
+            warningBox.style.display = "flex";
+        }
+
+        const closeButton = document.getElementById("close-warning");
+        closeButton.addEventListener('click', function () {
+            warningBox.style.display = 'none';
+        });
+
+        return isValid; // return the validation result to allow or prevent form submission
     };
 }
 

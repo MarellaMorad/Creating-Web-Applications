@@ -9,15 +9,15 @@
 
 function setActivePage() {
     const navLinks = document.getElementsByClassName("nav-link");
-  
+
     Array.from(navLinks).forEach((link) => {
         if (link.href === window.location.href) {
-          link.classList.add('active');
+            link.classList.add('active');
         } else {
-          link.classList.remove('active');
+            link.classList.remove('active');
         }
     });
-  }
+}
 
 function adjustMenu() {
     const navItems = [
@@ -64,7 +64,7 @@ function restoreOriginalText(navItems) {
     })
 }
 
-function init () {
+function init() {
     // Add a listener for window resize events
     window.addEventListener("resize", adjustMenu);
 

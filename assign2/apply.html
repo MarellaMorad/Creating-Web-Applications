@@ -39,6 +39,12 @@
         </div>
     </header>
     <h1>Application of Interest</h1>
+    <div id="warning">
+        <span id="warning-content"></span>
+        <button id="close-warning">
+            <span class="fas fa-times" id="warning-close-icon"></span>
+        </button>
+    </div>
     <form class="form-container" method="post" id="application-form"
         action="https://mercury.swin.edu.au/it000000/formtest.php">
         <p>
@@ -76,18 +82,17 @@
                     <span class="error-message" id="dob-err"></span>
                 </span>
             </p>
-            <fieldset>
+            <fieldset id="gender">
                 <legend class="required">Gender:</legend>
                 <label for="male">Male</label>
                 <input type="radio" id="male" name="gender" value="male">
 
                 <label for="female">Female</label>
                 <input type="radio" id="female" name="gender" value="female">
-
-                <span class="with-validation">
-                    <span class="error-message" id="gender-err"></span>
-                </span>
             </fieldset>
+            <span id="gender-with-validation">
+                <span class="error-message" id="gender-err"></span>
+            </span>
         </fieldset>
         <fieldset>
             <legend>Contact Information</legend>

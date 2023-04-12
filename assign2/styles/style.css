@@ -11,6 +11,7 @@ description: styling to all html files of the Assignment Part 1
     --light-purple: #a887d8;
     --dark-purple: #7045af;
     --light-red: #f8717129;
+    --light-yellow: #f8df7129;
     --grey: #6c6c6c;
     --light-grey: #636363;
     --light-shadow: #0000001a;
@@ -228,12 +229,45 @@ fieldset {
     background-color: var(--light-red);
 }
 
-.form-container .invalid + .error-message {
+.form-container .invalid + .error-message, #gender-err {
     display: block;
     font-size: x-small;
     padding-top: 5px;
 }
 
+#gender-with-validation {
+    width: 100%;
+    padding-right: 0px;
+}
+
+fieldset #gender {
+    margin-bottom: 0px;
+}
+
+#gender-err {
+    margin-left: 3px;
+}
+
+#warning {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid orange;
+    border-radius: 10px;
+    background-color: var(--light-yellow);
+    margin: 0 auto; /* center horizontally */
+}
+
+#close-warning {
+    display: contents;
+    font-size: larger;
+    color: orange;
+}
+
+#warning-close-icon, #warning-content {
+    padding: 10px;
+}
 /*---------------------------------------------------------------------------------------*/
 /*about.html styling*/
 .about-us {
