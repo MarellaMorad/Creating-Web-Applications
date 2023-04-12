@@ -202,8 +202,11 @@
             </fieldset>
             <p>
                 <label for="other-skills-desc">Other Skills:</label>
-                <textarea id="other-skills-desc" name="other-skills-desc" rows="4" cols="40"
-                    placeholder="Please list your other skills here..."></textarea>
+                <span class="with-validation">
+                    <textarea id="other-skills-desc" name="other-skills-desc" rows="4" cols="40"
+                        placeholder="Please list your other skills here..."></textarea>
+                    <span class="error-message" id="other-skills-desc-err"></span>
+                </span>
             </p>
         </fieldset>
         <div class="buttons">
