@@ -47,13 +47,14 @@
     </div>
     <form class="form-container" method="post" id="application-form"
         action="https://mercury.swin.edu.au/it000000/formtest.php">
+        <input type="hidden" name="refNum" id="ref-num" value="">
         <p>
             <label class="required" for="reference-number">Job Reference Number:</label>
             <span class="with-validation">
                 <select name="reference-number" id="reference-number">
                     <option value="">Please Select</option>
-                    <option value="bda">BDATW - Big Data Analyst</option>
-                    <option value="se">SWETW - Software Engineer</option>
+                    <option value="bdatw">BDATW - Big Data Analyst</option>
+                    <option value="swetw">SWETW - Software Engineer</option>
                 </select>
                 <span class="error-message" id="reference-number-err"></span>
             </span>
@@ -168,7 +169,7 @@
                 <label for="power-bi">Power BI</label>
                 <input type="checkbox" id="power-bi" name="skills[]" value="power-bi">
             </fieldset>
-            <fieldset id="se-skills">
+            <fieldset id="swe-skills">
                 <legend>Software Engineer Specific Skills</legend>
                 <label for="c-sharp">C#</label>
                 <input type="checkbox" id="c-sharp" name="skills[]" value="c-sharp">

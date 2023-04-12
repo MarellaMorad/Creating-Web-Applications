@@ -7,6 +7,8 @@
 * Credits: 
 */
 
+"use strict";
+
 function setActivePage() {
     const navLinks = document.getElementsByClassName("nav-link");
 

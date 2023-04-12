@@ -37,12 +37,12 @@ function validate() {
     }
 
     /* at least one species selected */
-    if(getSpecies() == "Unknown") {
+    if (getSpecies() == "Unknown") {
         errMsg += "Please select at least one species.\n";
         result = false;
     }
 
-    if(isNaN(age)) { //if age is not a number
+    if (isNaN(age)) { //if age is not a number
         errMsg += "Your age must be a number\n";
         result = false;
     }
@@ -69,21 +69,21 @@ function validate() {
     }
 
     /* at least one trip selected */
-    if(!(is1day || is4day || is10day)) {
+    if (!(is1day || is4day || is10day)) {
         errMsg += "Please select at least one trip.\n";
         result = false;
     }
 
-    if(food == "none") {
+    if (food == "none") {
         errMsg += "You must select a food preference\n";
         result = false;
     }
 
-    if(isNaN(partySize)) {
+    if (isNaN(partySize)) {
         errMsg += "The number of travellers must be a number\n";
         result = false;
     }
-    else if(partySize < 1 || partySize > 100) {
+    else if (partySize < 1 || partySize > 100) {
         errMsg += "The number of travellers should be between 1 and 100\n";
         result = false;
     }
@@ -92,7 +92,7 @@ function validate() {
         alert(errMsg);
     }
 
-    if(result) {
+    if (result) {
         storeBooking(firstname, lastname, age, getSpecies(), is1day, is4day, is10day);
     }
 
@@ -111,7 +111,7 @@ function getSpecies() {
             speciesName = speciesArray[i].value; // assign the value attribute
         }
     }
-    return speciesName ;
+    return speciesName;
 }
 
 /*if rule violated return error message*/
@@ -120,7 +120,7 @@ function checkSpeciesAge(age) {
     var errMsg = "";
     var species = getSpecies();
 
-    switch(species) {
+    switch (species) {
         case "Human":
             if (age > 120) {
                 errMsg = "You cannot be a Human and over 120.\n";
@@ -146,7 +146,7 @@ function checkBeardLength(age) {
     var errMsg = "";
     var species = getSpecies();
 
-    switch(species) {
+    switch (species) {
         case "Human":
         case "Dwarf":
             if (age < 30 && beardLength > 12) {
@@ -173,9 +173,9 @@ function storeBooking(firstname, lastname, age, species, is1day, is4day, is10day
     //get values and assign them to a sessionStorage attribute.
     //we use the same name for the attribute and the element id to avoid confusion
     var trip = "";
-    if(is1day) trip = "1day";
-    if(is4day) trip += ", 4day";
-    if(is10day) trip += ", 10day";
+    if (is1day) trip = "1day";
+    if (is4day) trip += ", 4day";
+    if (is10day) trip += ", 10day";
 
     var partySize = document.getElementById("partySize").value;
     var food = document.getElementById("food").value;
@@ -199,14 +199,14 @@ function storeBooking(firstname, lastname, age, species, is1day, is4day, is10day
 
 // check if session data on user exists and if so prefill the form
 function prefill_form() {
-    if(sessionStorage.firstname != undefined) {
+    if (sessionStorage.firstname != undefined) {
         document.getElementById("firstname").value = sessionStorage.firstname;
         document.getElementById("lastname").value = sessionStorage.lastname;
         document.getElementById("age").value = sessionStorage.age;
         document.getElementById("food").value = sessionStorage.food;
         document.getElementById("partySize").value = sessionStorage.partySize;
 
-        switch(sessionStorage.species) {
+        switch (sessionStorage.species) {
             case "Human":
                 document.getElementById("human").checked = true;
                 break;
@@ -223,10 +223,10 @@ function prefill_form() {
 
         if (sessionStorage.trip.includes("1day")) {
             document.getElementById("1day").checked = true;
-        } 
+        }
         if (sessionStorage.trip.includes("4day")) {
             document.getElementById("4day").checked = true;
-        } 
+        }
         if (sessionStorage.trip.includes("10day")) {
             document.getElementById("10day").checked = true;
         }
@@ -235,7 +235,7 @@ function prefill_form() {
 
 // this function is called when the browser window loads
 // it will register functions that will respond to browser events
-function init() { 
+function init() {
     var regForm = document.getElementById("regform");
     regForm.onsubmit = validate;
     prefill_form();
