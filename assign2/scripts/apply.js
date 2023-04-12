@@ -3,7 +3,7 @@
 * Target: apply.html
 * Purpose: Add Form Validation to the apply.html file
 * Created: 11/04/2023
-* Last Updated: 11/04/2023
+* Last Updated: 11/04/2023 5:58:00 AM
 * Credits: 
 */
 
@@ -11,10 +11,24 @@
 
 var valid = true;
 
-function validateJobRefNum(refNumInput, refNumErrSpan) {
+function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset) {
     const errMsg = "Please Select a Job Reference Number from the list.";
     if (!hasValue(refNumInput, refNumErrSpan, errMsg)) {
         valid = false;
+    } else {
+        switch (refNumInput.value) {
+            case 'bda':
+                seSkillsFieldset.style.display = "none";
+                bdaSkillsFieldset.style.display = "";
+                break;
+            case 'se':
+                seSkillsFieldset.style.display = "";
+                bdaSkillsFieldset.style.display = "none";
+                break;
+            default:
+                seSkillsFieldset.style.display = "";
+                bdaSkillsFieldset.style.display = "";
+        }
     }
 }
 
@@ -188,13 +202,13 @@ function validateMobileNumber(mobileInput, mobileErrSpan) {
     }
 }
 
-function hasValue(fromElement, errSpan, errMsg) {
-    if (fromElement.value === '') {
-        fromElement.classList.add('invalid');
+function hasValue(formElement, errSpan, errMsg) {
+    if (formElement.value === '') {
+        formElement.classList.add('invalid');
         errSpan.textContent = errMsg;
         return false;
     } else {
-        fromElement.classList.remove('invalid');
+        formElement.classList.remove('invalid');
         errSpan.textContent = '';
         return true;
     }
@@ -213,13 +227,44 @@ function isValidPostcode(str) {
     return /^\d{4}$/.test(str);
 }
 
+function runAllValidations(refNumSelect, refNumErrSpan,
+    bdaSkillsFieldset, seSkillsFieldset,
+    firstnameInput, firstnameErrSpan,
+    lastnameInput, lastnameErrSpan,
+    dobInput, dobErrSpan,
+    streetAddressInput, streetAddressErrSpan,
+    townInput, townErrSpan,
+    stateSelect, stateErrSpan,
+    postcodeInput, postcodeErrSpan,
+    emailInput, emailErrSpan,
+    mobileInput, mobileErrSpan) {
+    validateJobRefNum(refNumSelect, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset);
+    validateName(firstnameInput, firstnameErrSpan, 'First Name');
+    validateName(lastnameInput, lastnameErrSpan, 'Last Name');
+    validateDOB(dobInput, dobErrSpan);
+    validateAddress(streetAddressInput, streetAddressErrSpan, 'Street Address');
+    validateAddress(townInput, townErrSpan, 'Suburb/town');
+    validateStatePostcode(postcodeInput, postcodeErrSpan, stateSelect, stateErrSpan);
+    validateEmail(emailInput, emailErrSpan);
+    validateMobileNumber(mobileInput, mobileErrSpan);
+
+    if (!valid) {
+        alert('Some Item Require Your Attention!');
+    }
+
+    return valid;
+}
+
 function init() {
+    var bdaSkillsFieldset = document.getElementById('bda-skills');
+    var seSkillsFieldset = document.getElementById('se-skills');
+
     var refNumSelect = document.getElementById('reference-number');
     var refNumErrSpan = document.getElementById('reference-number-err');
 
     //run validations as the input elements change
     refNumSelect.addEventListener('input', function () {
-        validateJobRefNum(this, refNumErrSpan);
+        validateJobRefNum(this, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset);
     });
 
     var firstnameInput = document.getElementById('first-name');
@@ -258,14 +303,14 @@ function init() {
     var streetAddressErrSpan = document.getElementById('street-err');
 
     streetAddressInput.addEventListener('input', function () {
-        validateAddress(this, streetAddressErrSpan, 'Street Address')
+        validateAddress(this, streetAddressErrSpan, 'Street Address');
     })
 
     var townInput = document.getElementById('town');
     var townErrSpan = document.getElementById('town-err');
 
     townInput.addEventListener('input', function () {
-        validateAddress(this, townErrSpan, 'Suburb/town')
+        validateAddress(this, townErrSpan, 'Suburb/town');
     })
 
     var stateSelect = document.getElementById('state');
@@ -296,8 +341,20 @@ function init() {
     })
 
     //run validation on form submission
-    // var applicationForm = document.getElementById("application-form");
-    // applicationForm.onsubmit = runAllValidations;
+    var applicationForm = document.getElementById("application-form");
+    applicationForm.onsubmit = function () {
+        runAllValidations(refNumSelect, refNumErrSpan,
+            bdaSkillsFieldset, seSkillsFieldset,
+            firstnameInput, firstnameErrSpan,
+            lastnameInput, lastnameErrSpan,
+            dobInput, dobErrSpan,
+            streetAddressInput, streetAddressErrSpan,
+            townInput, townErrSpan,
+            stateSelect, stateErrSpan,
+            postcodeInput, postcodeErrSpan,
+            emailInput, emailErrSpan,
+            mobileInput, mobileErrSpan);
+    };
 }
 
 // Call the init function when the page is loaded
