@@ -3,7 +3,7 @@
 * Target: apply.html
 * Purpose: Add Form Validation to the apply.html file
 * Created: 11/04/2023
-* Last Updated: 13/04/2023 1:30:00 AM
+* Last Updated: 17/04/2023 11:15:00 PM
 * Credits: 
 */
 
@@ -23,7 +23,7 @@ function validateInput(inputElement, errorElement, errorMessage, regex = "", reg
         inputElement.classList.add("invalid");
         errorElement.textContent = errorMessage;
         return false;
-    } else if (regex != "" && !regex.test(inputElement.value)) {
+    } else if (regex != "" && !(regex.test(inputElement.value))) {
         inputElement.classList.add("invalid");
         errorElement.textContent = regexErrMsg;
         return false;
@@ -49,7 +49,7 @@ function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, seSkil
 function validateName(nameInput, nameErrSpan, nameType) {
     const errMsg = `Please enter your ${nameType}.`;
     const regexErrMsg = "You can only use alphabetical characters";
-    const nameRegex = !/^[A-Za-z]+$/;
+    const nameRegex = /^[A-Za-z]+$/;
     if (!validateInput(nameInput, nameErrSpan, errMsg, nameRegex, regexErrMsg)) {
         return false;
     } else {
@@ -244,6 +244,16 @@ function storePersonInfo(refNum, firstName, lastName, dob, genderRadioButtons, s
     sessionStorage.otherSkillsDesc = otherSkillsDesc;
 }
 
+function prefill_refNum() {
+    var refNum = document.getElementById("reference-number");
+    if (localStorage.getItem("storedRefNum") != undefined) {
+        //hidden input to submit details
+        refNum.value = localStorage.getItem("storedRefNum");
+        refNum.disabled = true;
+    } else {
+        refNum.disabled = false;
+    }
+}
 // check if session data on user exists and if so prefill the form
 function prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
     emailField, mobileField, otherSkillsDescField) {
@@ -301,105 +311,115 @@ function init() {
     adjustMenu();
     setActivePage();
 
-    //start validating form fields
-    const bdaSkillsFieldset = document.getElementById("bda-skills");
-    const seSkillsFieldset = document.getElementById("swe-skills");
-
-    const refNumField = new FormField("reference-number", "reference-number-err", function () {
-        validateJobRefNum(this.input, this.errSpan, bdaSkillsFieldset, seSkillsFieldset);
-    });
-    const firstNameField = new FormField("first-name", "first-name-err", function () {
-        validateName(this.input, this.errSpan, "First Name");
-    });
-    const lastNameField = new FormField("last-name", "last-name-err", function () {
-        validateName(this.input, this.errSpan, "Last Name");
-    });
-    const dobField = new FormField("dob", "dob-err", function () {
-        validateDOB(this.input, this.errSpan);
-    });
-
-    const genderRadioButtons = Array.from(document.getElementsByName("gender"));
-    const genderFieldSet = document.getElementById("gender");
-    const genderErrSpan = document.getElementById("gender-err");
-
-    genderRadioButtons.forEach((radioButton) => {
-        radioButton.addEventListener('change', function () {
-            validateGender(genderRadioButtons, genderFieldSet, genderErrSpan);
-        });
-    });
-
-    const streetField = new FormField("street", "street-err", function () {
-        validateAddress(this.input, this.errSpan, "Street Address");
-    });
-    const townField = new FormField("town", "town-err", function () {
-        validateAddress(this.input, this.errSpan, "Suburb/town");
-    });
-    const stateField = new FormField("state", "state-err", function () {
-        validateStatePostcode(this.input, this.errSpan, postcodeField.input, postcodeField.errSpan);
-    });
-    const postcodeField = new FormField("postcode", "postcode-err", function () {
-        validateStatePostcode(stateField.input, stateField.errSpan, this.input, this.errSpan);
-    });
-    const emailField = new FormField("email", "email-err", function () {
-        validateEmail(this.input, this.errSpan);
-    });
-    const mobileField = new FormField("mobile", "mobile-err", function () {
-        validateMobileNumber(this.input, this.errSpan);
-    });
-    const otherSkills = document.getElementById("other-skills");
-    const otherSkillsDescField = new FormField("other-skills-desc", "other-skills-desc-err", function () {
-        validateOtherSkillsDesc(this.input, this.errSpan, otherSkills.checked)
-    })
-
-    otherSkills.addEventListener("change", function () {
-        validateOtherSkillsDesc(otherSkillsDescField.input, otherSkillsDescField.errSpan, this.checked)
-    })
-
-    if (localStorage.getItem("positionRef") !== null) {
-        const hiddenRefNum = document.getElementById("ref-num");
-        hiddenRefNum.value = localStorage.getItem("positionRef");
-        refNumField.input.value = localStorage.getItem("positionRef");
-        refNumField.input.disabled = true;
-        validateJobRefNum(refNumField.input, refNumField.errSpan, bdaSkillsFieldset, seSkillsFieldset);
+    //stores the reference number from jobs.html
+    if (document.title == "Available Positions") {
+        document.getElementById("bda-apply").onclick = function () {
+            window.localStorage.setItem("storedRefNum", "bdatw");
+        }
+        document.getElementById("swe-apply").onclick = function () {
+            window.localStorage.setItem("storedRefNum", "swetw");
+        }
     }
+    // loads the reference number, and applies validation in apply.html 
+    else if (document.title == "Application of Interest") {
+        //register input listeners to make validation responsive to user input (not only on submit)
+        //start validating form fields
+        const bdaSkillsFieldset = document.getElementById("bda-skills");
+        const seSkillsFieldset = document.getElementById("swe-skills");
 
-    const applicationForm = document.getElementById("application-form");
-    applicationForm.onsubmit = function (event) {
-        event.preventDefault(); // prevent the form from being submitted to the server by default
+        const refNumField = new FormField("reference-number", "reference-number-err", function () {
+            validateJobRefNum(this.input, this.errSpan, bdaSkillsFieldset, seSkillsFieldset);
+        });
+        const firstNameField = new FormField("first-name", "first-name-err", function () {
+            validateName(this.input, this.errSpan, "First Name");
+        });
+        const lastNameField = new FormField("last-name", "last-name-err", function () {
+            validateName(this.input, this.errSpan, "Last Name");
+        });
+        const dobField = new FormField("dob", "dob-err", function () {
+            validateDOB(this.input, this.errSpan);
+        });
 
-        const isValid = runAllValidations(
-            refNumField.input, refNumField.errSpan, bdaSkillsFieldset, seSkillsFieldset,
-            firstNameField.input, firstNameField.errSpan, lastNameField.input, lastNameField.errSpan,
-            dobField.input, dobField.errSpan, genderRadioButtons, genderFieldSet, genderErrSpan,
-            streetField.input, streetField.errSpan, townField.input, townField.errSpan, stateField.input,
-            stateField.errSpan, postcodeField.input, postcodeField.errSpan, emailField.input, emailField.errSpan,
-            mobileField.input, mobileField.errSpan, otherSkillsDescField.input, otherSkillsDescField.errSpan,
-            otherSkills.checked
-        );
+        const genderRadioButtons = Array.from(document.getElementsByName("gender"));
+        const genderFieldSet = document.getElementById("gender");
+        const genderErrSpan = document.getElementById("gender-err");
 
-        const warningBox = document.getElementById("warning");
-        const warningContent = document.getElementById("warning-content");
-
-        if (!isValid) {
-            window.scrollTo(0, 0);
-            warningContent.textContent = "Some Item Require Your Attention!";
-            warningBox.style.display = "flex";
-
-            const closeButton = document.getElementById("close-warning");
-            closeButton.addEventListener('click', function () {
-                warningBox.style.display = 'none';
+        genderRadioButtons.forEach((radioButton) => {
+            radioButton.addEventListener('change', function () {
+                validateGender(genderRadioButtons, genderFieldSet, genderErrSpan);
             });
-        } else {
-            storePersonInfo(refNumField.input.value, firstNameField.input.value, lastNameField.input.value, dobField.input.value,
-                genderRadioButtons, streetField.input.value, townField.input.value, stateField.input.value, postcodeField.input.value, emailField.input.value,
-                mobileField.input.value, otherSkillsDescField.input.value);
+        });
+
+        const streetField = new FormField("street", "street-err", function () {
+            validateAddress(this.input, this.errSpan, "Street Address");
+        });
+        const townField = new FormField("town", "town-err", function () {
+            validateAddress(this.input, this.errSpan, "Suburb/town");
+        });
+        const stateField = new FormField("state", "state-err", function () {
+            validateStatePostcode(this.input, this.errSpan, postcodeField.input, postcodeField.errSpan);
+        });
+        const postcodeField = new FormField("postcode", "postcode-err", function () {
+            validateStatePostcode(stateField.input, stateField.errSpan, this.input, this.errSpan);
+        });
+        const emailField = new FormField("email", "email-err", function () {
+            validateEmail(this.input, this.errSpan);
+        });
+        const mobileField = new FormField("mobile", "mobile-err", function () {
+            validateMobileNumber(this.input, this.errSpan);
+        });
+        const otherSkills = document.getElementById("other-skills");
+        const otherSkillsDescField = new FormField("other-skills-desc", "other-skills-desc-err", function () {
+            validateOtherSkillsDesc(this.input, this.errSpan, otherSkills.checked)
+        });
+
+        otherSkills.addEventListener("change", function () {
+            validateOtherSkillsDesc(otherSkillsDescField.input, otherSkillsDescField.errSpan, this.checked)
+        });
+
+        prefill_refNum();
+        prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
+            emailField, mobileField, otherSkillsDescField);
+        //register the event listener to the form
+        const applicationForm = document.getElementById("application-form");
+        applicationForm.onsubmit = function (event) {
+            event.preventDefault(); // prevent the form from being submitted to the server by default
+
+            const isValid = runAllValidations(
+                refNumField.input, refNumField.errSpan, bdaSkillsFieldset, seSkillsFieldset,
+                firstNameField.input, firstNameField.errSpan, lastNameField.input, lastNameField.errSpan,
+                dobField.input, dobField.errSpan, genderRadioButtons, genderFieldSet, genderErrSpan,
+                streetField.input, streetField.errSpan, townField.input, townField.errSpan, stateField.input,
+                stateField.errSpan, postcodeField.input, postcodeField.errSpan, emailField.input, emailField.errSpan,
+                mobileField.input, mobileField.errSpan, otherSkillsDescField.input, otherSkillsDescField.errSpan,
+                otherSkills.checked
+            );
+
+            const warningBox = document.getElementById("warning");
+            const warningContent = document.getElementById("warning-content");
+
+            if (!isValid) {
+                window.scrollTo(0, 0);
+                warningContent.textContent = "Some Item Require Your Attention!";
+                warningBox.style.display = "flex";
+
+                const closeButton = document.getElementById("close-warning");
+                closeButton.addEventListener('click', function () {
+                    warningBox.style.display = 'none';
+                });
+            } else {
+                storePersonInfo(refNumField.input.value, firstNameField.input.value, lastNameField.input.value, dobField.input.value,
+                    genderRadioButtons, streetField.input.value, townField.input.value, stateField.input.value, postcodeField.input.value, emailField.input.value,
+                    mobileField.input.value, otherSkillsDescField.input.value);
+                applicationForm.submit()
+            }
         }
 
-        return isValid; // return the validation result to allow or prevent form submission
+        applicationForm.onreset = function () {
+            localStorage.clear();
+            prefill_refNum();
+        }
     }
-
-    prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
-        emailField, mobileField, otherSkillsDescField);
 }
 
 window.onload = init;

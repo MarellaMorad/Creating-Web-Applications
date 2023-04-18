@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Creating Web Applications">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Marella Morad">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>JavaScript Enhancements</title>
+    <!--Add a favicon to the website-->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="scripts/menu.js"></script>
+</head>
+
+<body>
+    <div id="logo-container">
+        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
+    </div>
+    <header>
+        <div class="menu">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a class="nav-link" href="index.html"><span id="home">Home</span></a></li>
+                    <li><a class="nav-link" href="jobs.html"><span id="careers">Careers</span></a></li>
+                    <li><a class="nav-link" href="apply.html"><span id="join-us">Join Us</span></a></li>
+                    <li><a class="nav-link" href="about.html"><span id="about-us">About Us</span></a></li>
+                    <li><a class="nav-link" href="enhancements.html"><span id="enhancements">Enhancements</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <a class="button" href="mailto:103076428@student.swin.edu.au">
+                <span id="contact-us">Contact Us</span>
+            </a>
+        </div>
+    </header>
+    <h1>JavaScript Enhancements</h1>
+    <section class="enhance">
+        <h2>Responsive Form Validation using Event Listeners</h2>
+        <p class="overall-intro">
+            Using event listeners allows for responsive validation, which can improve the user experience by providing
+            immediate feedback to the user if they have made a mistake. This can also help prevent users from submitting
+            forms with incorrect data, saving time and effort for both the user and the developer.
+        </p>
+        <details open>
+            <summary>
+                Listening to Input Events on Form Fields
+            </summary>
+            <h3>Trigger and Implementation:</h3>
+            <p>
+                A user simply needs to start typing in a form input field. As they type, the validation function
+                associated with that field is called to check the input and display any error messages if necessary.
+            </p>
+            <p>
+                I added event listeners to the form inputs that trigger
+                validation functions as the user enters data. For example,I used <code>input.addEventListener("input",
+                    validationFunction())</code> to add an event listener to an input element that calls the
+                <code>validationFunction()</code>
+                every time the user enters data. Within the <code>validationFunction()</code>,the user input gets
+                checked and if not valid an appropriate error message gets displayed.
+            <h1>Talk about CSS with JS</h1>
+            </p>
+            <h3>Link to Enhancement in Action:</h3>
+            <p>Add a gif of what it looks like!</p>
+            <a href="apply.html">Link</a>
+            <h3>Third-Party References:</h3>
+            <a href="https://developer.mozilla.org/en-US/docs/web/api/eventtarget/addeventlistener">Mozilla Web Docs -
+                <code>addEventListener()</code> method</a>
+        </details>
+    </section>
+    <section class="enhance">
+        <h2>Code Refactoring</h2>
+        <p class="overall-intro">
+            This enhancement involved restructuring the validation code to make it more modular and easier to maintain.
+            This was done in three steps:
+        </p>
+        <details open>
+            <summary>Defining a Class to Manage Form Fields</summary>
+            <p>
+                This enhancement was made to promote encapsulation, reusability, extensibility, and
+                abstraction. It enabled me to group relevant information of a field into a single unit, making it easier
+                to manage the form field's state and behavior, and create multiple instances without repeating code. It
+                provided a higher level of abstraction, allowing me to focus on the form field's behavior
+                and state rather than managing individual variables and event listeners.
+            </p>
+            <h3>Trigger</h3>
+            <p>There isn't a specific trigger for the user to run this enhancement.</p>
+            <h3>Implementation</h3>
+            <p>To implement this, I first defined a class using the following:</p>
+            <pre>
+                <code>
+                    class FormField {
+                        constructor(inputId, errId, validateFn) {
+                            this.input = document.getElementById(inputId);
+                            this.errSpan = document.getElementById(errId);
+                            this.validate = validateFn.bind(this);
+                            this.input.addEventListener("input", this.validate);
+                        }
+                    }
+                </code>
+            </pre>
+            <p>Which then enabled me to change my code from this</p>
+            <h4>Before:</h4>
+            <pre>
+                <code>
+                    const firstName = document.getElementById("first-name"); 
+                    const firstNameErr = document.getElementById("first-name-err"); 
+                    firstName.addEventListener('input', function () { 
+                        validateName(this.input, this.errSpan, "First Name"); 
+                    });
+                </code>
+            </pre>
+            <p>To this:</p>
+            <h4>After:</h4>
+            <pre>
+                <code>
+                    const firstNameField = new FormField("first-name", "first-name-err", function () { 
+                        validateName(this.input, this.errSpan, "First Name"); 
+                    });
+                </code>
+            </pre>
+            <p>Following this approach allowed me to use less variables, further organise my code and implement
+                typechecking on my form fields.
+            </p>
+        </details>
+        <details open>
+            <summary>Breaking the big validation function into smaller functions</summary>
+            <p>
+                This enhancement is common practice in software development to improve code Maintainability,
+                Understandability, Reusability, and Debugging. I chose this approach as some of the form fields
+                share the same validation, for example: firstName and lastName should both be alphabetical characters,
+                max 20. So, I created the validateName function and passed the relevant information to meet the custom
+                part of the validation while sharing the rest of the validation logic with the other name field. To
+                further refactor my code, I used some <strong>helper</strong> functions, such as the <br>
+                <code>validateInput(inputElement, errorElement, errorMessage, regex = "", regexErrMsg = "") { }</code><br>
+                function which takes in the input element, and validates if it has a value, and also checks if it meets
+                the given regex (when applicable). This drastically reduced the amount of code duplication that would
+                have been included otherwise.
+            </p>
+        </details>
+        <details open>
+            <summary>Defining Form Fields and passing them around functions instead of calling
+                <code>document.getElementById</code> Multiple times
+            </summary>
+            <p>
+                This last step depends on the previous two steps in the sense that having the FormFields Class, and
+                Refactoring into small functions enabled me to do this step to further improve the performance and
+                readability of me code.
+            </p>
+        </details>
+    </section>
+    <footer>© 2023 TechWave All Rights Reserved.</footer>
+</body>
+
+</html>

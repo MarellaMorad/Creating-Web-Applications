@@ -170,7 +170,6 @@ label {
 }
 
 .form-container input[type='text'],
-.form-container input[type='email'],
 .form-container select,
 .form-container textarea {
     background-color: transparent;
@@ -445,6 +444,12 @@ details ul,
 details ol {
     font-size: medium;
 }
+/*---------------------------------------------------------------------------------------*/
+/*Enhancements2.html Styling*/
+pre {
+    background-color: transparent;
+}
+
 /*---------------------------------------------------------------------------------------*/
 /*Smaller screens - tablets*/
 @media only screen and (max-width: 869px) {
