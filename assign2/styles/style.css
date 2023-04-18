@@ -444,12 +444,60 @@ details ul,
 details ol {
     font-size: medium;
 }
-/*---------------------------------------------------------------------------------------*/
-/*Enhancements2.html Styling*/
-pre {
-    background-color: transparent;
+
+#js-enhance {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
 }
 
+#js-enhance-button {
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: larger;
+    font-weight: bold;
+}
+/*---------------------------------------------------------------------------------------*/
+/*enhancements2.html Styling*/
+pre {
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    tab-size: 4;
+    background-color: var(--light-shadow);
+}
+
+.line-code {
+    border: 1px solid var(--grey);
+    border-radius: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: var(--light-shadow);
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+}
+
+.video-container video {
+    max-width: 50vw;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.enhance details {
+    padding-bottom: 10px;
+}
+
+.desc {
+    padding-left: 10px;
+}
 /*---------------------------------------------------------------------------------------*/
 /*Smaller screens - tablets*/
 @media only screen and (max-width: 869px) {
@@ -472,6 +520,10 @@ pre {
     #demographic img, iframe {
         width: 80vw;
         height: auto;
+    }
+
+    pre {
+        font-size: medium;
     }
 }
 
@@ -519,7 +571,8 @@ pre {
     article p,
     .enhance p,
     .enhance ul,
-    .enhance ol {
+    .enhance ol,
+    pre {
         font-size: small;
     }
 
