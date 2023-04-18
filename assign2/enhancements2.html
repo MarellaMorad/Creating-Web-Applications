@@ -37,11 +37,13 @@
             </a>
         </div>
     </header>
+    <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>JavaScript Enhancements</h1>
     <section class="enhance">
         <h2>Responsive Design</h2>
         <p class="overall-intro">
-
+            This enhancement includes some JavaScript functions that are applied to html pages/elements to provide the
+            user with a better, more intuitive user experience.
         </p>
         <details open>
             <summary>
@@ -140,6 +142,7 @@
                 <strong><a href="https://fontawesome.com/icons">Font Awesome</a>
                     icons</strong>
                 (on medium and small screens).
+            </p>
             <h3>Third-Party References:</h3>
             <p class="desc">
                 One of the main sources for this implementation is <a
@@ -148,7 +151,35 @@
                 for instructions on using <code class="line-code">classList.add()</code> and <code
                     class="line-code">classList.remove()</code>
             </p>
+        </details>
+        <details open>
+            <summary>Improved website navigation with a Back To Top button</summary>
+            <p>
+                The addition of the Back To Top button is to help users quickly navigate back to the top of the page
+                without having to scroll manually, saving them time and effort. It also gives the user instant access to
+                the main menu as it is located at the top of the screen.
             </p>
+            <h3>Trigger:</h3>
+            <p class="desc">To activate the back-to-top button visibility, the user needs to scroll down until the
+                top menu becomes invisible. Then the back-to-top button will become visible, and clicking on it will
+                scroll back to the top of the page.</p>
+            <h3>Implementation:</h3>
+            <p class="desc">
+                To implement this, I used the window <code>scroll</code> event listener to toggle the display of the
+                back to top button. Then I used the button <code>click</code> event listener to scroll the window back
+                up once the button is clicked.
+            </p>
+            <pre><code>  window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+  });</code></pre>
+            <h3>Link to Enhancement in Action:</h3>
+            <p class="desc">This enhancement has been implemented on all screens and is activated as soon as the top
+                logo of the screen becomes invisible</p>
+            <h3>Third-Party References:</h3>
+            <p class="desc">One of the really helpful websites was the <a
+                    href="https://www.w3schools.com/howto/howto_js_scroll_to_top.asp">W3School</a> explaining the
+                required steps to create a Scroll to Top button.</p>
         </details>
     </section>
     <section class="enhance">

@@ -86,6 +86,23 @@ nav ul li,
     color: white;
 }
 
+.hidden {
+    display: none;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 48px;
+    right: 10px;
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-color: var(--dark-purple);
+    color: var(--dark-purple);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
 /* Style the footer to have a line at the top */
 footer {
     border-top: 1px solid var(--grey);
@@ -445,17 +462,17 @@ details ol {
     font-size: medium;
 }
 
-#js-enhance {
+.js-enhance {
     display: flex;
     justify-content: center;
-    margin: 10px;
 }
 
-#js-enhance-button {
-    border: 1px solid var(--grey);
-    border-radius: 10px;
-    padding: 10px;
-    font-size: larger;
+.js-enhance aside {
+    float: none;
+    width: fit-content;
+}
+
+.js-enhance aside a {
     font-weight: bold;
 }
 /*---------------------------------------------------------------------------------------*/

@@ -73,6 +73,23 @@ function init() {
     // Call the adjustMenu function to set the initial state of the navigation items
     adjustMenu();
     setActivePage();
+
+    const backToTopButton = document.getElementsByClassName("back-to-top");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+            console.log(backToTopButton)
+            backToTopButton[0].classList.remove("hidden");
+        } else {
+            backToTopButton[0].classList.add("hidden");
+        }
+    });
+
+    backToTopButton[0].addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 }
 
 window.onload = init;

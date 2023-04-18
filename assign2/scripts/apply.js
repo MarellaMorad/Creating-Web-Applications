@@ -309,7 +309,25 @@ function init() {
 
     // Call the adjustMenu function to set the initial state of the navigation items
     adjustMenu();
+    // Call the setActivePage function to apply styling to the active page
     setActivePage();
+
+    //activate the back to top button
+    const backToTopButton = document.getElementsByClassName("back-to-top");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+            backToTopButton[0].classList.remove("hidden");
+        } else {
+            backToTopButton[0].classList.add("hidden");
+        }
+    });
+
+    backToTopButton[0].addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 
     //stores the reference number from jobs.html
     if (document.title == "Available Positions") {
@@ -400,7 +418,7 @@ function init() {
 
             if (!isValid) {
                 window.scrollTo(0, 0);
-                warningContent.textContent = "Some Item Require Your Attention!";
+                warningContent.textContent = "Some Items Require Your Attention!";
                 warningBox.style.display = "flex";
 
                 const closeButton = document.getElementById("close-warning");
