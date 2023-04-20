@@ -101,7 +101,8 @@
             </p>
             <h3>Implementation:</h3>
             <p class="desc">
-                To implement the feature, I created a new JS file - <code class="line-code">enhancements.js</code> - and defined
+                To implement the feature, I created a new JS file - <code class="line-code">enhancements.js</code> - and
+                defined
                 two main
                 functions:
             <ul>
@@ -178,16 +179,22 @@
         <details>
             <summary>Filter the Skills Checkboxes based on the Selected Job Reference Number</summary>
             <p>
-                This enhancement was made to improve user experince and provide a more personalised application form. By only showing the relevant checkboxes, users are not overwhelmed with unnecessary options and can quickly find and slelect the relevant options for their specific job.
+                This enhancement was made to improve user experience and provide a more personalized application form.
+                By
+                only showing the relevant checkboxes, users are not overwhelmed with unnecessary options and can quickly
+                find and select the relevant options for their specific job.
             </p>
             <h3>Trigger:</h3>
             <p class="desc">
-                When the user selects a Job Reference Number, the Skills checkboxes will be filtered based on the user choice.
-                For example, if the user selects Big Data Analyst role, only the Big Data Analust skills checkboxes will be displayed.
+                When the user selects a Job Reference Number, the Skills checkboxes will be filtered based on the user
+                choice.
+                For example, if the user selects Big Data Analyst role, only the Big Data Analyst skills checkboxes will
+                be displayed.
             </p>
             <h3>Implementation:</h3>
             <p class="desc">
-                To implement this, I wrote a function in JS that toggles the display of these checkboxes based on the selected reference number:
+                To implement this, I wrote a function in JS that toggles the display of these checkboxes based on the
+                selected reference number:
             </p>
             <pre><code>  function filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset) {
       sweSkillsFieldset.style.display = (refNumValue === "swetw") ? "" : "none";
@@ -242,7 +249,7 @@
       validateName(this.input, this.errSpan, "First Name"); 
   });</code></pre>
             <p class="desc">
-                Following this approach allowed me to use less variables, less duplication of code, further organisation
+                Following this approach allowed me to use less variables, less duplication of code, further organization
                 to my code and implement typechecking on my form fields.
             </p>
             <h3>Link to Enhancement in Action:</h3>

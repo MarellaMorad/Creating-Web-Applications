@@ -255,7 +255,6 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
     const storedRefNum = localStorage.getItem("storedRefNum");
 
     if (storedRefNum != undefined) {
-        filterSkillsList(storedRefNum, bdaSkillsFieldset, sweSkillsFieldset);
         refNumInput.value = storedRefNum;
         refNumInput.disabled = true;
         sessionStorage.skills = "";
@@ -276,6 +275,8 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
     } else {
         refNumInput.disabled = false;
     }
+
+    filterSkillsList(storedRefNum, bdaSkillsFieldset, sweSkillsFieldset);
 }
 // check if session data on user exists and if so prefill the form
 function prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
@@ -452,9 +453,9 @@ function init() {
                 storePersonInfo(refNumField.input.value, firstNameField.input.value, lastNameField.input.value, dobField.input.value,
                     genderRadioButtons, streetField.input.value, townField.input.value, stateField.input.value, postcodeField.input.value, emailField.input.value,
                     mobileField.input.value, otherSkillsDescField.input.value);
-                    //save ref number to hidden element
-                    const hiddenRefNumField = document.getElementById("job-reference-number");
-                    hiddenRefNumField.value = refNumField.input.value;
+                //save ref number to hidden element
+                const hiddenRefNumField = document.getElementById("job-reference-number");
+                hiddenRefNumField.value = refNumField.input.value;
                 applicationForm.submit();
             }
         }
