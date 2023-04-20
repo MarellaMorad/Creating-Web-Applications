@@ -175,6 +175,21 @@ summary:hover {
     box-shadow: 5px 5px var(--light-grey); /* offset-x | offset-y | color */
 }
 
+.apply-button-container {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.apply-button {
+    border-radius: 4px;
+    border: 1px solid var(--dark-purple);
+    background-color: var(--dark-purple);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
 /*---------------------------------------------------------------------------------------*/
 /*apply.html styling*/
 .form-container p {
