@@ -35,15 +35,21 @@ function validateInput(inputElement, errorElement, errorMessage, regex = "", reg
     }
 }
 
-function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset) {
+function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, sweSkillsFieldset) {
     const errMsg = "Please Select a Job Reference Number from the list.";
     if (!validateInput(refNumInput, refNumErrSpan, errMsg)) {
         return false;
     }
     const refNumValue = refNumInput.value;
-    seSkillsFieldset.style.display = (refNumValue === "swetw") ? "" : "none";
-    bdaSkillsFieldset.style.display = (refNumValue === "bdatw") ? "" : "none";
+
+    filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset);
+
     return true;
+}
+
+function filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset) {
+    sweSkillsFieldset.style.display = (refNumValue === "swetw") ? "" : "none";
+    bdaSkillsFieldset.style.display = (refNumValue === "bdatw") ? "" : "none";
 }
 
 function validateName(nameInput, nameErrSpan, nameType) {
@@ -196,12 +202,12 @@ function validateOtherSkillsDesc(otherSkillsDescField, otherSkillsDescErrSpan, o
     return true;
 }
 
-function runAllValidations(refNumSelect, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset, firstNameInput, firstNameErrSpan,
+function runAllValidations(refNumSelect, refNumErrSpan, bdaSkillsFieldset, sweSkillsFieldset, firstNameInput, firstNameErrSpan,
     lastNameInput, lastNameErrSpan, dobInput, dobErrSpan, genderRadioButtons, genderFieldSet, genderErrSpan, streetAddressInput,
     streetAddressErrSpan, townInput, townErrSpan, stateSelect, stateErrSpan, postcodeInput, postcodeErrSpan, emailInput,
     emailErrSpan, mobileInput, mobileErrSpan, otherSkillsDescField, otherSkillsDescErrSpan, otherSkills) {
 
-    var isValid = validateJobRefNum(refNumSelect, refNumErrSpan, bdaSkillsFieldset, seSkillsFieldset);
+    var isValid = validateJobRefNum(refNumSelect, refNumErrSpan, bdaSkillsFieldset, sweSkillsFieldset);
     isValid = validateName(firstNameInput, firstNameErrSpan, "First Name") && isValid;
     isValid = validateName(lastNameInput, lastNameErrSpan, "Last Name") && isValid;
     isValid = validateDOB(dobInput, dobErrSpan) && isValid;
@@ -246,21 +252,44 @@ function storePersonInfo(refNum, firstName, lastName, dob, genderRadioButtons, s
     sessionStorage.otherSkillsDesc = otherSkillsDesc;
 }
 
-function prefill_refNum() {
-    var refNum = document.getElementById("reference-number");
-    if (localStorage.getItem("storedRefNum") != undefined) {
+function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
+    const bdaCheckboxes = bdaSkillsFieldset.getElementsByTagName("input");
+    const sweCheckboxes = sweSkillsFieldset.getElementsByTagName("input");
+    const storedRefNum = localStorage.getItem("storedRefNum");
+
+    if (storedRefNum != undefined) {
         //hidden input to submit details
-        refNum.value = localStorage.getItem("storedRefNum");
-        refNum.disabled = true;
+        filterSkillsList(storedRefNum, bdaSkillsFieldset, sweSkillsFieldset);
+
+        if (refNumInput.value != storedRefNum) {
+            refNumInput.value = storedRefNum;
+            if (storedRefNum == "bdatw") {
+                Array.from(sweCheckboxes).forEach((checkbox) => {
+                    if (checkbox.type === 'checkbox') {
+                        checkbox.checked = false; // uncheck the checkbox
+                    }
+                });
+            } else if (storedRefNum == "swetw") {
+                Array.from(bdaCheckboxes).forEach((checkbox) => {
+                    if (checkbox.type === 'checkbox') {
+                        checkbox.checked = false; // uncheck the checkbox
+                    }
+                });
+            }
+        }
+        refNumInput.disabled = true;
     } else {
-        refNum.disabled = false;
+        refNumInput.disabled = false;
     }
 }
 // check if session data on user exists and if so prefill the form
 function prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
     emailField, mobileField, otherSkillsDescField) {
     if (sessionStorage.refNum != undefined) {
-        refNumField.input.value = sessionStorage.refNum;
+        //save ref number to hidden element
+        const hiddenRefNumField = document.getElementById("job-reference-number");
+        hiddenRefNumField.value = sessionStorage.refNum;
+        //prefill the form
         firstNameField.input.value = sessionStorage.firstName;
         lastNameField.input.value = sessionStorage.lastName;
         dobField.input.value = sessionStorage.dob;
@@ -345,10 +374,10 @@ function init() {
         //register input listeners to make validation responsive to user input (not only on submit)
         //start validating form fields
         const bdaSkillsFieldset = document.getElementById("bda-skills");
-        const seSkillsFieldset = document.getElementById("swe-skills");
+        const sweSkillsFieldset = document.getElementById("swe-skills");
 
         const refNumField = new FormField("reference-number", "reference-number-err", function () {
-            validateJobRefNum(this.input, this.errSpan, bdaSkillsFieldset, seSkillsFieldset);
+            validateJobRefNum(this.input, this.errSpan, bdaSkillsFieldset, sweSkillsFieldset);
         });
         const firstNameField = new FormField("first-name", "first-name-err", function () {
             validateName(this.input, this.errSpan, "First Name");
@@ -397,7 +426,7 @@ function init() {
             validateOtherSkillsDesc(otherSkillsDescField.input, otherSkillsDescField.errSpan, this.checked)
         });
 
-        prefill_refNum();
+        prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
         prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
             emailField, mobileField, otherSkillsDescField);
         //register the event listener to the form
@@ -406,7 +435,7 @@ function init() {
             event.preventDefault(); // prevent the form from being submitted to the server by default
 
             const isValid = runAllValidations(
-                refNumField.input, refNumField.errSpan, bdaSkillsFieldset, seSkillsFieldset,
+                refNumField.input, refNumField.errSpan, bdaSkillsFieldset, sweSkillsFieldset,
                 firstNameField.input, firstNameField.errSpan, lastNameField.input, lastNameField.errSpan,
                 dobField.input, dobField.errSpan, genderRadioButtons, genderFieldSet, genderErrSpan,
                 streetField.input, streetField.errSpan, townField.input, townField.errSpan, stateField.input,
@@ -431,13 +460,15 @@ function init() {
                 storePersonInfo(refNumField.input.value, firstNameField.input.value, lastNameField.input.value, dobField.input.value,
                     genderRadioButtons, streetField.input.value, townField.input.value, stateField.input.value, postcodeField.input.value, emailField.input.value,
                     mobileField.input.value, otherSkillsDescField.input.value);
-                applicationForm.submit()
+                applicationForm.submit();
+                applicationForm.reset();
             }
         }
 
         applicationForm.onreset = function () {
+            sessionStorage.clear();
             localStorage.clear();
-            prefill_refNum();
+            prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
         }
     }
 }
