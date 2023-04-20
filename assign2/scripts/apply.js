@@ -40,10 +40,7 @@ function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, sweSki
     if (!validateInput(refNumInput, refNumErrSpan, errMsg)) {
         return false;
     }
-    const refNumValue = refNumInput.value;
-
-    filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset);
-
+    filterSkillsList(refNumInput.value, bdaSkillsFieldset, sweSkillsFieldset);
     return true;
 }
 
@@ -258,26 +255,24 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
     const storedRefNum = localStorage.getItem("storedRefNum");
 
     if (storedRefNum != undefined) {
-        //hidden input to submit details
         filterSkillsList(storedRefNum, bdaSkillsFieldset, sweSkillsFieldset);
-
-        if (refNumInput.value != storedRefNum) {
-            refNumInput.value = storedRefNum;
-            if (storedRefNum == "bdatw") {
-                Array.from(sweCheckboxes).forEach((checkbox) => {
-                    if (checkbox.type === 'checkbox') {
-                        checkbox.checked = false; // uncheck the checkbox
-                    }
-                });
-            } else if (storedRefNum == "swetw") {
-                Array.from(bdaCheckboxes).forEach((checkbox) => {
-                    if (checkbox.type === 'checkbox') {
-                        checkbox.checked = false; // uncheck the checkbox
-                    }
-                });
-            }
-        }
+        refNumInput.value = storedRefNum;
         refNumInput.disabled = true;
+        sessionStorage.skills = "";
+
+        if (storedRefNum == "bdatw") {
+            Array.from(sweCheckboxes).forEach((checkbox) => {
+                if (checkbox.type === 'checkbox') {
+                    checkbox.checked = false; // uncheck the checkbox
+                }
+            });
+        } else if (storedRefNum == "swetw") {
+            Array.from(bdaCheckboxes).forEach((checkbox) => {
+                if (checkbox.type === 'checkbox') {
+                    checkbox.checked = false; // uncheck the checkbox
+                }
+            });
+        }
     } else {
         refNumInput.disabled = false;
     }
@@ -286,9 +281,6 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
 function prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
     emailField, mobileField, otherSkillsDescField) {
     if (sessionStorage.refNum != undefined) {
-        //save ref number to hidden element
-        const hiddenRefNumField = document.getElementById("job-reference-number");
-        hiddenRefNumField.value = sessionStorage.refNum;
         //prefill the form
         firstNameField.input.value = sessionStorage.firstName;
         lastNameField.input.value = sessionStorage.lastName;
@@ -334,7 +326,7 @@ function prefill_form(refNumField, firstNameField, lastNameField, dobField, gend
 }
 
 function init() {
-    //use functions from menu.js
+    //use functions from enhancements.js
     // Add a listener for window resize events
     window.addEventListener("resize", adjustMenu);
 
@@ -460,8 +452,10 @@ function init() {
                 storePersonInfo(refNumField.input.value, firstNameField.input.value, lastNameField.input.value, dobField.input.value,
                     genderRadioButtons, streetField.input.value, townField.input.value, stateField.input.value, postcodeField.input.value, emailField.input.value,
                     mobileField.input.value, otherSkillsDescField.input.value);
+                    //save ref number to hidden element
+                    const hiddenRefNumField = document.getElementById("job-reference-number");
+                    hiddenRefNumField.value = refNumField.input.value;
                 applicationForm.submit();
-                applicationForm.reset();
             }
         }
 

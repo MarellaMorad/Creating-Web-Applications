@@ -13,7 +13,7 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="scripts/menu.js"></script>
+    <script src="scripts/enhancements.js"></script>
 </head>
 
 <body>
@@ -45,7 +45,7 @@
             This enhancement includes some JavaScript functions that are applied to html pages/elements to provide the
             user with a better, more intuitive user experience.
         </p>
-        <details open>
+        <details>
             <summary>
                 Responsive Form Validation using Event Listeners
             </summary>
@@ -85,7 +85,7 @@
                 method
             </p>
         </details>
-        <details open>
+        <details>
             <summary>Improved website navigation with dynamic menu rendering using JavaScript</summary>
             <p>
                 This has been implemented to enhances the responsiveness of my website by using JavaScript to render and
@@ -101,7 +101,7 @@
             </p>
             <h3>Implementation:</h3>
             <p class="desc">
-                To implement the feature, I created a new JS file - <code class="line-code">menu.js</code> - and defined
+                To implement the feature, I created a new JS file - <code class="line-code">enhancements.js</code> - and defined
                 two main
                 functions:
             <ul>
@@ -146,7 +146,7 @@
                     class="line-code">classList.remove()</code>
             </p>
         </details>
-        <details open>
+        <details>
             <summary>Improved website navigation with a Back To Top button</summary>
             <p>
                 The addition of the Back To Top button is to help users quickly navigate back to the top of the page
@@ -175,6 +175,32 @@
                     href="https://www.w3schools.com/howto/howto_js_scroll_to_top.asp">W3School</a> explaining the
                 required steps to create a Scroll to Top button.</p>
         </details>
+        <details>
+            <summary>Filter the Skills Checkboxes based on the Selected Job Reference Number</summary>
+            <p>
+                This enhancement was made to improve user experince and provide a more personalised application form. By only showing the relevant checkboxes, users are not overwhelmed with unnecessary options and can quickly find and slelect the relevant options for their specific job.
+            </p>
+            <h3>Trigger:</h3>
+            <p class="desc">
+                When the user selects a Job Reference Number, the Skills checkboxes will be filtered based on the user choice.
+                For example, if the user selects Big Data Analyst role, only the Big Data Analust skills checkboxes will be displayed.
+            </p>
+            <h3>Implementation:</h3>
+            <p class="desc">
+                To implement this, I wrote a function in JS that toggles the display of these checkboxes based on the selected reference number:
+            </p>
+            <pre><code>  function filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset) {
+      sweSkillsFieldset.style.display = (refNumValue === "swetw") ? "" : "none";
+      bdaSkillsFieldset.style.display = (refNumValue === "bdatw") ? "" : "none";
+  }</code></pre>
+            <h3>Link to Enhancement in Action:</h3>
+            <p class="desc">
+                This has been implemented on the <a href="apply.html">Job Application</a>page.
+            </p>
+            <h3>Third-Party References:</h3>
+            <p class="desc">No Third-Party references have been used for this part as I relied on my experience with
+                JavaScript.</p>
+        </details>
     </section>
     <section class="enhance">
         <h2>Code Refactoring</h2>
@@ -182,7 +208,7 @@
             This enhancement involved restructuring the validation code to make it more modular and easier to maintain.
             This was done in three steps:
         </p>
-        <details open>
+        <details>
             <summary>Defining a Class to Manage Form Fields</summary>
             <p>
                 This enhancement was made to promote encapsulation, reusability, extensibility, and
@@ -228,7 +254,7 @@
                     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">Mozilla Web
                     Docs</a> to create the FormFields class.</p>
         </details>
-        <details open>
+        <details>
             <summary>Breaking the big validation function into smaller functions</summary>
             <p>
                 This enhancement is common practice in software development to improve code Maintainability,
@@ -275,7 +301,7 @@
             <p class="desc">No Third-Party references have been used for this part as I relied on my experience with
                 code refactoring.</p>
         </details>
-        <details open>
+        <details>
             <summary>Defining Form Fields and passing them around functions instead of calling
                 <code class="line-code">document.getElementById</code> Multiple times
             </summary>

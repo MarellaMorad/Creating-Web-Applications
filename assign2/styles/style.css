@@ -502,6 +502,7 @@ pre {
     word-wrap: break-word;
     tab-size: 4;
     background-color: var(--light-shadow);
+    font-size: medium;
 }
 
 .line-code {
@@ -552,10 +553,6 @@ pre {
     #demographic img, iframe {
         width: 80vw;
         height: auto;
-    }
-
-    pre {
-        font-size: medium;
     }
 }
 
