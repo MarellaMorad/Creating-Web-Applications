@@ -45,8 +45,8 @@ function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, sweSki
 }
 
 function filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset) {
-    sweSkillsFieldset.style.display = (refNumValue === "swetw") ? "" : "none";
-    bdaSkillsFieldset.style.display = (refNumValue === "bdatw") ? "" : "none";
+    sweSkillsFieldset.style.display = (refNumValue === "swetw" || refNumValue === "" || refNumValue === null) ? "" : "none";
+    bdaSkillsFieldset.style.display = (refNumValue === "bdatw" || refNumValue === "" || refNumValue === null) ? "" : "none";
 }
 
 function validateName(nameInput, nameErrSpan, nameType) {
@@ -461,6 +461,7 @@ function init() {
         };
 
         applicationForm.onreset = function () {
+            filterSkillsList(refNumField.value, bdaSkillsFieldset, sweSkillsFieldset)
             sessionStorage.clear();
             localStorage.clear();
             prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
