@@ -173,7 +173,9 @@ function validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcod
 
 function validateEmail(emailInput, emailErrSpan) {
     const errMsg = "Please enter your Email Address.";
-    return validateInput(emailInput, emailErrSpan, errMsg);
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regexErrMsg = "Please enter a valid Email Address - for example: JohnSmith@gmail.com"
+    return validateInput(emailInput, emailErrSpan, errMsg, emailRegex, regexErrMsg);
 }
 
 function validateMobileNumber(mobileInput, mobileErrSpan) {
