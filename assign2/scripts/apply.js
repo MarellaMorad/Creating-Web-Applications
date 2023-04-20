@@ -3,7 +3,7 @@
 * Target: apply.html
 * Purpose: Add Form Validation to the apply.html file
 * Created: 11/04/2023
-* Last Updated: 17/04/2023 11:15:00 PM
+* Last Updated: 20/04/2023 2:08:00 PM
 * Credits: 
 */
 
@@ -88,7 +88,7 @@ function validateDOB(dobInput, dobErrSpan) {
         } else {
             dobInput.classList.remove("invalid");
             dobErrSpan.textContent = "";
-            return true
+            return true;
         }
     }
 }
@@ -177,7 +177,7 @@ function validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcod
 function validateEmail(emailInput, emailErrSpan) {
     const errMsg = "Please enter your Email Address.";
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const regexErrMsg = "Please enter a valid Email Address - for example: JohnSmith@gmail.com"
+    const regexErrMsg = "Please enter a valid Email Address - for example: JohnSmith@gmail.com";
     return validateInput(emailInput, emailErrSpan, errMsg, emailRegex, regexErrMsg);
 }
 
@@ -357,10 +357,10 @@ function init() {
     if (document.title == "Available Positions") {
         document.getElementById("bda-apply").onclick = function () {
             window.localStorage.setItem("storedRefNum", "bdatw");
-        }
+        };
         document.getElementById("swe-apply").onclick = function () {
             window.localStorage.setItem("storedRefNum", "swetw");
-        }
+        };
     }
     // loads the reference number, and applies validation in apply.html 
     else if (document.title == "Application of Interest") {
@@ -416,7 +416,7 @@ function init() {
         });
 
         otherSkills.addEventListener("change", function () {
-            validateOtherSkillsDesc(otherSkillsDescField.input, otherSkillsDescField.errSpan, this.checked)
+            validateOtherSkillsDesc(otherSkillsDescField.input, otherSkillsDescField.errSpan, this.checked);
         });
 
         prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
@@ -458,13 +458,13 @@ function init() {
                 hiddenRefNumField.value = refNumField.input.value;
                 applicationForm.submit();
             }
-        }
+        };
 
         applicationForm.onreset = function () {
             sessionStorage.clear();
             localStorage.clear();
             prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
-        }
+        };
     }
 }
 
