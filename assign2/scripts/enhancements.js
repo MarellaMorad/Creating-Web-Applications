@@ -77,7 +77,6 @@ function init() {
     const backToTopButton = document.getElementsByClassName("back-to-top");
     window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
-            console.log(backToTopButton)
             backToTopButton[0].classList.remove("hidden");
         } else {
             backToTopButton[0].classList.add("hidden");
