@@ -355,7 +355,7 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
             });
         }
     } else {
-        refNumInput.value = sessionStorage.refNum;
+        refNumInput.value = sessionStorage.refNum != undefined ? sessionStorage.refNum : "";
         refNumInput.disabled = false;
     }
 
