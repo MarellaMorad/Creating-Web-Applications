@@ -355,6 +355,7 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
             });
         }
     } else {
+        refNumInput.value = sessionStorage.refNum;
         refNumInput.disabled = false;
     }
 
@@ -506,7 +507,7 @@ function init() {
         prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
 
         // prefill the rest of the form - from sessionStorage
-        prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
+        prefill_form(firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
             emailField, mobileField, otherSkillsDescField);
 
         //register the event listener to the form submission
@@ -547,7 +548,14 @@ function init() {
 
                 //save ref number to hidden element if the reference number select is read-only so that we pass the right value to the server
                 const hiddenRefNumField = document.getElementById("job-reference-number");
-                hiddenRefNumField.value = refNumField.input.value ? refNumField.disabled == true : "";
+
+                //if the job reference number was set from jobs.html (localStorage)
+                if (refNumField.input.disabled) {
+                    hiddenRefNumField.value = refNumField.input.value;
+                } else {
+                    //only pass the value of the hidden input, if the other input is readonly, otherwise, disabled it
+                    hiddenRefNumField.disabled = true;
+                }
 
                 //after completing all the steps successfully, submit the form to the server
                 applicationForm.submit();
