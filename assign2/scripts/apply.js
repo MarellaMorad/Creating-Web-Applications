@@ -3,12 +3,16 @@
 * Target: apply.html
 * Purpose: Add Form Validation to the apply.html file
 * Created: 11/04/2023
-* Last Updated: 20/04/2023 2:08:00 PM
+* Last Updated: 21/04/2023 8:00:00 PM
 * Credits: 
 */
 
-"use strict";
+"use strict"; //prevents creation of global variables in functions
 
+/* 
+ FormField class to group all relevant fields + functions into one variable: 
+ i.e. the input field, the error span, and the validation function as well as adding the input event listener
+*/
 class FormField {
     constructor(inputId, errId, validateFn) {
         this.input = document.getElementById(inputId);
@@ -18,6 +22,12 @@ class FormField {
     }
 }
 
+/**
+ * This is a helper function called in almost all other validation functions.
+ * It is used to validate that a required input field has a value
+ * It also has the ability to check a regex expression if needed
+ *  The regex and regexErrMsg are used as default parameters, so that this function can be called without passing them.
+ */
 function validateInput(inputElement, errorElement, errorMessage, regex = "", regexErrMsg = "") {
     if (inputElement.value === "") {
         inputElement.classList.add("invalid");
@@ -35,6 +45,11 @@ function validateInput(inputElement, errorElement, errorMessage, regex = "", reg
     }
 }
 
+/**
+ * To validate the Job Reference Number
+ * Note: I changed the job reference number to a dropdown, for usability reasons, to allow the users to select the relevant job instead of having to memorize and enter the reference number
+ * Also, to have better form inputs 
+ */
 function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, sweSkillsFieldset) {
     const errMsg = "Please Select a Job Reference Number from the list.";
     if (!validateInput(refNumInput, refNumErrSpan, errMsg)) {
@@ -44,13 +59,21 @@ function validateJobRefNum(refNumInput, refNumErrSpan, bdaSkillsFieldset, sweSki
     return true;
 }
 
+/**
+ * This function is part of my enhancements, it filters the skills checkboxes based on the selected job reference number:
+ * swetw, bdatw, and an empty string
+ */
 function filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset) {
     sweSkillsFieldset.style.display = (refNumValue === "swetw" || refNumValue === "" || refNumValue === null) ? "" : "none";
     bdaSkillsFieldset.style.display = (refNumValue === "bdatw" || refNumValue === "" || refNumValue === null) ? "" : "none";
 }
 
+/**
+ * To validate a name input (called on both First name and Last name inputs)
+ *  Checks for alphabetical characters only and max 20 characters
+ */
 function validateName(nameInput, nameErrSpan, nameType) {
-    const errMsg = `Please enter your ${nameType}.`;
+    const errMsg = `Please enter your ${nameType}.`; //using template literals to customize the error message
     const regexErrMsg = "You can only use alphabetical characters";
     const nameRegex = /^[A-Za-z]+$/;
     if (!validateInput(nameInput, nameErrSpan, errMsg, nameRegex, regexErrMsg)) {
@@ -70,6 +93,10 @@ function validateName(nameInput, nameErrSpan, nameType) {
     }
 }
 
+/**
+ * To validate the date of birth
+ *  Checks for valid date format dd/mm/yyyy and age between 15 and 80
+ */
 function validateDOB(dobInput, dobErrSpan) {
     const errMsg = "Please Enter your Date of Birth.";
     const dateRegex = /^(0?[1-9]|[1-2][0-9]|3[0-1])\/(0?[1-9]|1[0-2])\/([0-9]{4})$/;
@@ -77,10 +104,18 @@ function validateDOB(dobInput, dobErrSpan) {
     if (!validateInput(dobInput, dobErrSpan, errMsg, dateRegex, regexErrMsg)) {
         return false;
     } else {
+        // Split the date of birth input value by the forward slash delimiter to create an array of day, month, and year.
         var dob = dobInput.value.split("/");
+        // Create a new Date object using the year, month, and day from the input value. 
+        // Subtract 1 from the month value to account for JavaScript's zero-indexed months.
         var dobDate = new Date(dob[2], dob[1] - 1, dob[0]);
+        // Create a new Date object with the current date and time.
         var today = new Date();
+        // Calculate the age by subtracting the input date from the current date in milliseconds. 
+        // Divide by the number of milliseconds in a year to get the age in years, rounded down to the nearest integer.
         var age = Math.floor((today.getTime() - dobDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+
+        // Validate if the age is between 15 and 80
         if (age < 15 || age > 80) {
             dobInput.classList.add("invalid");
             dobErrSpan.textContent = "Applicants must be at between 15 and 80 years old at the time they fill in the form";
@@ -93,6 +128,10 @@ function validateDOB(dobInput, dobErrSpan) {
     }
 }
 
+/**
+ * To validate the gender field
+ *  Checks if one of the gender radio buttons have been selected
+ */
 function validateGender(genderRadioButtons, genderFieldSet, genderErrSpan) {
     var selectedGender = getSelectedGender(genderRadioButtons);
 
@@ -107,13 +146,20 @@ function validateGender(genderRadioButtons, genderFieldSet, genderErrSpan) {
     }
 }
 
+/**
+ * Returns either a checkbox object (if a gender has been selected), or null (if nothing is selected)
+ * Used in the validateGender function to help with the validation process.
+ */
 function getSelectedGender(genderRadioButtons) {
     const selectedGenderButton = genderRadioButtons.find(button => button.checked);
     return selectedGenderButton ? selectedGenderButton.value : null;
 }
 
+/**
+ * To validate the address inputs (called on both the Street Address and Suburb/Town fields)
+ */
 function validateAddress(addressInput, addressErrSpan, addressType) {
-    const errMsg = "Please enter your " + addressType + ".";
+    const errMsg = `Please enter your ${addressType}.`;
     if (!validateInput(addressInput, addressErrSpan, errMsg)) {
         return false;
     } else if (addressInput.value.length > 40) {
@@ -127,11 +173,18 @@ function validateAddress(addressInput, addressErrSpan, addressType) {
     }
 }
 
+/**
+ * To validate the State input
+ */
 function validateState(stateSelect, stateErrSpan) {
     const errMsg = "Please select your State.";
     return validateInput(stateSelect, stateErrSpan, errMsg);
 }
 
+/**
+ * To validate the Postcode input
+ *  Checks if the input is exactly 4 digits long
+ */
 function validatePostcode(postcodeInput, postcodeErrSpan) {
     const errMsg = "Please enter your Postcode.";
     const regexErrMsg = "The Postcode you entered is invalid - postcodes should be exactly 4 digits.";
@@ -144,6 +197,10 @@ function validatePostcode(postcodeInput, postcodeErrSpan) {
     return true;
 }
 
+/**
+ * Runs the validation that links Postcode to State
+ *  Initially checks that both inputs are valid before running the extra check on whether they are correct
+ */
 function validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcodeErrSpan) {
     const validState = validateState(stateSelect, stateErrSpan);
     const validPostcode = validatePostcode(postcodeInput, postcodeErrSpan);
@@ -163,7 +220,10 @@ function validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcod
         "act": [0]
     };
     const prefix = statePrefix[stateSelect.value];
+
+    // Check if the postcode starts with a valid prefix for the selected state
     if (!prefix.some(p => postcode.startsWith(p))) {
+        // If the postcode is invalid, mark the postcode input as invalid and display an error message, and return false to indicate validation failure.
         postcodeInput.classList.add("invalid");
         postcodeErrSpan.textContent = `Please enter a valid postcode - ${stateSelect.value.toUpperCase()} postcodes start with ${prefix.join(' or ')}.`;
         return false;
@@ -174,6 +234,9 @@ function validateStatePostcode(stateSelect, stateErrSpan, postcodeInput, postcod
     return true;
 }
 
+/**
+ * To validate the email address existence and format
+ */
 function validateEmail(emailInput, emailErrSpan) {
     const errMsg = "Please enter your Email Address.";
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -181,6 +244,10 @@ function validateEmail(emailInput, emailErrSpan) {
     return validateInput(emailInput, emailErrSpan, errMsg, emailRegex, regexErrMsg);
 }
 
+/**
+ * To validate the mobile number
+ *  Checks if the phone number is 8 - 12 digits or spaces
+ */
 function validateMobileNumber(mobileInput, mobileErrSpan) {
     const errMsg = "Please enter your Mobile Phone Number.";
     const mobileRegex = /^[0-9 ]{8,12}$/;
@@ -188,6 +255,10 @@ function validateMobileNumber(mobileInput, mobileErrSpan) {
     return validateInput(mobileInput, mobileErrSpan, errMsg, mobileRegex, regexErrMsg);
 }
 
+/**
+ * To validate the Other Skills description field
+ *  Only validates if the other skills checkbox is ticked
+ */
 function validateOtherSkillsDesc(otherSkillsDescField, otherSkillsDescErrSpan, otherSkills) {
     if (otherSkills && otherSkillsDescField.value === '') {
         otherSkillsDescField.classList.add("invalid");
@@ -199,6 +270,10 @@ function validateOtherSkillsDesc(otherSkillsDescField, otherSkillsDescErrSpan, o
     return true;
 }
 
+/**
+ * Calls all the validations
+ * This function will run on form submit
+ */
 function runAllValidations(refNumSelect, refNumErrSpan, bdaSkillsFieldset, sweSkillsFieldset, firstNameInput, firstNameErrSpan,
     lastNameInput, lastNameErrSpan, dobInput, dobErrSpan, genderRadioButtons, genderFieldSet, genderErrSpan, streetAddressInput,
     streetAddressErrSpan, townInput, townErrSpan, stateSelect, stateErrSpan, postcodeInput, postcodeErrSpan, emailInput,
@@ -219,6 +294,9 @@ function runAllValidations(refNumSelect, refNumErrSpan, bdaSkillsFieldset, sweSk
     return isValid;
 }
 
+/**
+ * Store the entered details in sessionStorage to allow prefill while the user is in the same browser session
+ */
 function storePersonInfo(refNum, firstName, lastName, dob, genderRadioButtons, street, town, state, postcode, email,
     mobile, otherSkillsDesc) {
     sessionStorage.refNum = refNum;
@@ -249,16 +327,20 @@ function storePersonInfo(refNum, firstName, lastName, dob, genderRadioButtons, s
     sessionStorage.otherSkillsDesc = otherSkillsDesc;
 }
 
+/**
+ * Prefill the job reference number based on the user selection from the jobs.html page (stored in localStorage)
+ */
 function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
     const bdaCheckboxes = bdaSkillsFieldset.getElementsByTagName("input");
     const sweCheckboxes = sweSkillsFieldset.getElementsByTagName("input");
     const storedRefNum = localStorage.getItem("storedRefNum");
 
     if (storedRefNum != undefined) {
-        refNumInput.value = storedRefNum;
-        refNumInput.disabled = true;
+        refNumInput.value = storedRefNum; //display the stored value
+        refNumInput.disabled = true; //make the field readonly
         sessionStorage.skills = "";
 
+        // clears the checkboxes if the job reference number changes
         if (storedRefNum == "bdatw") {
             Array.from(sweCheckboxes).forEach((checkbox) => {
                 if (checkbox.type === 'checkbox') {
@@ -278,8 +360,11 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
 
     filterSkillsList(storedRefNum, bdaSkillsFieldset, sweSkillsFieldset);
 }
-// check if session data on user exists and if so prefill the form
-function prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
+
+/**
+ * Check if session data on user exists and if so prefills the form
+ */
+function prefill_form(firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
     emailField, mobileField, otherSkillsDescField) {
     if (sessionStorage.refNum != undefined) {
         //prefill the form
@@ -327,7 +412,7 @@ function prefill_form(refNumField, firstNameField, lastNameField, dobField, gend
 }
 
 function init() {
-    //use functions from enhancements.js
+    // RUN functions from enhancements.js
     // Add a listener for window resize events
     window.addEventListener("resize", adjustMenu);
 
@@ -362,13 +447,15 @@ function init() {
             window.localStorage.setItem("storedRefNum", "swetw");
         };
     }
+
     // loads the reference number, and applies validation in apply.html 
     else if (document.title == "Application of Interest") {
-        //register input listeners to make validation responsive to user input (not only on submit)
-        //start validating form fields
+        // register input listeners to make validation responsive to user input (not only on submit)
+
+        // create variables to store all form fields
+        // As part of creating the variables, we add the validate function which is called by the addEventListener on the "input" event
         const bdaSkillsFieldset = document.getElementById("bda-skills");
         const sweSkillsFieldset = document.getElementById("swe-skills");
-
         const refNumField = new FormField("reference-number", "reference-number-err", function () {
             validateJobRefNum(this.input, this.errSpan, bdaSkillsFieldset, sweSkillsFieldset);
         });
@@ -381,17 +468,14 @@ function init() {
         const dobField = new FormField("dob", "dob-err", function () {
             validateDOB(this.input, this.errSpan);
         });
-
         const genderRadioButtons = Array.from(document.getElementsByName("gender"));
         const genderFieldSet = document.getElementById("gender");
         const genderErrSpan = document.getElementById("gender-err");
-
         genderRadioButtons.forEach((radioButton) => {
             radioButton.addEventListener('change', function () {
                 validateGender(genderRadioButtons, genderFieldSet, genderErrSpan);
             });
         });
-
         const streetField = new FormField("street", "street-err", function () {
             validateAddress(this.input, this.errSpan, "Street Address");
         });
@@ -412,17 +496,20 @@ function init() {
         });
         const otherSkills = document.getElementById("other-skills");
         const otherSkillsDescField = new FormField("other-skills-desc", "other-skills-desc-err", function () {
-            validateOtherSkillsDesc(this.input, this.errSpan, otherSkills.checked)
+            validateOtherSkillsDesc(this.input, this.errSpan, otherSkills.checked);
         });
-
         otherSkills.addEventListener("change", function () {
             validateOtherSkillsDesc(otherSkillsDescField.input, otherSkillsDescField.errSpan, this.checked);
         });
 
+        // prefill the reference number - if exists in localStorage
         prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
+
+        // prefill the rest of the form - from sessionStorage
         prefill_form(refNumField, firstNameField, lastNameField, dobField, genderRadioButtons, streetField, townField, stateField, postcodeField,
             emailField, mobileField, otherSkillsDescField);
-        //register the event listener to the form
+
+        //register the event listener to the form submission
         const applicationForm = document.getElementById("application-form");
         applicationForm.onsubmit = function (event) {
             event.preventDefault(); // prevent the form from being submitted to the server by default
@@ -437,10 +524,12 @@ function init() {
                 otherSkills.checked
             );
 
+            // show a warning box if the runAllValidations function returns false
             const warningBox = document.getElementById("warning");
             const warningContent = document.getElementById("warning-content");
 
             if (!isValid) {
+                // if not valid scroll to the top of the screen and display the warning box
                 window.scrollTo(0, 0);
                 warningContent.textContent = "Some Items Require Your Attention!";
                 warningBox.style.display = "flex";
@@ -450,21 +539,29 @@ function init() {
                     warningBox.style.display = 'none';
                 });
             } else {
+                // if all validations pass
+                // store the person prefill info in session storage by calling the storePersonInfo function
                 storePersonInfo(refNumField.input.value, firstNameField.input.value, lastNameField.input.value, dobField.input.value,
                     genderRadioButtons, streetField.input.value, townField.input.value, stateField.input.value, postcodeField.input.value, emailField.input.value,
                     mobileField.input.value, otherSkillsDescField.input.value);
-                //save ref number to hidden element
+
+                //save ref number to hidden element if the reference number select is read-only so that we pass the right value to the server
                 const hiddenRefNumField = document.getElementById("job-reference-number");
-                hiddenRefNumField.value = refNumField.input.value;
+                hiddenRefNumField.value = refNumField.input.value ? refNumField.disabled == true : "";
+
+                //after completing all the steps successfully, submit the form to the server
                 applicationForm.submit();
             }
         };
 
+        // When the Reset button is clicked
         applicationForm.onreset = function () {
-            filterSkillsList(refNumField.value, bdaSkillsFieldset, sweSkillsFieldset)
-            sessionStorage.clear();
-            localStorage.clear();
-            prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset);
+            filterSkillsList(refNumField.value, bdaSkillsFieldset, sweSkillsFieldset); // filter the skills list - to show everything
+            //Note: I chose to clear both the sessionStorage and localStorage on clear for better user experience, as it will not make sense 
+            //to keep showing values after the user clicks on reset
+            sessionStorage.clear(); // clear the sessionStorage
+            localStorage.clear();// clear the localStorage
+            prefill_refNum(refNumField.input, bdaSkillsFieldset, sweSkillsFieldset); //refill the reference number - or reset it to Please Select
         };
     }
 }
