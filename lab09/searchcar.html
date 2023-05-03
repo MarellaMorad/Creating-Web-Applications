@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Search Car Form</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Lab 9">
+    <meta name="keywords" content="PHP, File, input, output">
+    <link rel="stylesheet" href="addcar.css" type="text/css">
+    <!-- Description: Form Input for Car -->
+    <!-- Author: Marella Morad -->
+    <!-- Date: 03/05/2023 -->
+    <!-- Validated: OK 03/05/2023 || <what still needs to be fixed> -->
+
+</head>
+
+<body>
+    <h1>Lab9 Car Search Form</h1>
+    <form method="post" action="cars_search.php">
+        <fieldset>
+            <legend>Car Search Filters</legend>
+            <p class="row"> <label for="carmake">Car Make: </label>
+                <input type="text" name="carmake" id="carmake">
+            </p>
+            <p class="row"> <label for="carmodel">Car Model: </label>
+                <input type="text" name="carmodel" id="carmodel">
+            </p>
+            <p class="row"> <label for="price">Price: </label>
+                <input type="text" name="price" id="price">
+            </p>
+            <p class="row"> <label for="yom">Year of Manufacture: </label>
+                <input type="text" name="yom" id="yom">
+            </p>
+            <p class="buttons">
+                <input type="submit" value="Search for Car">
+                <input type="reset" value="Reset Filters">
+            </p>
+        </fieldset>
+    </form>
+</body>
+
+</html>

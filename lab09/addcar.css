@@ -10,6 +10,9 @@
 	.notok   {color:red;}
 	.wrong	{color:red; font-weight:bold;}
 	@media screen and (min-width:320px) {
-	.row {display:table-row;} 
-	input[type="submit"]{margin-left:120px;}
+	.row {display:table-row;}
+	}
+	.buttons {
+		display: flex;
+		justify-content: space-evenly;
 	}
