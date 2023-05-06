@@ -17,9 +17,6 @@
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>JavaScript Enhancements</h1>
@@ -58,7 +55,7 @@
                 relevant message regarding the validation of the data.
             </p>
             <h3>Link to Enhancement in Action:</h3>
-            <p class="desc">This can be seen in action on the <a href="apply.html">Join Us</a> page</p>
+            <p class="desc">This can be seen in action on the <a href="apply.php">Join Us</a> page</p>
             <h3>Third-Party References:</h3>
             <p class="desc">
                 Mozilla Web Docs - <a
@@ -182,7 +179,7 @@
   }</code></pre>
             <h3>Link to Enhancement in Action:</h3>
             <p class="desc">
-                This has been implemented on the <a href="apply.html">Job Application</a> page.
+                This has been implemented on the <a href="apply.php">Job Application</a> page.
             </p>
             <h3>Third-Party References:</h3>
             <p class="desc">No Third-Party references have been used for this part as I relied on my experience with
@@ -235,7 +232,7 @@
             <h3>Link to Enhancement in Action:</h3>
             <p class="desc">This enhancement is applicable to the Join Us page as it's included in the apply.js file
                 that
-                validations the <a href="apply.html">Join Us form</a>.</p>
+                validations the <a href="apply.php">Join Us form</a>.</p>
             <h3>Third-Party References:</h3>
             <p class="desc">I relied on the Classes definition documentation from the <a
                     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">Mozilla Web
@@ -283,7 +280,7 @@
             <h3>Link to Enhancement in Action:</h3>
             <p class="desc">This enhancement is applicable to the Join Us page as it's included in the apply.js file
                 that
-                validations the <a href="apply.html">Join Us form</a>.</p>
+                validations the <a href="apply.php">Join Us form</a>.</p>
             <h3>Third-Party References:</h3>
             <p class="desc">No Third-Party references have been used for this part as I relied on my experience with
                 code refactoring.</p>
@@ -319,13 +316,13 @@
             <h3>Link to Enhancement in Action:</h3>
             <p class="desc">This enhancement is applicable to the Join Us page as it's included in the apply.js file
                 that
-                validations the <a href="apply.html">Join Us form</a>.</p>
+                validations the <a href="apply.php">Join Us form</a>.</p>
             <h3>Third-Party References:</h3>
             <p class="desc">No Third-Party references have been used for this part as I relied on my experience with
                 code refactoring.</p>
         </details>
     </section>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

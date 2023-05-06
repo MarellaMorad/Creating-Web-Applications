@@ -1,0 +1,1 @@
+<footer>© 2023 TechWave All Rights Reserved.</footer>

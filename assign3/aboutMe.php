@@ -17,9 +17,6 @@
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>About Me</h1>
@@ -50,7 +47,7 @@
             Check this voice note below where I say the sentence in both Arabic and English!
         </p>
         <audio controls>
-            <source src="intro.mp3" type="audio/mp3">
+            <source src="audio/intro.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
     </section>
@@ -82,7 +79,7 @@
                     class="fab fa-linkedin"></span></a>
         </div>
     </section>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

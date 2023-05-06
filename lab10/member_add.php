@@ -54,7 +54,7 @@
 		// checks if any tables of this name
 		if(mysqli_num_rows($result)==0) {
 			echo "<p>Table does not exist - create table $sql_table</p>"; // Might not show in a production script 
-			$sqlString = "create table " . $sql_table . "(" . $fieldDefinition . ")";; 
+			$sqlString = "create table " . $sql_table . "(" . $fieldDefinition . ")";
 			$result2 = @mysqli_query($conn, $sqlString);
 		    // checks if the table was created
 		    if($result2===false) {

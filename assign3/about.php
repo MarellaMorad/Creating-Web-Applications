@@ -17,15 +17,12 @@
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>About Us</h1>
     <div class="about-us">
         <figure>
-            <a href="aboutMe.html"><img title="Learn more about our CEO!" src="images/personal_picture.jpg"
+            <a href="aboutMe.php"><img title="Learn more about our CEO!" src="images/personal_picture.jpg"
                     alt="Marella's Personal Photo"></a>
             <figcaption>
                 CEO and Co-founder of TechWave - Marella Morad
@@ -55,7 +52,7 @@
     </div>
     <div class="about-me">
         <aside>
-            <a href="aboutMe.html">Wanna learn more about our CEO?</a>
+            <a href="aboutMe.php">Wanna learn more about our CEO?</a>
         </aside>
     </div>
     <div class="timetable-wrapper">
@@ -161,7 +158,7 @@
             </tr>
         </table>
     </div>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

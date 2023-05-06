@@ -17,9 +17,6 @@
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>HTML & CSS Enhancements</h1>
@@ -54,14 +51,14 @@
                     <code>::after</code> pseudo-element -
                     <em>
                         see
-                        <a href="jobs.html">jobs.html</a>.
+                        <a href="jobs.php">jobs.php</a>.
                     </em>
                 </li>
                 <li>
                     Having input fields highlighted in red with a red border
                     when the input is invalid. This is implemented using the
                     CSS <code>:invalid</code> pseudo-class -
-                    <em> see <a href="jobs.html">jobs.html</a>. </em>
+                    <em> see <a href="jobs.php">jobs.php</a>. </em>
                 </li>
             </ul>
             <p>
@@ -111,12 +108,12 @@
                 <li>
                     An iframe element has been added to embed and display a
                     Facebook video of me singing which is part of the
-                    <a href="aboutMe.html">aboutMe.html page</a>
+                    <a href="aboutMe.php">aboutMe.php page</a>
                 </li>
                 <li>
                     An audio element has been added to play an voice-note of
                     me showing my
-                    <a href="aboutMe.html">bilingual skills</a>.
+                    <a href="aboutMe.php">bilingual skills</a>.
                 </li>
                 <li>
                     Multiple <code>details</code> elements have been added
@@ -126,9 +123,9 @@
                     <em><strong>open</strong></em> Boolean attribute
                     indicates whether or not the details element contents
                     are currently visible. You can see this on the
-                    <a href="jobs.html">Position Description</a>
+                    <a href="jobs.php">Position Description</a>
                     page as well as
-                    <a href="enhancements.html">this</a> page
+                    <a href="enhancements.php">this</a> page
                 </li>
             </ul>
             <p>
@@ -265,17 +262,17 @@
                 You can see this enhancement in action on the navbar menu
                 (available on all web pages on medium and small screens) and
                 the social media links on the
-                <a href="aboutMe.html">aboutMe</a> page - right above the
+                <a href="aboutMe.php">aboutMe</a> page - right above the
                 footer.
             </p>
         </details>
     </section>
     <div class="js-enhance">
         <aside>
-            <a href="enhancements2.html">Looking for JavaScript Enhancements?</a>
+            <a href="enhancements2.php">Looking for JavaScript Enhancements?</a>
         </aside>
     </div>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

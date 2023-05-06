@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,24 +19,24 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="scripts/enhancements.js"></script>
-    <script src="scripts/apply.js"></script>
+    <script src="scripts/applyNoValidation.js"></script>
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>Application of Interest</h1>
     <div id="warning">
-        <span id="warning-content"></span>
-        <button id="close-warning">
-            <span class="fas fa-times" id="warning-close-icon"></span>
-        </button>
+        <span id="warning-content">Some Items Require Your Attention!</span>
     </div>
-    <form class="form-container" method="post" id="application-form"
-        action="https://mercury.swin.edu.au/it000000/formtest.php">
+    <?php
+        if ($errors) {
+            echo '<script>
+                    document.getElementById("warning").style.display = "flex";
+                  </script>';
+        }
+    ?>
+    <form class="form-container" method="post" id="application-form" action="processEOI.php" novalidate="novalidate">
         <p>
             <label class="required" for="reference-number">Job Reference Number:</label>
             <span class="with-validation">
@@ -44,6 +49,15 @@
             </span>
             <input type="hidden" name="job-reference-number" id="job-reference-number">
         </p>
+        <?php
+            if (isset($errors['reference-number'])) {
+                echo 
+                '<script>
+                    document.getElementById("reference-number").classList.add("invalid");
+                    document.getElementById("reference-number-err").textContent = "' . $errors['reference-number'] . '";
+                </script>';
+            }
+        ?>
         <fieldset>
             <legend>Personal Details</legend>
             <p>
@@ -53,6 +67,15 @@
                     <span class="error-message" id="first-name-err"></span>
                 </span>
             </p>
+            <?php
+                if (isset($errors['firstname'])) {
+                    echo 
+                       '<script>
+                            document.getElementById("first-name").classList.add("invalid");
+                            document.getElementById("first-name-err").textContent = "' . $errors['firstname'] . '";
+                        </script>';
+                }
+            ?>
             <p>
                 <label class="required" for="last-name">Last Name:</label>
                 <span class="with-validation">
@@ -60,7 +83,15 @@
                     <span class="error-message" id="last-name-err"></span>
                 </span>
             </p>
-
+            <?php
+                if (isset($errors['lastname'])) {
+                    echo 
+                       '<script>
+                            document.getElementById("last-name").classList.add("invalid");
+                            document.getElementById("last-name-err").textContent = "' . $errors['lastname'] . '";
+                        </script>';
+                }
+            ?>
             <p>
                 <label class="required" for="dob">Date of Birth:</label>
                 <span class="with-validation">
@@ -68,6 +99,15 @@
                     <span class="error-message" id="dob-err"></span>
                 </span>
             </p>
+            <?php 
+                if (isset($errors['dob'])) {
+                    echo 
+                        '<script>
+                            document.getElementById("dob").classList.add("invalid");
+                            document.getElementById("dob-err").textContent = "' . $errors['dob'] . '";
+                        </script>';
+                }
+            ?>
             <fieldset id="gender">
                 <legend class="required">Gender:</legend>
                 <label for="male">Male</label>
@@ -79,6 +119,15 @@
             <span id="gender-with-validation">
                 <span class="error-message" id="gender-err"></span>
             </span>
+            <?php 
+                if (isset($errors['gender'])) {
+                    echo 
+                        '<script>
+                            document.getElementById("gender").classList.add("invalid");
+                            document.getElementById("gender-err").textContent = "' . $errors['gender'] . '";
+                        </script>';
+                }
+            ?>
         </fieldset>
         <fieldset>
             <legend>Contact Information</legend>
@@ -91,13 +140,31 @@
                         <span class="error-message" id="street-err"></span>
                     </span>
                 </p>
+                <?php 
+                    if (isset($errors['street'])) {
+                        echo 
+                            '<script>
+                                document.getElementById("street").classList.add("invalid");
+                                document.getElementById("street-err").textContent = "' . $errors['street'] . '";
+                            </script>';
+                    }
+                ?>
                 <p>
-                    <label class="required" for="town">Suburb/town:</label>
+                    <label class="required" for="suburb">Suburb/town:</label>
                     <span class="with-validation">
-                        <input type="text" name="town" id="town">
-                        <span class="error-message" id="town-err"></span>
+                        <input type="text" name="suburb" id="suburb">
+                        <span class="error-message" id="suburb-err"></span>
                     </span>
                 </p>
+                <?php 
+                    if (isset($errors['suburb'])) {
+                        echo 
+                            '<script>
+                                document.getElementById("suburb").classList.add("invalid");
+                                document.getElementById("suburb-err").textContent = "' . $errors['suburb'] . '";
+                            </script>';
+                    }
+                ?>
                 <p>
                     <label class="required" for="state">State:</label>
                     <span class="with-validation">
@@ -115,6 +182,15 @@
                         <span class="error-message" id="state-err"></span>
                     </span>
                 </p>
+                <?php 
+                    if (isset($errors['state'])) {
+                        echo 
+                            '<script>
+                                document.getElementById("state").classList.add("invalid");
+                                document.getElementById("state-err").textContent = "' . $errors['state'] . '";
+                            </script>';
+                    }
+                ?>
                 <p>
                     <label class="required" for="postcode">Postcode:</label>
                     <span class="with-validation">
@@ -122,6 +198,15 @@
                         <span class="error-message" id="postcode-err"></span>
                     </span>
                 </p>
+                <?php 
+                    if (isset($errors['postcode'])) {
+                        echo 
+                            '<script>
+                                document.getElementById("postcode").classList.add("invalid");
+                                document.getElementById("postcode-err").textContent = "' . $errors['postcode'] . '";
+                            </script>';
+                    }
+                ?>
             </fieldset>
             <p>
                 <label class="required" for="email">Email Address:</label>
@@ -130,6 +215,15 @@
                     <span class="error-message" id="email-err"></span>
                 </span>
             </p>
+            <?php 
+                if (isset($errors['email'])) {
+                    echo 
+                        '<script>
+                            document.getElementById("email").classList.add("invalid");
+                            document.getElementById("email-err").textContent = "' . $errors['email'] . '";
+                        </script>';
+                }
+            ?>
             <p>
                 <label class="required" for="mobile">Phone Number:</label>
                 <span class="with-validation">
@@ -137,6 +231,15 @@
                     <span class="error-message" id="mobile-err"></span>
                 </span>
             </p>
+            <?php 
+                if (isset($errors['mobile'])) {
+                    echo 
+                        '<script>
+                            document.getElementById("mobile").classList.add("invalid");
+                            document.getElementById("mobile-err").textContent = "' . $errors['mobile'] . '";
+                        </script>';
+                }
+            ?>
         </fieldset>
         <fieldset>
             <legend>Skills (select all that apply)</legend>
@@ -199,13 +302,26 @@
                     <span class="error-message" id="other-skills-desc-err"></span>
                 </span>
             </p>
+            <?php 
+                if (isset($errors['other-skills-desc'])) {
+                    echo 
+                        '<script>
+                            document.getElementById("other-skills-desc").classList.add("invalid");
+                            document.getElementById("other-skills-desc-err").textContent = "' . $errors['other-skills-desc'] . '";
+                        </script>';
+                }
+            ?>
         </fieldset>
         <div class="buttons">
             <input type="submit" value="Apply">
             <input type="reset" value="Reset form">
         </div>
+        <?php 
+            // clear the session variable so the errors don't persist after a refresh
+            unset($_SESSION['errors']);
+        ?>
     </form>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

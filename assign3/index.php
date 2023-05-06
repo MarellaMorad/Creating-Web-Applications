@@ -17,11 +17,6 @@
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html">
-            <img id="logo" src="images/fullLogo.png" alt="TechWave Logo">
-        </a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <article id="homepage">
@@ -42,7 +37,7 @@
         <img id="big-logo" src="images/bigLogo.png"
             alt="TechWave Company Logo with its Slogan - Riding the technology wave of the future">
     </article>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

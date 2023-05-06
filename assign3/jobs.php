@@ -14,13 +14,10 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="scripts/enhancements.js"></script>
-    <script src="scripts/apply.js"></script>
+    <script src="scripts/applyNoValidation.js"></script>
 </head>
 
 <body>
-    <div id="logo-container">
-        <a href="index.html"><img id="logo" src="images/fullLogo.png" alt="TechWave Logo"></a>
-    </div>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>Available Positions</h1>
@@ -28,11 +25,11 @@
         <aside>
             Any of the positions caught your eyes?! Then what are you
             waiting for?
-            <strong><a href="apply.html">Apply now!</a></strong>
+            <strong><a href="apply.php">Apply now!</a></strong>
             Our application process is very straight forward:
             <ol>
                 <li>
-                    Fill in an <a href="apply.html">Application Form</a>
+                    Fill in an <a href="apply.php">Application Form</a>
                 </li>
                 <li>
                     We&apos;ll review your application and get back to you
@@ -142,7 +139,7 @@
             </section>
         </details>
         <div class="apply-button-container">
-            <a class="apply-button" id="bda-apply" href="apply.html">APPLY</a>
+            <a class="apply-button" id="bda-apply" href="apply.php">APPLY</a>
         </div>
     </section>
     <section class="collapsible">
@@ -247,13 +244,13 @@
             </section>
         </details>
         <div class="apply-button-container">
-            <a class="apply-button" id="swe-apply" href="apply.html">APPLY</a>
+            <a class="apply-button" id="swe-apply" href="apply.php">APPLY</a>
         </div>
     </section>
     <div id="ad-container">
         <a href="mailto:103076428@student.swin.edu.au"><img src="images/ad.png" alt="Advertisement for TechWave"></a>
     </div>
-    <footer>© 2023 TechWave All Rights Reserved.</footer>
+    <?php include('footer.inc'); ?>
 </body>
 
 </html>

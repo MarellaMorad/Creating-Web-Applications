@@ -1,7 +1,7 @@
 /**
 * Author: Marella Morad
-* Target: apply.html
-* Purpose: Add Form Validation to the apply.html file
+* Target: apply.php
+* Purpose: Add Form Validation to the apply.php file
 * Created: 11/04/2023
 * Last Updated: 21/04/2023 8:00:00 PM
 * Credits: 
@@ -328,7 +328,7 @@ function storePersonInfo(refNum, firstName, lastName, dob, genderRadioButtons, s
 }
 
 /**
- * Prefill the job reference number based on the user selection from the jobs.html page (stored in localStorage)
+ * Prefill the job reference number based on the user selection from the jobs.php page (stored in localStorage)
  */
 function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
     const bdaCheckboxes = bdaSkillsFieldset.getElementsByTagName("input");
@@ -439,7 +439,7 @@ function init() {
         });
     });
 
-    //stores the reference number from jobs.html
+    //stores the reference number from jobs.php
     if (document.title == "Available Positions") {
         document.getElementById("bda-apply").onclick = function () {
             window.localStorage.setItem("storedRefNum", "bdatw");
@@ -449,7 +449,7 @@ function init() {
         };
     }
 
-    // loads the reference number, and applies validation in apply.html 
+    // loads the reference number, and applies validation in apply.php 
     else if (document.title == "Application of Interest") {
         // register input listeners to make validation responsive to user input (not only on submit)
 
@@ -549,7 +549,7 @@ function init() {
                 //save ref number to hidden element if the reference number select is read-only so that we pass the right value to the server
                 const hiddenRefNumField = document.getElementById("job-reference-number");
 
-                //if the job reference number was set from jobs.html (localStorage)
+                //if the job reference number was set from jobs.php (localStorage)
                 if (refNumField.input.disabled) {
                     hiddenRefNumField.value = refNumField.input.value;
                 } else {
