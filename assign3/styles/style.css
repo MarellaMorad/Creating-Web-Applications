@@ -181,7 +181,7 @@ summary:hover {
     justify-content: center;
 }
 
-.apply-button {
+.apply-button, .manage-buttons {
     border-radius: 4px;
     border: 1px solid var(--dark-purple);
     background-color: var(--dark-purple);
@@ -531,6 +531,21 @@ pre {
 .desc {
     padding-left: 10px;
 }
+
+/*---------------------------------------------------------------------------------------*/
+/*manage.php Styling*/
+#hr-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*deleteEOI.php Styling*/
+#delete-confirmation {
+    display: none;
+}
+
 /*---------------------------------------------------------------------------------------*/
 /*Smaller screens - tablets*/
 @media only screen and (max-width: 869px) {

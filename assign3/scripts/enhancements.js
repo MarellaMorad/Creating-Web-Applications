@@ -27,6 +27,7 @@ function adjustMenu() {
         document.getElementById("careers"),
         document.getElementById("join-us"),
         document.getElementById("about-us"),
+        document.getElementById("manage"),
         document.getElementById("enhancements"),
         document.getElementById("contact-us")
     ];
@@ -42,8 +43,9 @@ function adjustMenu() {
         navItems[1].classList.add('fas', 'fa-briefcase');
         navItems[2].classList.add('fas', 'fa-user-plus');
         navItems[3].classList.add('fas', 'fa-info-circle');
-        navItems[4].classList.add('fas', 'fa-cog');
-        navItems[5].classList.add('fas', 'fa-envelope');
+        navItems[4].classList.add('fas', 'fa-address-book');
+        navItems[5].classList.add('fas', 'fa-cog');
+        navItems[6].classList.add('fas', 'fa-envelope');
     } else {
         navItems.forEach(item => item.classList.remove(...item.classList));
         setActivePage();
@@ -56,8 +58,9 @@ function storeOriginalText(navItems) {
     navItems[1].dataset.originalText = "Careers";
     navItems[2].dataset.originalText = "Join Us";
     navItems[3].dataset.originalText = "About Us";
-    navItems[4].dataset.originalText = "Enhancements";
-    navItems[5].dataset.originalText = "Contact Us";
+    navItems[4].dataset.originalText = "Manage EOIs";
+    navItems[5].dataset.originalText = "Enhancements";
+    navItems[6].dataset.originalText = "Contact Us";
 }
 
 function restoreOriginalText(navItems) {

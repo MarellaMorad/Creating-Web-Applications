@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Creating Web Applications">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL">
     <meta name="author" content="Marella Morad">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Application of Interest</title>

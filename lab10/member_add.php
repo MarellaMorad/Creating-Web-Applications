@@ -58,7 +58,7 @@
 			$result2 = @mysqli_query($conn, $sqlString);
 		    // checks if the table was created
 		    if($result2===false) {
-				echo "<p class=\"wrong\">Unable to create Table $sql_table.". msqli_errno($conn) . ":". mysqli_error($conn) ." </p>"; //Would not show in a production script 
+				echo "<p class=\"wrong\">Unable to create Table $sql_table.". mysqli_errno($conn) . ":". mysqli_error($conn) ." </p>"; //Would not show in a production script 
 			} else {
 			// display an operation successful message
 			echo "<p class=\"ok\">Table $sql_table created OK</p>"; //Would not show in a production script 

@@ -19,12 +19,9 @@
 <body>
     <?php include('header.inc'); ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
-    <h1>HR Management Portal</h1>
-    <h2>Please choose one of the actions you want to perform:</h2>
-    <div id="hr-actions">
-        <a class="manage-buttons" href="displayEOIs.php">Display EOI Applications</a>
-        <a class="manage-buttons" href="deleteEOIs.php">Delete EOI Applications</a>
-        <a class="manage-buttons" href="updateEOIStates.php">Change the State of EOI Applications</a>
-    </div>
+    <h1>Change the State of EOI Applications</h1>
+    <form method="post" name="change-state">
+        <input type="submit" name="change-state" value="Update States">
+    </form>
     <?php include('footer.inc'); ?>
 </body>

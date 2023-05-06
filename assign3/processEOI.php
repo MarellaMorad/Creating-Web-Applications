@@ -232,19 +232,13 @@
 
             // checks if any tables of this name
             if(mysqli_num_rows($result1) === 0) {
-                echo "<p>Table does not exist - create table $sql_table</p>";
+                //Table does not exist - create table
                 $sqlString = "create table " . $sql_table . "(" . $field_def . ")";
                 $result2 = @mysqli_query($conn, $sqlString);
                 // checks if the table was created
                 if($result2 === false) {
                     echo "<p>Unable to create Table $sql_table.". mysqli_errno($conn) . ":". mysqli_error($conn) ." </p>";
-                } else {
-                // display an operation successful message
-                    echo "<p>Table $sql_table created OK</p>"; //Would not show in a production script 
-                } // if successful query operation 
-            } else {
-                // display an operation successful message
-                echo "<p>Table  $sql_table already exists</p>";
+                }
             }
 
             // Set up the SQL command to add the data into the table
@@ -262,7 +256,8 @@
             } else {
                 //if successful, display a confirmation message with the unique EOInumber from db
                 $eoiNumber = $conn->insert_id;
-                echo "Thank you for your expression of interest. Your EOInumber is: " . $eoiNumber;
+                $_SESSION['eoi_number'] = $eoiNumber;
+                header('Location: success.php');
             }
 
             // close the database connection

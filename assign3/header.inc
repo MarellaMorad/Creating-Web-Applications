@@ -9,6 +9,7 @@
                 <li><a class="nav-link" href="jobs.php"><span id="careers">Careers</span></a></li>
                 <li><a class="nav-link" href="apply.php"><span id="join-us">Join Us</span></a></li>
                 <li><a class="nav-link" href="about.php"><span id="about-us">About Us</span></a></li>
+                <li><a class="nav-link" href="manage.php"><span id="manage">Manage EOI</span></a></li>
                 <li><a class="nav-link" href="enhancements.php"><span id="enhancements">Enhancements</span></a>
                 </li>
             </ul>
