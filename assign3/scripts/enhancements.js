@@ -43,11 +43,7 @@ function adjustMenu() {
         navItems.push(document.getElementById("update-eois"));
     }
 
-    console.log('After Push: ', navItems);
-
     storeOriginalText(navItems);
-
-    console.log('Stored Original Text');
 
     // Check if the screen width is smaller than 869 pixels
     if (window.innerWidth < 869) {
