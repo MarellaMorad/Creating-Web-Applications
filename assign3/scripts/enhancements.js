@@ -34,13 +34,20 @@ function adjustMenu() {
         document.getElementById("about-us"),
         document.getElementById("manage"),
         document.getElementById("enhancements"),
-        document.getElementById("contact-us"),
-        document.getElementById("display-eois"),
-        document.getElementById("delete-eois"),
-        document.getElementById("update-eois")
+        document.getElementById("contact-us")
     ];
 
+    if (document.title == "Manage EOIs") {
+        navItems.push(document.getElementById("display-eois"));
+        navItems.push(document.getElementById("delete-eois"));
+        navItems.push(document.getElementById("update-eois"));
+    }
+
+    console.log('After Push: ', navItems);
+
     storeOriginalText(navItems);
+
+    console.log('Stored Original Text');
 
     // Check if the screen width is smaller than 869 pixels
     if (window.innerWidth < 869) {
@@ -54,9 +61,13 @@ function adjustMenu() {
         navItems[4].classList.add('fas', 'fa-address-book');
         navItems[5].classList.add('fas', 'fa-cog');
         navItems[6].classList.add('fas', 'fa-envelope');
-        navItems[7].classList.add('fa', 'fa-eye');
-        navItems[8].classList.add('fa', 'fa-trash');
-        navItems[9].textContent = String.fromCharCode(0x270E);
+
+        if (document.title == "Manage EOIs") {
+            navItems[7].classList.add('fa', 'fa-eye');
+            navItems[8].classList.add('fa', 'fa-trash');
+            navItems[9].textContent = String.fromCharCode(0x270E);
+        }
+
     } else {
         navItems.forEach(item => item.classList.remove(...item.classList));
         setActivePage();
@@ -72,9 +83,12 @@ function storeOriginalText(navItems) {
     navItems[4].dataset.originalText = "Manage EOIs";
     navItems[5].dataset.originalText = "Enhancements";
     navItems[6].dataset.originalText = "Contact Us";
-    navItems[7].dataset.originalText = "Display EOI Applications";
-    navItems[8].dataset.originalText = "Delete EOI Applications";
-    navItems[9].dataset.originalText = "Update the Status of EOI Applications";
+
+    if (document.title == "Manage EOIs") {
+        navItems[7].dataset.originalText = "Display EOI Applications";
+        navItems[8].dataset.originalText = "Delete EOI Applications";
+        navItems[9].dataset.originalText = "Update the Status of EOI Applications";
+    }
 }
 
 function restoreOriginalText(navItems) {

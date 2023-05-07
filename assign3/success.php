@@ -8,7 +8,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL">
     <meta name="author" content="Marella Morad">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Manage EOIs</title>
+    <title>Application Success</title>
     <!--Add a favicon to the website-->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles/style.css">

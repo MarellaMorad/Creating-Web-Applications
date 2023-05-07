@@ -199,6 +199,9 @@ function init() {
         const bdaSkillsFieldset = document.getElementById("bda-skills");
         const sweSkillsFieldset = document.getElementById("swe-skills");
         const refNumField = new FormField("reference-number");
+        refNumField.input.addEventListener("input", function () {
+            filterSkillsList(this.value, bdaSkillsFieldset, sweSkillsFieldset);
+        });
         const firstNameField = new FormField("first-name");
         const lastNameField = new FormField("last-name");
         const dobField = new FormField("dob");
