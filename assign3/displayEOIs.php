@@ -17,10 +17,11 @@
 </head>
 
 <body>
-    <?php include('header.inc'); ?>
+    <?php include('header.inc'); include('manager_options.inc')?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
-    <h1>Display EOI Applications</h1>
-    <form method="post" action="displayEOIs.php">
+    <form class="form-container manager-actions" method="post" action="displayEOIs.php">
+        <h2>Display EOI Applications</h2>
+        <p class="message"><span class="fa fa-info-circle"></span>If you want to display all EOIs that are present in the database, leave all the filters unset.</p>
         <p>
             <label for="search-reference-number">Job Reference Number:</label>
             <select name="search-reference-number" id="search-reference-number">
@@ -37,118 +38,118 @@
             <label for="search-last-name">Last Name:</label>
             <input type="text" name="search-last-name" id="search-last-name">
         </p>
-        <input type="submit" name="search" value="Search">
-    </form>
-
-    <?php
-        require_once("settings.php");
-        
-        $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-
-        //Checks if connection is successful
-        if (!$conn) {
-            //Display an error message
-            echo "<p>Database connection failure</p>"; //not in production script
-        } else { 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
-                $search_reference_number = isset($_POST["search-reference-number"])
-                                         ? $_POST["search-reference-number"]
-                                         : "";
-                $search_firstname = isset($_POST["search-first-name"])
-                                  ? trim(htmlspecialchars($_POST["search-first-name"]))
-                                  : "";
-                $search_lastname = isset($_POST["search-last-name"])
-                                 ? trim(htmlspecialchars($_POST["search-last-name"]))
-                                 : "";
+        <div class="buttons">
+            <input type="submit" name="search" value="Search">
+        </div>
+        <?php
+            require_once("settings.php");
             
-                $selectedFilters = false;
+            $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
-                $query = "SELECT * FROM EOI";
-                $queryCount = "SELECT Count(*) FROM EOI";
-                $conditions = array();
-                if (!empty($search_reference_number)) {
-                    $conditions[] = "JobReferenceNumber = '$search_reference_number'";
-                    $selectedFilters = true;
-                }
+            //Checks if connection is successful
+            if (!$conn) {
+                //Display an error message
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>'; //not in production script
+            } else { 
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
+                    $search_reference_number = isset($_POST["search-reference-number"])
+                                            ? $_POST["search-reference-number"]
+                                            : "";
+                    $search_firstname = isset($_POST["search-first-name"])
+                                    ? trim(htmlspecialchars($_POST["search-first-name"]))
+                                    : "";
+                    $search_lastname = isset($_POST["search-last-name"])
+                                    ? trim(htmlspecialchars($_POST["search-last-name"]))
+                                    : "";
+                
+                    $selectedFilters = false;
 
-                if (!empty($search_firstname)) {
-                    $conditions[] = "FirstName like '%$search_firstname%'";
-                    $selectedFilters = true;
-                }
-
-                if (!empty($search_lastname)) {
-                    $conditions[] = "LastName like '%$search_lastname%'";
-                    $selectedFilters = true;
-                }
-
-                //if the user has entered filters, then search by filters, otherwise show everything
-                if ($selectedFilters) {
-                    $query .= " WHERE ";
-                    $queryCount .= " WHERE ";
-                    $query .= implode(" AND ", $conditions);
-                    $queryCount .= implode(" AND ", $conditions);
-                }
-
-                $result = mysqli_query($conn, $query);
-                $resultCount = mysqli_query($conn, $queryCount);
-                $resultCountRow = mysqli_fetch_assoc($resultCount);
-
-                //checks if the execution was successful
-                if ($resultCountRow["Count(*)"] == 0) {
-                    echo "<p>No results found!</p>";
-                } else {
-                    // display an operation successful message
-                    echo "<p>", $resultCountRow["Count(*)"], " Result/s Found</p>";
-
-                    //Display the retrieved records
-                    echo "<table border=\"1\">\n";
-                    echo "<tr>\n "
-                        ."<th scope=\"col\">Job Reference Number</th>\n "
-                        ."<th scope=\"col\">First Name</th>\n "
-                        ."<th scope=\"col\">Last Name</th>\n "
-                        ."<th scope=\"col\">Date Of Birth</th>\n "
-                        ."<th scope=\"col\">Gender</th>\n "
-                        ."<th scope=\"col\">Street Address</th>\n "
-                        ."<th scope=\"col\">Suburb</th>\n "
-                        ."<th scope=\"col\">State</th>\n "
-                        ."<th scope=\"col\">Postcode</th>\n "
-                        ."<th scope=\"col\">Email Address</th>\n "
-                        ."<th scope=\"col\">Mobile Number</th>\n "
-                        ."<th scope=\"col\">Skills</th>\n "
-                        ."<th scope=\"col\">Other Skills Description</th>\n "
-                        ."<th scope=\"col\">Application Status</th>\n "
-                        ."</tr>\n ";
-
-                    //retrieve current record pointed by the result pointer
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>\n ";
-                        echo "<td>", $row["JobReferenceNumber"],"</td>\n ";
-                        echo "<td>", $row["FirstName"],"</td>\n ";
-                        echo "<td>", $row["LastName"],"</td>\n ";
-                        echo "<td>", $row["DOB"],"</td>\n ";
-                        echo "<td>", $row["Gender"],"</td>\n ";
-                        echo "<td>", $row["StreetAddress"],"</td>\n ";
-                        echo "<td>", $row["Suburb"],"</td>\n ";
-                        echo "<td>", $row["State"],"</td>\n ";
-                        echo "<td>", $row["Postcode"],"</td>\n ";
-                        echo "<td>", $row["EmailAddress"],"</td>\n ";
-                        echo "<td>", $row["PhoneNumber"],"</td>\n ";
-                        echo "<td>", $row["Skills"],"</td>\n ";
-                        echo "<td>", $row["OtherSkills"],"</td>\n ";
-                        echo "<td>", $row["Status"],"</td>\n ";
-                        echo "</tr>\n ";
+                    $query = "SELECT * FROM EOI";
+                    $queryCount = "SELECT Count(*) FROM EOI";
+                    $conditions = array();
+                    if (!empty($search_reference_number)) {
+                        $conditions[] = "JobReferenceNumber = '$search_reference_number'";
+                        $selectedFilters = true;
                     }
-                    echo "</table>\n ";
-                } // if successful query operation
 
-                //Frees up the memory, after using the result pointer
-                mysqli_free_result($result);
-                mysqli_free_result($resultCount);
+                    if (!empty($search_firstname)) {
+                        $conditions[] = "FirstName like '%$search_firstname%'";
+                        $selectedFilters = true;
+                    }
+
+                    if (!empty($search_lastname)) {
+                        $conditions[] = "LastName like '%$search_lastname%'";
+                        $selectedFilters = true;
+                    }
+
+                    //if the user has entered filters, then search by filters, otherwise show everything
+                    if ($selectedFilters) {
+                        $query .= " WHERE ";
+                        $queryCount .= " WHERE ";
+                        $query .= implode(" AND ", $conditions);
+                        $queryCount .= implode(" AND ", $conditions);
+                    }
+
+                    $result = mysqli_query($conn, $query);
+                    $resultCount = mysqli_query($conn, $queryCount);
+                    $resultCountRow = mysqli_fetch_assoc($resultCount);
+
+                    //checks if the execution was successful
+                    if ($resultCountRow["Count(*)"] == 0) {
+                        echo '<p class="message"><span class="fa fa-check-circle"></span>No results found!</p>';
+                    } else {
+                        // display an operation successful message
+                        echo '<p class="message"><span class="fa fa-check-circle"></span>', $resultCountRow["Count(*)"], ' Result/s Found</p>';
+
+                        //Display the retrieved records
+                        echo "<table border=\"1\">\n";
+                        echo "<tr>\n "
+                            ."<th scope=\"col\">Job Reference Number</th>\n "
+                            ."<th scope=\"col\">First Name</th>\n "
+                            ."<th scope=\"col\">Last Name</th>\n "
+                            ."<th scope=\"col\">Date Of Birth</th>\n "
+                            ."<th scope=\"col\">Gender</th>\n "
+                            ."<th scope=\"col\">Street Address</th>\n "
+                            ."<th scope=\"col\">Suburb</th>\n "
+                            ."<th scope=\"col\">State</th>\n "
+                            ."<th scope=\"col\">Postcode</th>\n "
+                            ."<th scope=\"col\">Email Address</th>\n "
+                            ."<th scope=\"col\">Mobile Number</th>\n "
+                            ."<th scope=\"col\">Skills</th>\n "
+                            ."<th scope=\"col\">Other Skills Description</th>\n "
+                            ."<th scope=\"col\">Application Status</th>\n "
+                            ."</tr>\n ";
+
+                        //retrieve current record pointed by the result pointer
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>\n ";
+                            echo "<td>", $row["JobReferenceNumber"],"</td>\n ";
+                            echo "<td>", $row["FirstName"],"</td>\n ";
+                            echo "<td>", $row["LastName"],"</td>\n ";
+                            echo "<td>", $row["DOB"],"</td>\n ";
+                            echo "<td>", $row["Gender"],"</td>\n ";
+                            echo "<td>", $row["StreetAddress"],"</td>\n ";
+                            echo "<td>", $row["Suburb"],"</td>\n ";
+                            echo "<td>", $row["State"],"</td>\n ";
+                            echo "<td>", $row["Postcode"],"</td>\n ";
+                            echo "<td>", $row["EmailAddress"],"</td>\n ";
+                            echo "<td>", $row["PhoneNumber"],"</td>\n ";
+                            echo "<td>", $row["Skills"],"</td>\n ";
+                            echo "<td>", $row["OtherSkills"],"</td>\n ";
+                            echo "<td>", $row["Status"],"</td>\n ";
+                            echo "</tr>\n ";
+                        }
+                        echo "</table>\n ";
+                    } // if successful query operation
+
+                    //Frees up the memory, after using the result pointer
+                    mysqli_free_result($result);
+                    mysqli_free_result($resultCount);
+                }
             }
-        }
-        //close database connection
-        mysqli_close($conn);
-
-        include('footer.inc');
-    ?>
+            //close database connection
+            mysqli_close($conn);
+        ?>
+    </form>
+    <?php include('footer.inc'); ?>
 </body>

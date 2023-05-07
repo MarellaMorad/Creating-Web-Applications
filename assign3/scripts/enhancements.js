@@ -10,7 +10,12 @@
 "use strict";
 
 function setActivePage() {
-    const navLinks = document.getElementsByClassName("nav-link");
+    var navLinks = document.getElementsByClassName("nav-link");
+    const manageButtons = document.getElementsByClassName("manage-buttons");
+
+    if (manageButtons) {
+        navLinks = [...navLinks, ...manageButtons];
+    }
 
     Array.from(navLinks).forEach((link) => {
         if (link.href === window.location.href) {
@@ -29,7 +34,10 @@ function adjustMenu() {
         document.getElementById("about-us"),
         document.getElementById("manage"),
         document.getElementById("enhancements"),
-        document.getElementById("contact-us")
+        document.getElementById("contact-us"),
+        document.getElementById("display-eois"),
+        document.getElementById("delete-eois"),
+        document.getElementById("update-eois")
     ];
 
     storeOriginalText(navItems);
@@ -46,6 +54,9 @@ function adjustMenu() {
         navItems[4].classList.add('fas', 'fa-address-book');
         navItems[5].classList.add('fas', 'fa-cog');
         navItems[6].classList.add('fas', 'fa-envelope');
+        navItems[7].classList.add('fa', 'fa-eye');
+        navItems[8].classList.add('fa', 'fa-trash');
+        navItems[9].textContent = String.fromCharCode(0x270E);
     } else {
         navItems.forEach(item => item.classList.remove(...item.classList));
         setActivePage();
@@ -61,6 +72,9 @@ function storeOriginalText(navItems) {
     navItems[4].dataset.originalText = "Manage EOIs";
     navItems[5].dataset.originalText = "Enhancements";
     navItems[6].dataset.originalText = "Contact Us";
+    navItems[7].dataset.originalText = "Display EOI Applications";
+    navItems[8].dataset.originalText = "Delete EOI Applications";
+    navItems[9].dataset.originalText = "Update the Status of EOI Applications";
 }
 
 function restoreOriginalText(navItems) {

@@ -17,38 +17,35 @@
 </head>
 
 <body>
-    <?php include('header.inc'); ?>
+    <?php include('header.inc'); include('manager_options.inc')?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
-    <h1>Delete EOI Applications</h1>
-    <form method="post" name="delete">
+    <form class="form-container manager-actions" method="post" action="deleteEOIs.php">
+        <h2>Delete EOI Applications</h2>
+        <p class="message"><span class="fa fa-exclamation-triangle"></span>Warning: Use this function CAREFULLY as once you click on the delete button, ALL records that match the filters will be DELETED FOREVER!</p>
         <p>
-            <label for="delete-reference-number">Job Reference Number:</label>
-            <select name="delete-reference-number" id="delete-reference-number">
+            <label class="required" for="delete-reference-number">Job Reference Number:</label>
+            <select name="delete-reference-number" id="delete-reference-number" required>
                 <option value="">Please Select</option>
                 <option value="bdatw">BDATW - Big Data Analyst</option>
                 <option value="swetw">SWETW - Software Engineer</option>
             </select>
         </p>
-        <input type="submit" name="delete" value="Delete">
-    </form>
-    <?php 
-        require_once("settings.php");
-        
-        $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-        
-        //Checks if connection is successful
-        if (!$conn) {
-            //Display an error message
-            echo "<p>Database connection failure</p>"; //not in production script
-        } else {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
-                $delete_reference_number = isset($_POST["delete-reference-number"])
-                                         ? $_POST["delete-reference-number"]
-                                         : "";
-                
-                if ($delete_reference_number === "") {
-                    echo "<p>Please Select a Job Reference Number to Delete the applications for.</p>";
-                } else {
+        <div class="buttons">
+            <input type="submit" name="delete" value="Delete">
+        </div>
+        <?php 
+            require_once("settings.php");
+            
+            $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+            
+            //Checks if connection is successful
+            if (!$conn) {
+                //Display an error message
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>';
+            } else {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+                    $delete_reference_number = $_POST["delete-reference-number"];
+
                     $query = "SELECT * FROM EOI WHERE JobReferenceNumber = '$delete_reference_number'";
                     $queryCount = "SELECT Count(*) FROM EOI WHERE JobReferenceNumber = '$delete_reference_number'";
                     
@@ -57,16 +54,16 @@
                     $resultCountRow = mysqli_fetch_assoc($resultCount);
         
                     if ($resultCountRow["Count(*)"] == 0) {
-                        echo "<p>No results found!</p>";
+                        echo '<p class="message"><span class="fa fa-check-circle"></span>No results found!</p>';
                     } else {
-                        echo "<p>", $resultCountRow["Count(*)"], " Result/s Found</p>";
+                        echo '<p class="message"><span class="fa fa-check-circle"></span>', $resultCountRow["Count(*)"], ' Result/s Found</p>';
                         $delete_query = "DELETE FROM EOI WHERE JobReferenceNumber = '$delete_reference_number'";
                         $delete_result = mysqli_query($conn, $delete_query);
                         
                         if ($delete_result) {
-                            echo "<p> All ", $resultCountRow["Count(*)"], " Applications have been Deleted.</p>";
+                            echo '<p class="message"><span class="fa fa-check-circle"></span> All ', $resultCountRow["Count(*)"], ' Applications have been Deleted.</p>';
                         } else {
-                            echo "<p>An Error Occurred While Trying to Delete the Applications.</p>";
+                            echo '<p class="message"><span class="fa fa-times-circle"></span>An Error Occurred While Trying to Delete the Applications.</p>';
                         }
         
                         //Frees up the memory, after using the result and resultCount pointers
@@ -75,9 +72,9 @@
                     }
                 }
             }
-        }
-        //close database connection
-        mysqli_close($conn);        
-    ?>
+            //close database connection
+            mysqli_close($conn);        
+        ?>
+    </form>
     <?php include('footer.inc'); ?>
 </body>

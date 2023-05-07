@@ -80,7 +80,8 @@ nav ul li,
 /*Add some visual indication of when the user hovers over a menu item*/
 /*.active class sets the page the user is currently viewing and adds some styling to indicate active menu items*/
 .menu a:hover,
-.menu a.active {
+.menu a.active,
+#hr-actions a.active {
     background-color: var(--dark-purple);
     border-radius: 10px;
     color: white;
@@ -181,7 +182,7 @@ summary:hover {
     justify-content: center;
 }
 
-.apply-button, .manage-buttons {
+.apply-button {
     border-radius: 4px;
     border: 1px solid var(--dark-purple);
     background-color: var(--dark-purple);
@@ -222,9 +223,10 @@ fieldset {
 .buttons {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
-.buttons input {
+.buttons input, .manage-buttons {
     background-color: transparent;
     border: 1px solid var(--grey);
     border-radius: 10px;
@@ -233,7 +235,7 @@ fieldset {
     font: bold medium Verdana, sans-serif;
 }
 
-.buttons input:hover {
+.buttons input:hover, .manage-buttons:hover  {
     cursor: pointer;
     background-color: var(--dark-purple);
     color: white;
@@ -536,14 +538,40 @@ pre {
 /*manage.php Styling*/
 #hr-actions {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 10px;
 }
 
-/*---------------------------------------------------------------------------------------*/
-/*deleteEOI.php Styling*/
-#delete-confirmation {
-    display: none;
+#hr-actions a {
+    margin: 10px;
+}
+
+.manager-actions {
+    padding: 20px;
+}
+
+.fa-times-circle {
+    color: red;
+}
+
+.fa-exclamation-triangle {
+    color: orange;
+}
+
+.fa-check-circle {
+    color: green;
+}
+
+.fa-info-circle,
+.fa-times-circle,
+.fa-exclamation-triangle,
+.fa-check-circle {
+    margin-right: 5px;
+}
+
+p.message {
+    display: flex;
+    align-items: center;
 }
 
 /*---------------------------------------------------------------------------------------*/

@@ -139,7 +139,7 @@
 
         if (!$isValidPrefix) {
             // If the postcode is invalid, display an error message and return false to indicate validation failure.
-            $errors['postcode'] = 'Please enter a valid postcode - ' . strtoupper($stateSelectValue) . ' postcodes start with ' . implode(' or ', $prefix) . '.';
+            $errors['postcode'] = 'Please enter a valid postcode - ' . strtoupper($state) . ' postcodes start with ' . implode(' or ', $prefix) . '.';
         } else {
             $postcode = $_POST['postcode'];
         }
@@ -207,7 +207,7 @@
         );
 
         if (!$conn) {
-            echo "<p>Database connection failure</p>";
+            echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>';
         } else {
             $sql_table = 'EOI';
             $field_def = 'EOInumber INT AUTO_INCREMENT PRIMARY KEY, 
@@ -237,7 +237,7 @@
                 $result2 = @mysqli_query($conn, $sqlString);
                 // checks if the table was created
                 if($result2 === false) {
-                    echo "<p>Unable to create Table $sql_table.". mysqli_errno($conn) . ":". mysqli_error($conn) ." </p>";
+                    echo '<p class="message"><span class="fa fa-times-circle"></span>Unable to create Table ' , $sql_table , '!</p>';
                 }
             }
 
@@ -252,7 +252,7 @@
 
             // checks if the execution was successful
             if(!$result) {
-                echo "<p>Something is wrong with ",	$query, "</p>";
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Something is wrong with ',	$query, '</p>';
             } else {
                 //if successful, display a confirmation message with the unique EOInumber from db
                 $eoiNumber = $conn->insert_id;
