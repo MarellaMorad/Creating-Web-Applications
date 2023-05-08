@@ -20,6 +20,13 @@ function setActivePage() {
     Array.from(navLinks).forEach((link) => {
         if (link.href === window.location.href) {
             link.classList.add('active');
+        } else if (link.classList.contains('has-child')) {
+            var children = link.nextElementSibling.querySelectorAll('.sub-menu li');
+            Array.from(children).forEach((child) => {
+                if (child.querySelector('a').href === window.location.href) {
+                    link.classList.add('active');
+                }
+            })
         } else {
             link.classList.remove('active');
         }
@@ -31,7 +38,7 @@ function adjustMenu() {
         document.getElementById("home"),
         document.getElementById("careers"),
         document.getElementById("join-us"),
-        document.getElementById("about-us"),
+        document.getElementById("about"),
         document.getElementById("manage"),
         document.getElementById("enhancements"),
         document.getElementById("contact-us")
@@ -75,7 +82,7 @@ function storeOriginalText(navItems) {
     navItems[0].dataset.originalText = "Home";
     navItems[1].dataset.originalText = "Careers";
     navItems[2].dataset.originalText = "Join Us";
-    navItems[3].dataset.originalText = "About Us";
+    navItems[3].dataset.originalText = "About";
     navItems[4].dataset.originalText = "Manage EOIs";
     navItems[5].dataset.originalText = "Enhancements";
     navItems[6].dataset.originalText = "Contact Us";

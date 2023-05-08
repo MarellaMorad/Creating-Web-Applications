@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <?php include('header.inc'); ?>
+    <?php include('header.inc'); include('menu.inc');?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>Application of Interest</h1>
     <div id="warning">
@@ -40,11 +40,7 @@
         <p>
             <label class="required" for="reference-number">Job Reference Number:</label>
             <span class="with-validation">
-                <select name="reference-number" id="reference-number">
-                    <option value="">Please Select</option>
-                    <option value="bdatw">BDATW - Big Data Analyst</option>
-                    <option value="swetw">SWETW - Software Engineer</option>
-                </select>
+                <input type="text" name="reference-number" id="reference-number">
                 <span class="error-message" id="reference-number-err"></span>
             </span>
             <input type="hidden" name="job-reference-number" id="job-reference-number">

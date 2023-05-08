@@ -21,11 +21,11 @@ class FormField {
 
 /**
  * This function is part of my enhancements, it filters the skills checkboxes based on the selected job reference number:
- * swetw, bdatw, and an empty string
+ * SWETW, BDATW, and an empty string
  */
 function filterSkillsList(refNumValue, bdaSkillsFieldset, sweSkillsFieldset) {
-    sweSkillsFieldset.style.display = (refNumValue === "swetw" || refNumValue === "" || refNumValue === null) ? "" : "none";
-    bdaSkillsFieldset.style.display = (refNumValue === "bdatw" || refNumValue === "" || refNumValue === null) ? "" : "none";
+    sweSkillsFieldset.style.display = refNumValue?.toUpperCase() === "SWETW" ? "" : "none";
+    bdaSkillsFieldset.style.display = refNumValue?.toUpperCase() === "BDATW" ? "" : "none";
 }
 
 /**
@@ -83,13 +83,13 @@ function prefill_refNum(refNumInput, bdaSkillsFieldset, sweSkillsFieldset) {
         sessionStorage.skills = "";
 
         // clears the checkboxes if the job reference number changes
-        if (storedRefNum == "bdatw") {
+        if (storedRefNum == "BDATW") {
             Array.from(sweCheckboxes).forEach((checkbox) => {
                 if (checkbox.type === 'checkbox') {
                     checkbox.checked = false; // uncheck the checkbox
                 }
             });
-        } else if (storedRefNum == "swetw") {
+        } else if (storedRefNum == "SWETW") {
             Array.from(bdaCheckboxes).forEach((checkbox) => {
                 if (checkbox.type === 'checkbox') {
                     checkbox.checked = false; // uncheck the checkbox
@@ -184,10 +184,10 @@ function init() {
     //stores the reference number from jobs.php
     if (document.title == "Available Positions") {
         document.getElementById("bda-apply").onclick = function () {
-            window.localStorage.setItem("storedRefNum", "bdatw");
+            window.localStorage.setItem("storedRefNum", "BDATW");
         };
         document.getElementById("swe-apply").onclick = function () {
-            window.localStorage.setItem("storedRefNum", "swetw");
+            window.localStorage.setItem("storedRefNum", "SWETW");
         };
     }
 
@@ -249,7 +249,7 @@ function init() {
 
         // When the Reset button is clicked
         applicationForm.onreset = function () {
-            filterSkillsList(refNumField.value, bdaSkillsFieldset, sweSkillsFieldset); // filter the skills list - to show everything
+            filterSkillsList(refNumField.input.value, bdaSkillsFieldset, sweSkillsFieldset); // filter the skills list - to show everything
             //Note: I chose to clear both the sessionStorage and localStorage on clear for better user experience, as it will not make sense 
             //to keep showing values after the user clicks on reset
             sessionStorage.clear(); // clear the sessionStorage

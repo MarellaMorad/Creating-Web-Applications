@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include('header.inc'); ?>
+    <?php include('header.inc'); include('menu.inc');?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>HTML & CSS Enhancements</h1>
     <section class="enhance">
@@ -267,11 +267,6 @@
             </p>
         </details>
     </section>
-    <div class="js-enhance">
-        <aside>
-            <a href="enhancements2.php">Looking for JavaScript Enhancements?</a>
-        </aside>
-    </div>
     <?php include('footer.inc'); ?>
 </body>
 

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include('header.inc'); include('manager_options.inc')?>
+    <?php include('header.inc'); include('menu.inc'); include('manager_options.inc')?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <form class="form-container manager-actions" method="post" action="deleteEOIs.php">
         <h2>Delete EOI Applications</h2>

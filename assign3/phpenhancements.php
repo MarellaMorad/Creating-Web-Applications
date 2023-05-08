@@ -8,7 +8,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL">
     <meta name="author" content="Marella Morad">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Application Success</title>
+    <title>PHP & MySQL Enhancements</title>
     <!--Add a favicon to the website-->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
@@ -19,11 +19,24 @@
 <body>
     <?php include('header.inc'); include('menu.inc');?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
-    <?php 
-        session_start();
-        
-        echo "<p>Thank you for your expression of interest. Your EOInumber is: " . $_SESSION['eoi_number'] ."</p>";
-        echo "<p>Feel Free to continue browsing our site, you can also apply for other available positions!</p>";
-    ?>
+    <h1>PHP & MySQL Enhancements</h1>
+    <section class="enhance">
+        <h2>Use the PHP <code>$_SESSION</code> Superglobal to Store errors and display them on the application form</h2>
+        <p class="overall-intro"></p>
+        <details>
+            <summary></summary>
+            <p></p>
+        </details>
+    </section>
+    <section class="enhance">
+        <h2>Sorting EOIs based on User Selection</h2>
+        <p class="overall-intro"></p>
+        <details>
+            <summary></summary>
+            <p></p>
+        </details>
+    </section>
     <?php include('footer.inc'); ?>
 </body>
+
+</html>

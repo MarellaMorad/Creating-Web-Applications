@@ -3,22 +3,91 @@
     //use the session_start() function to start a session. This will allow you to store the errors in the session variable,
     //and then retrieve them from the session variable in the apply.php file.
     session_start();
+    require_once("settings.php");
 
     $errors = array();
 
-       
     //don't allow direct access to this page (redirect if directly accessed)
     if (!isset($_POST['reference-number'])) {
         header('Location: apply.php');
     }
 
     //server-side validation
-    
-    //validate inputs
+    //exactly 5 alphanumeric regex pattern
+    $ref_pattern = '/^[a-zA-Z0-9]{5}$/';
     if (!isset($_POST['reference-number']) || trim($_POST['reference-number']) === ''){
         $errors['reference-number'] = 'Please enter your Job Reference Number.';
     } else {
-        $reference_number = $_POST['reference-number'];
+        if (!preg_match($ref_pattern, $_POST['reference-number'])) {
+            $errors['reference-number'] = 'The Job Reference Number must be Exactly 5 Alphanumeric Characters';
+        } else {
+            //get reference number from db
+            $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+    
+            if(!$conn) {
+                //Display an error message
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>'; //not in production script
+            } else {
+                //Successful connection
+                $sql_table = 'JobReferenceNumbers';
+                $field_def = 'Id INT AUTO_INCREMENT PRIMARY KEY, 
+                              Code VARCHAR(5), 
+                              Description VARCHAR(255)';
+    
+                //check if the table doesn't exist, create table
+                $sqlString = "show tables like '$sql_table'";  // another alternative is to just use 'create table if not exists ...'
+                $result1 = @mysqli_query($conn, $sqlString);
+
+                // checks if any tables of this name
+                if(mysqli_num_rows($result1) === 0) {
+                    //Table does not exist - create table
+                    echo '<p class="message"><span class="fa fa-exclamation-triangle"></span>Table does not exist, creating table...</p>';
+                    $sqlString = "create table " . $sql_table . "(" . $field_def . ")";
+                    $result2 = @mysqli_query($conn, $sqlString);
+                    // checks if the table was created
+                    if($result2 === false) {
+                        echo '<p class="message"><span class="fa fa-times-circle"></span>Unable to create Table ' , $sql_table , '!</p>';
+                    } else {
+                        echo '<p class="message"><span class="fa fa-check-circle"></span>Table Created Successfully!</p>';
+    
+                        // Insert the active reference numbers in the table
+                        $query = "INSERT INTO $sql_table"
+                        ."(Code, Description)" ." VALUES "
+                        ."('SWETW', 'Software Engineer'),
+                          ('BDATW', 'Big Data Analyst')";
+    
+                        $result3 = mysqli_query($conn, $query);
+    
+                        if (!$result3) {
+                            echo '<p class="message"><span class="fa fa-times-circle"></span>Something is wrong with ',	$query, '</p>';
+                        } else {
+                            echo '<p class="message"><span class="fa fa-check-circle"></span>Active Records Added to the Table!</p>';
+                        }
+                    }
+                } else {
+                    echo '<p class="message"><span class="fa fa-check-circle"></span>Table Already Exists!</p>';
+                }
+    
+                // Store the posted reference number
+                $temp_reference_number = strtoupper($_POST['reference-number']);
+
+                //check if the entered reference number exists
+                $search_query = "SELECT Count(*) FROM JobReferenceNumbers WHERE Code = '$temp_reference_number'";
+    
+                //add an EOI record to the database - execute the query
+                $search_result = mysqli_query($conn, $search_query);
+                $search_result_row = mysqli_fetch_assoc($search_result);
+                // checks if the execution was successful
+                if($search_result_row["Count(*)"] == 0) {
+                    echo '<p class="message"><span class="fa fa-times-circle"></span>Not Found!</p>';
+                    $errors['reference-number'] = 'Invalid Job Reference Number!';
+                } else { //if successful
+                    echo '<p class="message"><span class="fa fa-check-circle"></span>Found!</p>';
+                    // Store the posted reference number
+                    $reference_number = $_POST['reference-number'];
+                }
+            }
+        }
     }
     
     // alpha regex pattern
@@ -188,6 +257,7 @@
     // if the all data is valid
     else {
         //sanitize data to remove leading and trailing spaces, backslashes and HTML control characters
+        $reference_number = sanitise_input($reference_number);
         $firstname = sanitise_input($firstname);
         $lastname = sanitise_input($lastname);
         $dob = sanitise_input($dob);
@@ -197,14 +267,6 @@
         $email = sanitise_input($email);
         $mobile = sanitise_input($mobile);
         $other_skills_desc = sanitise_input($other_skills_desc);
-
-        require_once('settings.php');
-
-        $conn = @mysqli_connect($host,
-            $user,
-            $pwd,
-            $sql_db
-        );
 
         if (!$conn) {
             echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>';
@@ -264,7 +326,6 @@
             mysqli_close($conn);
         }
     }    
-
     
     function sanitise_input($data) {
         $data = trim($data);

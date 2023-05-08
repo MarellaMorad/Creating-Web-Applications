@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include('header.inc'); include('manager_options.inc')?>
+    <?php include('header.inc'); include('menu.inc'); include('manager_options.inc')?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <form class="form-container manager-actions" method="post" action="displayEOIs.php">
         <h2>Display EOI Applications</h2>
@@ -37,6 +37,15 @@
         <p>
             <label for="search-last-name">Last Name:</label>
             <input type="text" name="search-last-name" id="search-last-name">
+        </p>
+        <p>
+            <label for="sort">Sort Results By:</label>
+            <select name="sort" id="sort">
+                <option value="">Please Select</option>
+                <option value="JobReferenceNumber">Job Reference Number</option>
+                <option value="FirstName">Firstname</option>
+                <option value="LastName">Lastname</option>
+            </select>
         </p>
         <div class="buttons">
             <input type="submit" name="search" value="Search">
@@ -90,6 +99,10 @@
                         $queryCount .= implode(" AND ", $conditions);
                     }
 
+                    if ($_POST["sort"] != "") {
+                        $query .= " Order By " . $_POST["sort"];
+                    }
+
                     $result = mysqli_query($conn, $query);
                     $resultCount = mysqli_query($conn, $queryCount);
                     $resultCountRow = mysqli_fetch_assoc($resultCount);
@@ -102,8 +115,10 @@
                         echo '<p class="message"><span class="fa fa-check-circle"></span>', $resultCountRow["Count(*)"], ' Result/s Found</p>';
 
                         //Display the retrieved records
-                        echo "<table border=\"1\">\n";
+                        echo "<div class=\"table-wrapper\">\n";
+                        echo "<table>\n";
                         echo "<tr>\n "
+                            ."<th scope=\"col\">EOI Number</th>\n "
                             ."<th scope=\"col\">Job Reference Number</th>\n "
                             ."<th scope=\"col\">First Name</th>\n "
                             ."<th scope=\"col\">Last Name</th>\n "
@@ -123,23 +138,25 @@
                         //retrieve current record pointed by the result pointer
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>\n ";
-                            echo "<td>", $row["JobReferenceNumber"],"</td>\n ";
+                            echo "<td>", $row["EOInumber"],"</td>\n ";
+                            echo "<td>", strtoupper($row["JobReferenceNumber"]),"</td>\n ";
                             echo "<td>", $row["FirstName"],"</td>\n ";
                             echo "<td>", $row["LastName"],"</td>\n ";
                             echo "<td>", $row["DOB"],"</td>\n ";
-                            echo "<td>", $row["Gender"],"</td>\n ";
+                            echo "<td>", ucfirst($row["Gender"]),"</td>\n ";
                             echo "<td>", $row["StreetAddress"],"</td>\n ";
                             echo "<td>", $row["Suburb"],"</td>\n ";
-                            echo "<td>", $row["State"],"</td>\n ";
+                            echo "<td>", strtoupper($row["State"]),"</td>\n ";
                             echo "<td>", $row["Postcode"],"</td>\n ";
                             echo "<td>", $row["EmailAddress"],"</td>\n ";
                             echo "<td>", $row["PhoneNumber"],"</td>\n ";
                             echo "<td>", $row["Skills"],"</td>\n ";
-                            echo "<td>", $row["OtherSkills"],"</td>\n ";
+                            echo "<td>", $row["OtherSkills"] == '' ? "N/A" : $row["OtherSkills"],"</td>\n ";
                             echo "<td>", $row["Status"],"</td>\n ";
                             echo "</tr>\n ";
                         }
                         echo "</table>\n ";
+                        echo "</div>\n ";
                     } // if successful query operation
 
                     //Frees up the memory, after using the result pointer

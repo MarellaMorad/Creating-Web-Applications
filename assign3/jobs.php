@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <?php include('header.inc'); ?>
+    <?php include('header.inc'); include('menu.inc');?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>Available Positions</h1>
     <section class="collapsible">

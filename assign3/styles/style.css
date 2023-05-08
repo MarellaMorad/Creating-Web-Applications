@@ -87,6 +87,28 @@ nav ul li,
     color: white;
 }
 
+.nav-menu .sub-menu {
+    display: none;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.nav-menu li:hover > .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    width: 100%;
+    text-align: center;
+}
+
+.sub-menu li a:hover {
+    background-color: var(--dark-purple);
+}
+
 .hidden {
     display: none;
 }
@@ -479,19 +501,6 @@ details ol {
     font-size: medium;
 }
 
-.js-enhance {
-    display: flex;
-    justify-content: center;
-}
-
-.js-enhance aside {
-    float: none;
-    width: fit-content;
-}
-
-.js-enhance aside a {
-    font-weight: bold;
-}
 /*---------------------------------------------------------------------------------------*/
 /*enhancements2.php Styling*/
 pre {
@@ -572,6 +581,12 @@ pre {
 p.message {
     display: flex;
     align-items: center;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*displayEOIs.php Styling*/
+.table-wrapper {
+    overflow-x: auto;
 }
 
 /*---------------------------------------------------------------------------------------*/
