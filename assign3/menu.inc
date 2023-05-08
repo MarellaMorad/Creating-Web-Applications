@@ -13,7 +13,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-link has-child" href="manage.php"><span id="manage">Manage EOI</span></a>
+                    <a class="nav-link has-child" href="manage.php"><span id="manage">Manage EOIs</span></a>
                     <ul class="sub-menu">
                         <li><a href="displayEOIs.php">Display</a></li>
                         <li><a href="deleteEOIs.php">Delete</a></li>

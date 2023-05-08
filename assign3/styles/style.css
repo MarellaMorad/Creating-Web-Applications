@@ -225,6 +225,7 @@ label {
 }
 
 .form-container input[type='text'],
+.form-container input[type='password'],
 .form-container select,
 .form-container textarea {
     background-color: transparent;
@@ -248,7 +249,8 @@ fieldset {
     align-items: center;
 }
 
-.buttons input, .manage-buttons {
+.buttons input,
+.manage-buttons {
     background-color: transparent;
     border: 1px solid var(--grey);
     border-radius: 10px;
@@ -257,7 +259,9 @@ fieldset {
     font: bold medium Verdana, sans-serif;
 }
 
-.buttons input:hover, .manage-buttons:hover  {
+.buttons input:hover,
+.manage-buttons:hover,
+.login-buttons input:hover {
     cursor: pointer;
     background-color: var(--dark-purple);
     color: white;
@@ -581,6 +585,41 @@ pre {
 p.message {
     display: flex;
     align-items: center;
+}
+
+.login-forms {
+    display: flex;
+    justify-content: center;
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-buttons input {
+    background-color: transparent;
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font: bold medium Verdana, sans-serif;
+}
+
+#sign-up-form, 
+#log-in-form {
+    width: 50%;
+    max-width: 580px;
+}
+
+#sign-up-form .password-container,
+#log-in-form .password-container {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    padding-left: 5px;
 }
 
 /*---------------------------------------------------------------------------------------*/

@@ -9,6 +9,25 @@
 
 "use strict";
 
+function passwordToggle() {
+    const passwordInput = document.getElementById('manager-password');
+    const togglePassword = document.getElementsByClassName('toggle-password');
+
+    if (passwordInput && togglePassword[0]) {
+        togglePassword[0].addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword[0].classList.remove('fa-eye');
+                togglePassword[0].classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                togglePassword[0].classList.remove('fa-eye-slash');
+                togglePassword[0].classList.add('fa-eye');
+            }
+        });
+    }
+}
+
 function setActivePage() {
     var navLinks = document.getElementsByClassName("nav-link");
     const manageButtons = document.getElementsByClassName("manage-buttons");
@@ -31,6 +50,10 @@ function setActivePage() {
             link.classList.remove('active');
         }
     });
+
+    if (window.location.href.endsWith('/login.php')) {
+        navLinks[4].classList.add('active');
+    }
 }
 
 function adjustMenu() {
@@ -43,12 +66,6 @@ function adjustMenu() {
         document.getElementById("enhancements"),
         document.getElementById("contact-us")
     ];
-
-    if (document.title == "Manage EOIs") {
-        navItems.push(document.getElementById("display-eois"));
-        navItems.push(document.getElementById("delete-eois"));
-        navItems.push(document.getElementById("update-eois"));
-    }
 
     storeOriginalText(navItems);
 
@@ -64,13 +81,6 @@ function adjustMenu() {
         navItems[4].classList.add('fas', 'fa-address-book');
         navItems[5].classList.add('fas', 'fa-cog');
         navItems[6].classList.add('fas', 'fa-envelope');
-
-        if (document.title == "Manage EOIs") {
-            navItems[7].classList.add('fa', 'fa-eye');
-            navItems[8].classList.add('fa', 'fa-trash');
-            navItems[9].textContent = String.fromCharCode(0x270E);
-        }
-
     } else {
         navItems.forEach(item => item.classList.remove(...item.classList));
         setActivePage();
@@ -86,12 +96,6 @@ function storeOriginalText(navItems) {
     navItems[4].dataset.originalText = "Manage EOIs";
     navItems[5].dataset.originalText = "Enhancements";
     navItems[6].dataset.originalText = "Contact Us";
-
-    if (document.title == "Manage EOIs") {
-        navItems[7].dataset.originalText = "Display EOI Applications";
-        navItems[8].dataset.originalText = "Delete EOI Applications";
-        navItems[9].dataset.originalText = "Update the Status of EOI Applications";
-    }
 }
 
 function restoreOriginalText(navItems) {
@@ -107,6 +111,8 @@ function init() {
     // Call the adjustMenu function to set the initial state of the navigation items
     adjustMenu();
     setActivePage();
+
+    passwordToggle();
 
     const backToTopButton = document.getElementsByClassName("back-to-top");
     window.addEventListener("scroll", () => {

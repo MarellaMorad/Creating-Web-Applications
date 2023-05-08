@@ -21,7 +21,7 @@
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>PHP & MySQL Enhancements</h1>
     <section class="enhance">
-        <h2>Use the PHP <code>$_SESSION</code> Superglobal to Store errors and display them on the application form</h2>
+        <h2>Implement Manager Sign Up and Login</h2>
         <p class="overall-intro"></p>
         <details>
             <summary></summary>
@@ -29,7 +29,7 @@
         </details>
     </section>
     <section class="enhance">
-        <h2>Sorting EOIs based on User Selection</h2>
+        <h2>Provide the Manager with the ability to Sort EOIs</h2>
         <p class="overall-intro"></p>
         <details>
             <summary></summary>

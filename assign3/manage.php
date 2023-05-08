@@ -17,7 +17,40 @@
 </head>
 
 <body>
-    <?php include('header.inc'); include('menu.inc'); include('manager_options.inc');?>
+    <?php include('header.inc'); include('menu.inc');?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
+    <?php
+        session_start();
+
+        if (!isset($_SESSION['loggedin'])) {
+            include('sign-up.inc');
+
+            require_once("settings.php");
+            $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+            if (!$conn) {
+                //Display an error message
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>';
+            } else {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sign-up'])) {
+                    //Manager signing up
+                    $signup_username = $_POST["manager-username"];
+                    $signup_password = $_POST["manager-password"];
+
+                    $query = "INSERT INTO Manager (Username, Pass) Values ('$signup_username', '$signup_password')";
+                    $result = mysqli_query($conn, $query);
+
+                    if (!$result) {
+                        echo '<p class="message"><span class="fa fa-times-circle"></span>An Error Occurred While trying to Add the Manager</p>';
+                    } else {
+                        $_SESSION["justsignedup"] = "Yes";
+                        header('Location: login.php');
+                        exit;
+                    }
+                }
+            }
+        } else {
+            include('manager_options.inc');
+        }
+    ?>
     <?php include('footer.inc'); ?>
 </body>
