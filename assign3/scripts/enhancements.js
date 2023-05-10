@@ -141,6 +141,7 @@ function init() {
     setActivePage();
 
     if (document.title == "Manage EOIs") {
+        window.addEventListener("resize", adjustHRSubmenu);
         adjustHRSubmenu();
     }
 
