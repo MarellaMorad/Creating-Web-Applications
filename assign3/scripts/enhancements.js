@@ -104,6 +104,34 @@ function restoreOriginalText(navItems) {
     })
 }
 
+function adjustHRSubmenu() {
+    const hrNavItems = [
+        document.getElementById("display-eois"),
+        document.getElementById("delete-eois"),
+        document.getElementById("update-eois")
+    ];
+
+    if (hrNavItems[0] && hrNavItems[1] && hrNavItems[2]) {
+        hrNavItems[0].dataset.originalText = "Display EOI Applications";
+        hrNavItems[1].dataset.originalText = "Delete EOI Applications";
+        hrNavItems[2].dataset.originalText = "Update the Status of EOI Applications";
+
+        // Check if the screen width is smaller than 869 pixels
+        if (window.innerWidth < 869) {
+            // Clear the text content of the navigation item
+            hrNavItems.forEach(item => item.textContent = "");
+            // Add the font-awesome icon classes
+            hrNavItems[0].classList.add('fa', 'fa-eye');
+            hrNavItems[1].classList.add('fa', 'fa-trash');
+            hrNavItems[2].textContent = String.fromCharCode(0x270E);
+        } else {
+            hrNavItems.forEach(item => item.classList.remove(...item.classList));
+            setActivePage();
+            restoreOriginalText(hrNavItems);
+        }
+    }
+}
+
 function init() {
     // Add a listener for window resize events
     window.addEventListener("resize", adjustMenu);
@@ -111,6 +139,10 @@ function init() {
     // Call the adjustMenu function to set the initial state of the navigation items
     adjustMenu();
     setActivePage();
+
+    if (document.title == "Manage EOIs") {
+        adjustHRSubmenu();
+    }
 
     passwordToggle();
 

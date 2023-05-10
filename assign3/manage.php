@@ -36,15 +36,37 @@
                     $signup_username = $_POST["manager-username"];
                     $signup_password = $_POST["manager-password"];
 
-                    $query = "INSERT INTO Manager (Username, Pass) Values ('$signup_username', '$signup_password')";
+                    $query = "SELECT Count(*) FROM Manager WHERE Username = '$signup_username'";
                     $result = mysqli_query($conn, $query);
+                    $resultRow = mysqli_fetch_assoc($result);
 
-                    if (!$result) {
-                        echo '<p class="message"><span class="fa fa-times-circle"></span>An Error Occurred While trying to Add the Manager</p>';
+                    if ($resultRow["Count(*)"] == 0) {
+                        $password_pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/';
+
+                        if (!preg_match($password_pattern, $signup_password)) {
+                            echo '<p class="message"><span class="fa fa-times-circle"></span>The Password you entered is too weak, make sure your password meets our policy:</p>';
+                            echo '<p>Your Password Must Be:</p>
+                            <ul>
+                                    <li>At least 8 characters long</li>
+                                    <li>Contains at least one uppercase letter (A-Z)</li>
+                                    <li>Contains at least one lowercase letter (a-z)</li>
+                                    <li>Contains at least one digit (0-9)</li>
+                                    <li>Contains at least one special character (e.g. !,@,#,$,%,&,*)</li>
+                            </ul>';
+                        } else {
+                            $insert_query = "INSERT INTO Manager (Username, Pass) Values ('$signup_username', '$signup_password')";
+                            $insert_result = mysqli_query($conn, $insert_query);
+        
+                            if (!$insert_result) {
+                                echo '<p class="message"><span class="fa fa-times-circle"></span>An Error Occurred While trying to Add the Manager</p>';
+                            } else {
+                                $_SESSION["justsignedup"] = "Yes";
+                                header('Location: login.php');
+                                exit;
+                            }
+                        }
                     } else {
-                        $_SESSION["justsignedup"] = "Yes";
-                        header('Location: login.php');
-                        exit;
+                        echo '<p class="message"><span class="fa fa-times-circle"></span>This Username Already exists, please choose a new one</p>';
                     }
                 }
             }
