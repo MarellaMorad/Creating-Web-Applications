@@ -23,7 +23,13 @@
 </head>
 
 <body>
-    <?php include('header.inc'); include('menu.inc');?>
+    <?php
+        include('header.inc'); 
+        include('menu.inc');
+        if (isset($_SESSION['direct-access'])) {
+            echo '<p class="message"><span class="fa fa-times-circle"></span>Direct Access to processEOI.php is not permitted</p>';
+        }
+    ?>
     <button class="back-to-top hidden"><span class="fa fa-angle-up"></span></button>
     <h1>Application of Interest</h1>
     <div id="warning">
@@ -315,6 +321,7 @@
         <?php 
             // clear the session variable so the errors don't persist after a refresh
             unset($_SESSION['errors']);
+            unset($_SESSION['direct-access']);
         ?>
     </form>
     <?php include('footer.inc'); ?>

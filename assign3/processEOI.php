@@ -9,6 +9,7 @@
 
     //don't allow direct access to this page (redirect if directly accessed)
     if (!isset($_POST['reference-number'])) {
+        $_SESSION["direct-access"] = "YES";
         header('Location: apply.php');
     }
 
