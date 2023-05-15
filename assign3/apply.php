@@ -285,7 +285,7 @@
             <fieldset>
                 <legend>Soft Skills</legend>
                 <label for="problem-solving">Problem Solving Skills</label>
-                <input type="checkbox" id="problem-solving" name="skills[]" value="problem-solving" checked="checked">
+                <input type="checkbox" id="problem-solving" name="skills[]" value="problem-solving">
 
                 <label for="communication">Communication skills</label>
                 <input type="checkbox" id="communication" name="skills[]" value="communication">

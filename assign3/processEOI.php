@@ -8,18 +8,24 @@
     $errors = array();
 
     //don't allow direct access to this page (redirect if directly accessed)
-    if (!isset($_POST['reference-number'])) {
+    if (!isset($_POST['reference-number']) && !isset($_POST['job-reference-number']) ) {
         $_SESSION["direct-access"] = "YES";
         header('Location: apply.php');
     }
 
+    //Since the job reference number can either come from the reference-number input field OR from
+    //the hidden job-reference-number input field, we need to check which one is posted, and use it accordingly.
+    $posted_reference_number = !isset($_POST['reference-number'])
+                             ? $_POST['job-reference-number']
+                             : $_POST['reference-number'];
+
     //server-side validation
     //exactly 5 alphanumeric regex pattern
     $ref_pattern = '/^[a-zA-Z0-9]{5}$/';
-    if (!isset($_POST['reference-number']) || trim($_POST['reference-number']) === ''){
+    if (!isset($posted_reference_number) || trim($posted_reference_number) === ''){
         $errors['reference-number'] = 'Please enter your Job Reference Number.';
     } else {
-        if (!preg_match($ref_pattern, $_POST['reference-number'])) {
+        if (!preg_match($ref_pattern, $posted_reference_number)) {
             $errors['reference-number'] = 'The Job Reference Number must be Exactly 5 Alphanumeric Characters';
         } else {
             //get reference number from db
@@ -70,7 +76,7 @@
                 }
     
                 // Store the posted reference number
-                $temp_reference_number = strtoupper($_POST['reference-number']);
+                $temp_reference_number = strtoupper($posted_reference_number);
 
                 //check if the entered reference number exists
                 $search_query = "SELECT * FROM JobReferenceNumbers WHERE Code = '$temp_reference_number'";
@@ -85,7 +91,7 @@
                 } else { //if successful
                     echo '<p class="message"><span class="fa fa-check-circle"></span>Found!</p>';
                     // Store the posted reference number
-                    $reference_number = $_POST['reference-number'];
+                    $reference_number = $posted_reference_number;
                 }
 
                 //Frees up the memory, after using the result pointers

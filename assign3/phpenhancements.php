@@ -25,7 +25,7 @@
         <p class="overall-intro">This feature was implemented to only allow HR Managers to access/modify 
             EOI Applications. The following has been Implemented to achieve this functionality:</p>
         <details>
-            <summary>Manager Registration Page - <code>manage.php</code></summary>
+            <summary>Manager Registration Page - <code>signup.php</code></summary>
             <p>Created a Manager registration page with server-side 
                 validation requiring a Unique Username and a Password meeting the TechWave Password Policy:
             </p>
@@ -51,18 +51,13 @@
             <p>Upon Successful Login, the HR Manager will be able to use all Manager functionalities 
                 during a single browser session. Once the browser is closed, the Manager will have to 
                 Login again to access the Manager functionalities. This has been implemented by redirecting the 
-                users to the sign up / login pages if they try to directly access one of the HR Manager <code>.php</code> 
-                files. For example, in <code>displayEOIs.php</code>:
+                users to the sign up / login pages if they try to directly access one of the HR Manager Functionalities 
+                before being logged in.
             </p>
-            <pre><code>session_start();
-if (!isset($_SESSION["loggedin"])) {
+            <p>This is controlled using the header function as follows:</p>
+<pre><code>if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
-    exit;
-}
-</code></pre>
-            <p>
-                This check confirms that the user is logged in before allowing them to access any of the Manager functionalities.
-            </p>
+}</code></pre>
         </details>
         <details>
         <Summary>Downsides / Vulnerabilities</Summary>
@@ -93,8 +88,8 @@ if (!isset($_SESSION["loggedin"])) {
                     though it says the access will be blocked for 30 mins, this only applies for a single Browser Session. 
                     If the User closes and re-opens the browser (i.e. starting a new session), they will be able to try again 
                     for 3 times before they are blocked again (if all 3 attempts fail). In terms of vulnerabilities, this issue is 
-                    less concerning when compared to the previous one. I decided to accept the risk and look for better approaches in 
-                    the future.
+                    less concerning when compared to the previous one. I decided to accept the risk for now and look for better approaches 
+                    in the future.
                 </li>
             </ol>
         </details>
@@ -111,31 +106,42 @@ if (!isset($_SESSION["loggedin"])) {
             <li>Delete all EOIs with a specified job reference number</li>
             <li>Change the Status of an EOI.</li>
         </ol>
-        <p>The above functionalities have been implemented using three <code>.php</code> files</p>
+        <p>The above functionalities have all been implemented in <code>manage.php</code> by including the requested functionality at a time</p>
         <ol>
             <li>
-                <code>displayEOIs.php</code>:
+                <p>Display EOI Applications:</p>
                 <p>
-                    This file provides the first three listing functionalities based on the user preference. 
+                    For this function, I <code>include('displayEOIs.inc');</code> which is a form containing <code>HTML</code> 
+                    elements that are used to search through the database and perform the display functionalities 
+                    (functions 1, 2 and 3 from the list above).<br>
+                    The display request is then processed in <code>manage.php</code> based on the user preference. 
                     For example, if the user chooses not to fill in any of the search filters, the system will 
                     list all available EOIs. Otherwise, if they do select/fill in a filter, then the SQL query 
                     will be modified accordingly using if conditions and dynamic string building.
                 </p>
             </li>
             <li>
-                <code>deleteEOIs.php</code>
-                <p>This file basically deletes all EOI applications that match to a given job reference number.</p>
+                <p>Delete EOI Applications:</p>
+                <p>For this function, I <code>include('deleteEOIs.inc');</code> which is a form containing <code>HTML</code> 
+                    elements that are used to search through the database and perform the delete functionalities 
+                    (function 4 from the list above).<br>
+                    The delete request is then processed in <code>manage.php</code> and based on the user input, it 
+                    either deletes the EOIs (if any) or displays an appropriate message.
+                </p>
             </li>
             <li>
-                <code>updateEOIStatus.php</code>
-                <p>This file updates the Status of a specific EOI application (using EOInumber) and the new Status that 
-                    the HR Manager selects to update the record with.
+                <p>Update the Status of EOI Applications</p>
+                <p>For this function, I <code>include('updateEOIStatus.inc');</code> which is a form containing <code>HTML</code> 
+                    elements that are used to search through the database and perform the status update functionalities 
+                    (function 5 from the list above).<br>
+                    The update request is then processed in <code>manage.php</code> and based on the user input, it 
+                    either updates the EOI status, if the EOI application is found, or displays an appropriate message.
                 </p>
             </li>
         </ol>
         </details>
         <details>
-            <summary>Added a Dropdown Filter to the <code>displayEOIs.php</code></summary>
+            <summary>Added a Dropdown Filter to the <code>displayEOIs.inc</code></summary>
             <p>
                 As part of the searching functionality that HR Managers have access to, I added a dropdown filter that includes some 
                 of the EOI table columns to allow the Manager to order results based on their selection. I used dynamic strings to build 

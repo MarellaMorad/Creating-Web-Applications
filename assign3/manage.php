@@ -132,7 +132,7 @@
                                 echo "<td>", $row["Postcode"],"</td>\n ";
                                 echo "<td>", $row["EmailAddress"],"</td>\n ";
                                 echo "<td>", $row["PhoneNumber"],"</td>\n ";
-                                echo "<td>", $row["Skills"],"</td>\n ";
+                                echo "<td>", $row["Skills"] == '' ? "None Selected" : $row["Skills"],"</td>\n ";
                                 echo "<td>", $row["OtherSkills"] == '' ? "N/A" : $row["OtherSkills"],"</td>\n ";
                                 echo "<td>", $row["Status"],"</td>\n ";
                                 echo "</tr>\n ";
