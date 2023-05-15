@@ -15,9 +15,9 @@
                 <li>
                     <a class="nav-link has-child" href="manage.php"><span id="manage">Manage EOIs</span></a>
                     <ul class="sub-menu">
-                        <li><a href="displayEOIs.php">Display</a></li>
-                        <li><a href="deleteEOIs.php">Delete</a></li>
-                        <li><a href="updateEOIStatus.php">Update Status</a></li>
+                        <li><a href="manage.php?action=displayEOIs">Display</a></li>
+                        <li><a href="manage.php?action=deleteEOIs">Delete</a></li>
+                        <li><a href="manage.php?action=updateEOIStatus">Update Status</a></li>
                     </ul>
                 </li>
                 <li>

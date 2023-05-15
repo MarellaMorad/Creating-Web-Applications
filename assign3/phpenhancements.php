@@ -56,7 +56,7 @@
             </p>
             <pre><code>session_start();
 if (!isset($_SESSION["loggedin"])) {
-    header('Location: manage.php');
+    header('Location: login.php');
     exit;
 }
 </code></pre>

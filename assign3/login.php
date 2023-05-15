@@ -63,46 +63,55 @@
         </form>
     </div>
     <?php
-        require_once("settings.php");
-        $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-        if (!$conn) {
-            //Display an error message
-            echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>';
-        } else {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['log-in'])) {
-                //Manager logging in
-                $login_username = $_POST["manager-username"];
-                $login_password = $_POST["manager-password"];
+        if (!isset($_SESSION['loggedin'])) {
+            require_once("settings.php");
+            $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+            if (!$conn) {
+                //Display an error message
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Database connection failure</p>';
+            } else {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['log-in'])) {
+                    //Manager logging in
+                    $login_username = $_POST["manager-username"];
+                    $login_password = $_POST["manager-password"];
 
-                $query = "SELECT Count(*) FROM Manager WHERE Username = '$login_username'";
-                $result = mysqli_query($conn, $query);
-                $resultRow = mysqli_fetch_assoc($result);
+                    $login_query = "SELECT * FROM Manager WHERE Username = '$login_username'";
+                    $login_result = mysqli_query($conn, $login_query);
+                    $login_result_count = mysqli_num_rows($login_result);
 
-                if ($resultRow["Count(*)"] == 0) {
-                    echo '<p class="message"><span class="fa fa-times-circle"></span>Account not Found</p>';
-                } else {
-                    //Username is found, check if password is correct
-                    $pass_query = "SELECT Count(*) FROM Manager WHERE Username = '$login_username' AND Pass = '$login_password'";
-                    $pass_result = mysqli_query($conn, $pass_query);
-                    $pass_resultRow = mysqli_fetch_assoc($pass_result);
-                    if ($pass_resultRow["Count(*)"] == 0) {
-                        $failed_attempts++;
-                        $_SESSION['failed_attempts'] = $failed_attempts;
-                        $_SESSION['last_failed_attempt'] = time();
-                        if ($failed_attempts >= 3) {
-                            echo '<p class="message"><span class="fa fa-times-circle"></span>Access will be disabled for 30 mins after 3 unsuccessful login attempts.</p>';
-                        } else {
-                            echo '<p class="message"><span class="fa fa-times-circle"></span>Incorrect Password, you have ' . (3 - $failed_attempts) . ' more attempts to login, then your access will be disabled for 30 mins</p>';
-                        }
+                    if ($login_result_count == 0) {
+                        echo '<p class="message"><span class="fa fa-times-circle"></span>Account not Found</p>';
                     } else {
-                        $_SESSION['loggedin'] = "YES";
-                        unset($_SESSION['failed_attempts']);
-                        unset($_SESSION['last_failed_attempt']);
-                        header('Location: manage.php');
-                        exit;
+                        //Username is found, check if password is correct
+                        $pass_query = "SELECT * FROM Manager WHERE Username = '$login_username' AND Pass = '$login_password'";
+                        $pass_result = mysqli_query($conn, $pass_query);
+                        $pass_result_count = mysqli_num_rows($pass_result);
+                        if ($pass_result_count == 0) {
+                            $failed_attempts++;
+                            $_SESSION['failed_attempts'] = $failed_attempts;
+                            $_SESSION['last_failed_attempt'] = time();
+                            if ($failed_attempts >= 3) {
+                                echo '<p class="message"><span class="fa fa-times-circle"></span>Access will be disabled for 30 mins after 3 unsuccessful login attempts.</p>';
+                            } else {
+                                echo '<p class="message"><span class="fa fa-times-circle"></span>Incorrect Password, you have ' . (3 - $failed_attempts) . ' more attempts to login, then your access will be disabled for 30 mins</p>';
+                            }
+                        } else {
+                            $_SESSION['loggedin'] = "YES";
+                            unset($_SESSION['failed_attempts']);
+                            unset($_SESSION['last_failed_attempt']);
+                            header('Location: manage.php');
+                            exit;
+                        }
                     }
+
+                    //free all result pointers
+                    mysqli_free_result($login_result);
+                    mysqli_free_result($pass_result);
                 }
             }
+        } else {
+            header('Location: manage.php');
+            exit;
         }
     ?>
     <?php include('footer.inc'); ?>

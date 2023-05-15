@@ -87,8 +87,13 @@ nav ul li,
     color: white;
 }
 
+.nav-menu > li {
+    position: relative;
+}
+
 .nav-menu .sub-menu {
     display: none;
+    position: absolute;
     top: 100%;
     left: 0;
     background-color: #fff;
@@ -98,11 +103,6 @@ nav ul li,
 
 .nav-menu li:hover > .sub-menu {
     display: block;
-}
-
-.sub-menu li {
-    width: 100%;
-    text-align: center;
 }
 
 .sub-menu li a:hover {
@@ -561,6 +561,12 @@ pre {
 
 .manager-actions {
     padding: 20px;
+}
+
+.table-wrapper,
+.message {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .fa-times-circle {

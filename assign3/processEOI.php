@@ -37,30 +37,30 @@
     
                 //check if the table doesn't exist, create table
                 $sqlString = "show tables like '$sql_table'";  // another alternative is to just use 'create table if not exists ...'
-                $result1 = @mysqli_query($conn, $sqlString);
+                $table_exists_result = @mysqli_query($conn, $sqlString);
 
                 // checks if any tables of this name
-                if(mysqli_num_rows($result1) === 0) {
+                if(mysqli_num_rows($table_exists_result) === 0) {
                     //Table does not exist - create table
                     echo '<p class="message"><span class="fa fa-exclamation-triangle"></span>Table does not exist, creating table...</p>';
                     $sqlString = "create table " . $sql_table . "(" . $field_def . ")";
-                    $result2 = @mysqli_query($conn, $sqlString);
+                    $table_creation_result = @mysqli_query($conn, $sqlString);
                     // checks if the table was created
-                    if($result2 === false) {
+                    if($table_creation_result === false) {
                         echo '<p class="message"><span class="fa fa-times-circle"></span>Unable to create Table ' , $sql_table , '!</p>';
                     } else {
                         echo '<p class="message"><span class="fa fa-check-circle"></span>Table Created Successfully!</p>';
     
                         // Insert the active reference numbers in the table
-                        $query = "INSERT INTO $sql_table"
+                        $ref_num_table_insert_query = "INSERT INTO $sql_table"
                         ."(Code, Description)" ." VALUES "
                         ."('SWETW', 'Software Engineer'),
                           ('BDATW', 'Big Data Analyst')";
     
-                        $result3 = mysqli_query($conn, $query);
+                        $insert_ref_nums_result = mysqli_query($conn, $ref_num_table_insert_query);
     
-                        if (!$result3) {
-                            echo '<p class="message"><span class="fa fa-times-circle"></span>Something is wrong with ',	$query, '</p>';
+                        if (!$insert_ref_nums_result) {
+                            echo '<p class="message"><span class="fa fa-times-circle"></span>Something is wrong with ',	$ref_num_table_insert_query, '</p>';
                         } else {
                             echo '<p class="message"><span class="fa fa-check-circle"></span>Active Records Added to the Table!</p>';
                         }
@@ -73,13 +73,13 @@
                 $temp_reference_number = strtoupper($_POST['reference-number']);
 
                 //check if the entered reference number exists
-                $search_query = "SELECT Count(*) FROM JobReferenceNumbers WHERE Code = '$temp_reference_number'";
+                $search_query = "SELECT * FROM JobReferenceNumbers WHERE Code = '$temp_reference_number'";
     
                 //add an EOI record to the database - execute the query
                 $search_result = mysqli_query($conn, $search_query);
-                $search_result_row = mysqli_fetch_assoc($search_result);
+                $search_result_count = mysqli_num_rows($search_result);
                 // checks if the execution was successful
-                if($search_result_row["Count(*)"] == 0) {
+                if($search_result_count == 0) {
                     echo '<p class="message"><span class="fa fa-times-circle"></span>Not Found!</p>';
                     $errors['reference-number'] = 'Invalid Job Reference Number!';
                 } else { //if successful
@@ -87,6 +87,12 @@
                     // Store the posted reference number
                     $reference_number = $_POST['reference-number'];
                 }
+
+                //Frees up the memory, after using the result pointers
+                mysqli_free_result($table_exists_result);
+                mysqli_free_result($table_creation_result);
+                mysqli_free_result($insert_ref_nums_result);
+                mysqli_free_result($search_result);
             }
         }
     }
@@ -291,37 +297,42 @@
 
             //check if the table doesn't exist, create table
             $sqlString = "show tables like '$sql_table'";  // another alternative is to just use 'create table if not exists ...'
-            $result1 = @mysqli_query($conn, $sqlString);
+            $table_exists_result = @mysqli_query($conn, $sqlString);
 
             // checks if any tables of this name
-            if(mysqli_num_rows($result1) === 0) {
+            if(mysqli_num_rows($table_exists_result) === 0) {
                 //Table does not exist - create table
                 $sqlString = "create table " . $sql_table . "(" . $field_def . ")";
-                $result2 = @mysqli_query($conn, $sqlString);
+                $table_creation_result = @mysqli_query($conn, $sqlString);
                 // checks if the table was created
-                if($result2 === false) {
+                if($table_creation_result === false) {
                     echo '<p class="message"><span class="fa fa-times-circle"></span>Unable to create Table ' , $sql_table , '!</p>';
                 }
             }
 
             // Set up the SQL command to add the data into the table
-            $query = "INSERT INTO $sql_table"
+            $eoi_insert_query = "INSERT INTO $sql_table"
                     ."(JobReferenceNumber, FirstName, LastName, DOB, Gender, StreetAddress, Suburb, State, Postcode, EmailAddress, PhoneNumber, Skills, OtherSkills)"
                     ." VALUES "
                     ."('$reference_number', '$firstname', '$lastname', '$dob', '$gender', '$street', '$suburb', '$state', '$postcode', '$email', '$mobile', '$combinedSkills', '$other_skills_desc')";
             
             //add an EOI record to the database - execute the query
-            $result = mysqli_query($conn, $query);
+            $insert_eoi_result = mysqli_query($conn, $eoi_insert_query);
 
             // checks if the execution was successful
-            if(!$result) {
-                echo '<p class="message"><span class="fa fa-times-circle"></span>Something is wrong with ',	$query, '</p>';
+            if(!$insert_eoi_result) {
+                echo '<p class="message"><span class="fa fa-times-circle"></span>Something is wrong with ',	$eoi_insert_query, '</p>';
             } else {
                 //if successful, display a confirmation message with the unique EOInumber from db
                 $eoiNumber = $conn->insert_id;
                 $_SESSION['eoi_number'] = $eoiNumber;
                 header('Location: success.php');
             }
+
+            //Frees up the memory, after using the result pointers
+            mysqli_free_result($table_exists_result);
+            mysqli_free_result($table_creation_result);
+            mysqli_free_result($insert_eoi_result);
 
             // close the database connection
             mysqli_close($conn);

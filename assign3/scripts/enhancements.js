@@ -51,7 +51,9 @@ function setActivePage() {
         }
     });
 
-    if (window.location.href.endsWith('/login.php')) {
+    if (window.location.href.endsWith('/login.php') ||
+        window.location.href.endsWith('/signup.php') ||
+        window.location.href.includes('/manage.php')) {
         navLinks[4].classList.add('active');
     }
 }
