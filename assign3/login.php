@@ -59,7 +59,7 @@
             <div class="login-buttons">
                 <input type="submit" name="log-in" value="LOGIN">
             </div>
-            <p>Don't have an account?&nbsp;<a href="manage.php">Sign Up Now!</a></p>
+            <p>Don't have an account?&nbsp;<a href="signup.php">Sign Up Now!</a></p>
         </form>
     </div>
     <?php
