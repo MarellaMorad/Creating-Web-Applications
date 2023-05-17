@@ -172,7 +172,6 @@
     
                                 //Frees up the memory, after using the result pointer
                                 mysqli_free_result($search_ref_result);
-                                mysqli_free_result($delete_result);
                             }
                         }
                     }

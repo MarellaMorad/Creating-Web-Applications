@@ -1,4 +1,10 @@
 <?php
+    /* processEOI.php
+    validates all user inputs for an EOI application and adds them to the database if valid
+    Author: Marella Morad
+    Last Updated: 17/05/2023
+    */
+
     //Start the session
     //use the session_start() function to start a session. This will allow you to store the errors in the session variable,
     //and then retrieve them from the session variable in the apply.php file.
@@ -8,9 +14,10 @@
     $errors = array();
 
     //don't allow direct access to this page (redirect if directly accessed)
-    if (!isset($_POST['reference-number']) && !isset($_POST['job-reference-number']) ) {
+    if (!isset($_POST['first-name'])) {
         $_SESSION["direct-access"] = "YES";
-        header('Location: apply.php');
+        header('Location: message.php');
+        exit;
     }
 
     //Since the job reference number can either come from the reference-number input field OR from
@@ -332,7 +339,7 @@
                 //if successful, display a confirmation message with the unique EOInumber from db
                 $eoiNumber = $conn->insert_id;
                 $_SESSION['eoi_number'] = $eoiNumber;
-                header('Location: success.php');
+                header('Location: message.php');
             }
 
             //Frees up the memory, after using the result pointers
